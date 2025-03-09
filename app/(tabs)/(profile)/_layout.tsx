@@ -5,6 +5,9 @@ const ProfileLayout = () => {
 	return (
 		<Stack>
 			<Stack.Screen name="index" />
+			<Stack.Screen name="balance" />
+			<Stack.Screen name="cars" />
+			<Stack.Screen name="loyality" />
 		</Stack>
 	);
 };
