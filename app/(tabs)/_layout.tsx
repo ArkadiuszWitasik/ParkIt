@@ -1,11 +1,13 @@
-import { View, Text } from 'react-native';
 import React from 'react';
+import { Tabs } from 'expo-router';
 
 const TabLayout = () => {
 	return (
-		<View>
-			<Text>TabLayout</Text>
-		</View>
+		<Tabs>
+			<Tabs.Screen name="(home)" />
+			<Tabs.Screen name="(profile)" />
+			<Tabs.Screen name="(settings)" />
+		</Tabs>
 	);
 };
 

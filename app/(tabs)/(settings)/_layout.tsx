@@ -1,11 +1,11 @@
-import { View, Text } from 'react-native';
+import { Stack } from 'expo-router';
 import React from 'react';
 
 const SettingsLayout = () => {
 	return (
-		<View>
-			<Text>SettingsLayout</Text>
-		</View>
+		<Stack>
+			<Stack.Screen name="index" />
+		</Stack>
 	);
 };
 
