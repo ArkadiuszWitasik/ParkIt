@@ -4,6 +4,8 @@ import '../global.css';
 export default function RootLayout() {
 	return (
 		<Stack>
+			<Stack.Screen name="index" />
+			<Stack.Screen name="sign-up" />
 			<Stack.Screen name="(tabs)" />
 		</Stack>
 	);

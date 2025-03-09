@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native';
 import React from 'react';
 
-const LoyalityScreen = () => {
+const SignUpScreen = () => {
 	return (
 		<View>
-			<Text>LoyalityScreen</Text>
+			<Text>SignUpScreen</Text>
 		</View>
 	);
 };
 
-export default LoyalityScreen;
+export default SignUpScreen;
