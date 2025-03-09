@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native';
 import React from 'react';
 
-const TabLayout = () => {
+const ProfileLayout = () => {
 	return (
 		<View>
-			<Text>TabLayout</Text>
+			<Text>ProfileLayout</Text>
 		</View>
 	);
 };
 
-export default TabLayout;
+export default ProfileLayout;

@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native';
 import React from 'react';
 
-const TabLayout = () => {
+const HomeLayout = () => {
 	return (
 		<View>
-			<Text>TabLayout</Text>
+			<Text>HomeLayout</Text>
 		</View>
 	);
 };
 
-export default TabLayout;
+export default HomeLayout;
