@@ -6,12 +6,18 @@ const SignInScreen = () => {
 	return (
 		<View className="border border-red-700 h-[70%] flex justify-center items-center gap-3">
 			<Text>ParkIt</Text>
-			<TextInput className="bg-gray-300 w-[50%]" placeholder="e-mail" />
-			<TextInput className="bg-gray-300 w-[50%]" placeholder="hasło" />
-			<Link href={'/(tabs)/(home)'} className="bg-gray-300 w-[50%] text-center">
+			<TextInput
+				className="bg-gray-300 w-[50%] h-[50px]"
+				placeholder="e-mail"
+			/>
+			<TextInput className="bg-gray-300 w-[50%] h-[50px]" placeholder="hasło" />
+			<Link
+				href={'/(tabs)/(home)'}
+				className="bg-gray-300 w-[50%] text-center h-[50px]"
+			>
 				Zaloguj się
 			</Link>
-			<Link href={'/sign-up'} className="border border-red-500">
+			<Link href={'/sign-up'} className="bg-gray-300 w-[50%] h-[50px]">
 				Nie masz konta? Utwórz już dziś!
 			</Link>
 		</View>

@@ -35,7 +35,7 @@ const HomeScreen = () => {
 			</View>
 			<View className="h-[150px]">
 				<MainScreenCard
-					path={'/(tabs)/(home)'}
+					path={'/(tabs)/(reservations)'}
 					cardStyles="flex-grow rounded-md"
 					backgroundColor="bg-gray-300"
 				>
