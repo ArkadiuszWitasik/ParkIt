@@ -4,7 +4,12 @@ module.exports = {
 	content: ['./app/**/*.{js,jsx,ts,tsx}', './components/**/*.{js,jsx,ts,tsx}'],
 	presets: [require('nativewind/preset')],
 	theme: {
-		extend: {},
+		extend: {
+			fontFamily: {
+				BebasNeueRegular: ['BebasNeue-Regular', 'sans-serif'],
+				RalewayRegular: ['Raleway-Regular', 'sans-serif'],
+			},
+		},
 	},
 	plugins: [],
 };
