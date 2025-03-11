@@ -5,9 +5,6 @@ import MainScreenCard from '@/components/Cards/MainScreenCard';
 const HomeScreen = () => {
 	return (
 		<View className="flex-1 m-3 gap-4">
-			<View>
-				<Text>Gdzie jedziemy tym razem?</Text>
-			</View>
 			<View className="flex flex-row h-[150px] gap-3">
 				<MainScreenCard
 					path={'/(tabs)/(profile)/balance'}
