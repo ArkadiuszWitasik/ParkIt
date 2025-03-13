@@ -4,19 +4,21 @@ import MainScreenCard from '@/components/Cards/MainScreenCard';
 
 const HomeScreen = () => {
 	return (
-		<View className="flex-1 m-3 gap-4">
-			<View className="flex flex-row h-[150px] gap-3">
+		<View className="flex-1 m-3 gap-5 bg-AppBackground">
+			<View className="flex flex-row h-[150px] gap-5">
 				<MainScreenCard
 					path={'/(tabs)/(profile)/balance'}
 					cardStyles="flex-1 rounded-md"
-					backgroundColor="bg-gray-300"
+					backgroundColor="bg-Burlywood"
+					pressedBackgroundColor="bg-LightBurlywood"
 				>
 					<Text>Stan konta</Text>
 				</MainScreenCard>
 				<MainScreenCard
 					path={'/(tabs)/(profile)/cars'}
 					cardStyles="flex-1 rounded-md"
-					backgroundColor="bg-gray-300"
+					backgroundColor="bg-Thistle"
+					pressedBackgroundColor="bg-LightThistle"
 				>
 					<Text>Moje pojazdy</Text>
 				</MainScreenCard>
@@ -25,7 +27,8 @@ const HomeScreen = () => {
 				<MainScreenCard
 					path={'/(tabs)/(profile)/loyality'}
 					cardStyles="flex-grow rounded-md"
-					backgroundColor="bg-gray-300"
+					backgroundColor="bg-Skyblue"
+					pressedBackgroundColor="bg-LightSkyblue"
 				>
 					<Text>Program lojalnościowy</Text>
 				</MainScreenCard>
@@ -34,7 +37,8 @@ const HomeScreen = () => {
 				<MainScreenCard
 					path={'/(tabs)/(reservations)'}
 					cardStyles="flex-grow rounded-md"
-					backgroundColor="bg-gray-300"
+					backgroundColor="bg-Khaki"
+					pressedBackgroundColor="bg-LightKhaki"
 				>
 					<Text>Aktualna rezerwacja</Text>
 				</MainScreenCard>

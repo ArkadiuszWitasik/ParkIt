@@ -6,11 +6,13 @@ const MainScreenCard = ({
 	path,
 	cardStyles,
 	backgroundColor,
+	pressedBackgroundColor,
 	children = null,
 }: {
 	path: Href;
 	cardStyles?: string;
 	backgroundColor?: string;
+	pressedBackgroundColor?: string;
 	children?: ReactNode;
 }) => {
 	const [isPressed, setIsPressed] = useState<boolean>(false);
@@ -21,7 +23,9 @@ const MainScreenCard = ({
 
 	return (
 		<Pressable
-			className={`${cardStyles} ${isPressed ? 'bg-gray-500' : backgroundColor}`}
+			className={`${cardStyles} ${
+				isPressed ? pressedBackgroundColor : backgroundColor
+			}`}
 			onPressIn={() => setIsPressed(true)}
 			onPressOut={() => setIsPressed(false)}
 			onPress={() => navigate(path)}

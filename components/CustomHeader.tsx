@@ -4,9 +4,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const CustomHeader = () => {
 	return (
-		<SafeAreaView className="flex items-center border border-blue-500">
+		<SafeAreaView className="flex items-center top-[20px]">
 			<View>
-				<Text className="text-[48px] font-BebasNeueRegular">Park It</Text>
+				<Text className="text-[56px] font-BebasNeueRegular text-FontColor">
+					Park It
+				</Text>
 			</View>
 		</SafeAreaView>
 	);
