@@ -10,6 +10,7 @@ const SignInScreen = () => {
 	const [loaded, error] = useFonts({
 		'BebasNeue-Regular': require('../assets/fonts/BebasNeue-Regular.ttf'),
 		'Raleway-Regular': require('../assets/fonts/Raleway-Regular.ttf'),
+		'Raleway-SemiBold': require('../assets/fonts/Raleway-SemiBold.ttf'),
 	});
 
 	useEffect(() => {
@@ -23,27 +24,47 @@ const SignInScreen = () => {
 	}
 
 	return (
-		<View className="border border-red-700 h-[70%] flex justify-center items-center gap-3">
-			<Text className="font-BebasNeue text-[40px]">ParkIt</Text>
-			<TextInput
-				className="bg-gray-300 w-[50%] h-[50px] font-RalewayRegular"
-				placeholder="e-mail"
-			/>
-			<TextInput
-				className="bg-gray-300 w-[50%] h-[50px] font-RalewayRegular"
-				placeholder="hasło"
-			/>
-			<Link
-				href={'/(tabs)/(home)'}
-				className="bg-gray-300 w-[50%] text-center h-[50px] font-RalewayRegular"
-			>
-				Zaloguj się
-			</Link>
+		<View className="flex-1 flex justify-between items-center bg-AppBackground mt-[25vh] mb-[5vh]">
+			<View className="w-[80%] flex gap-3">
+				<Text className="font-BebasNeueRegular text-[56px] text-center text-FontColor">
+					Park It
+				</Text>
+				<TextInput
+					className="bg-SecoundLayer w-full h-[50px] px-4 font-RalewayRegular rounded-md placeholder:color-GrayFontColor"
+					placeholder="e-mail"
+				/>
+				<TextInput
+					className="bg-SecoundLayer w-full h-[50px] px-4 font-RalewayRegular rounded-md placeholder:color-GrayFontColor"
+					placeholder="hasło"
+				/>
+
+				{/* Here will be button */}
+				<Link
+					href={'/(tabs)/(home)'}
+					className="bg-Khaki w-full text-center pt-4 h-[50px] font-RalewayRegular rounded-md"
+				>
+					<Text>Zaloguj się</Text>
+				</Link>
+
+				<View className="flex flex-row justify-between">
+					<Text className="text-FontColor font-RalewayRegular">
+						Zapamiętaj mnie
+					</Text>
+					<Text className="text-FontColor font-RalewayRegular">
+						Resetuj hasło
+					</Text>
+				</View>
+			</View>
+
+			{/* Here will be button */}
 			<Link
 				href={'/sign-up'}
-				className="bg-gray-300 w-[50%] h-[50px] font-RalewayRegular"
+				className="w-[80%] h-[50px] font-RalewayRegular color-FontColor text-center"
 			>
-				Nie masz konta? Utwórz już dziś!
+				Nie masz konta?{' '}
+				<Text className="text-FontColor font-RalewaySemiBold">
+					Utwórz już dziś!
+				</Text>
 			</Link>
 		</View>
 	);
