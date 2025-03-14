@@ -11,6 +11,8 @@ const SignInScreen = () => {
 		'BebasNeue-Regular': require('../assets/fonts/BebasNeue-Regular.ttf'),
 		'Raleway-Regular': require('../assets/fonts/Raleway-Regular.ttf'),
 		'Raleway-SemiBold': require('../assets/fonts/Raleway-SemiBold.ttf'),
+		'Montserrat-Regular': require('../assets/fonts/Montserrat-Regular.ttf'),
+		'Montserrat-SemiBold': require('../assets/fonts/Montserrat-SemiBold.ttf'),
 	});
 
 	useEffect(() => {
@@ -30,27 +32,27 @@ const SignInScreen = () => {
 					Park It
 				</Text>
 				<TextInput
-					className="bg-SecoundLayer w-full h-[50px] px-4 font-RalewayRegular rounded-md placeholder:color-GrayFontColor"
+					className="bg-SecoundLayer w-full h-[50px] px-4 font-MontserratRegular rounded-md placeholder:color-GrayFontColor"
 					placeholder="e-mail"
 				/>
 				<TextInput
-					className="bg-SecoundLayer w-full h-[50px] px-4 font-RalewayRegular rounded-md placeholder:color-GrayFontColor"
+					className="bg-SecoundLayer w-full h-[50px] px-4 font-MontserratRegular rounded-md placeholder:color-GrayFontColor"
 					placeholder="hasło"
 				/>
 
 				{/* Here will be button */}
 				<Link
 					href={'/(tabs)/(home)'}
-					className="bg-Khaki w-full text-center pt-4 h-[50px] font-RalewayRegular rounded-md"
+					className="bg-Khaki w-full text-center pt-4 h-[50px] font-MontserratRegular rounded-md"
 				>
 					<Text>Zaloguj się</Text>
 				</Link>
 
 				<View className="flex flex-row justify-between">
-					<Text className="text-FontColor font-RalewayRegular">
+					<Text className="text-FontColor font-MontserratRegular">
 						Zapamiętaj mnie
 					</Text>
-					<Text className="text-FontColor font-RalewayRegular">
+					<Text className="text-FontColor font-MontserratRegular">
 						Resetuj hasło
 					</Text>
 				</View>
@@ -59,10 +61,10 @@ const SignInScreen = () => {
 			{/* Here will be button */}
 			<Link
 				href={'/sign-up'}
-				className="w-[80%] h-[50px] font-RalewayRegular color-FontColor text-center"
+				className="w-[80%] h-[50px] font-MontserratRegular color-FontColor text-center"
 			>
 				Nie masz konta?{' '}
-				<Text className="text-FontColor font-RalewaySemiBold">
+				<Text className="text-FontColor font-MontserratSemiBold">
 					Utwórz już dziś!
 				</Text>
 			</Link>

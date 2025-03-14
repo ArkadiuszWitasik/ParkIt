@@ -9,16 +9,16 @@ const HomeScreen = () => {
 				<MainScreenCard
 					path={'/(tabs)/(profile)/balance'}
 					cardStyles="flex-1 rounded-md"
-					backgroundColor="bg-Burlywood"
-					pressedBackgroundColor="bg-LightBurlywood"
+					backgroundColor="bg-Khaki"
+					pressedBackgroundColor="bg-LightKhaki"
 				>
 					<Text>Stan konta</Text>
 				</MainScreenCard>
 				<MainScreenCard
 					path={'/(tabs)/(profile)/cars'}
 					cardStyles="flex-1 rounded-md"
-					backgroundColor="bg-Thistle"
-					pressedBackgroundColor="bg-LightThistle"
+					backgroundColor="bg-Khaki"
+					pressedBackgroundColor="bg-LightKhaki"
 				>
 					<Text>Moje pojazdy</Text>
 				</MainScreenCard>
@@ -27,8 +27,8 @@ const HomeScreen = () => {
 				<MainScreenCard
 					path={'/(tabs)/(profile)/loyality'}
 					cardStyles="flex-grow rounded-md"
-					backgroundColor="bg-Skyblue"
-					pressedBackgroundColor="bg-LightSkyblue"
+					backgroundColor="bg-Khaki"
+					pressedBackgroundColor="bg-LightKhaki"
 				>
 					<Text>Program lojalnościowy</Text>
 				</MainScreenCard>

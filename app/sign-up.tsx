@@ -10,18 +10,18 @@ const SignUpScreen = () => {
 					Park It
 				</Text>
 				<TextInput
-					className="bg-SecoundLayer w-full h-[50px] px-4 font-RalewayRegular rounded-md placeholder:color-GrayFontColor"
+					className="bg-SecoundLayer w-full h-[50px] px-4 font-MontserratRegular rounded-md placeholder:color-GrayFontColor"
 					placeholder="e-mail"
 				/>
 				<TextInput
-					className="bg-SecoundLayer w-full h-[50px] px-4 font-RalewayRegular rounded-md placeholder:color-GrayFontColor"
+					className="bg-SecoundLayer w-full h-[50px] px-4 font-MontserratRegular rounded-md placeholder:color-GrayFontColor"
 					placeholder="hasło"
 				/>
 
 				{/* Here will be button */}
 				<Link
 					href={'/(tabs)/(home)'}
-					className="bg-Khaki w-full text-center pt-4 h-[50px] font-RalewayRegular rounded-md"
+					className="bg-Khaki w-full text-center pt-4 h-[50px] font-MontserratRegular rounded-md"
 				>
 					<Text>Zarejestruj się</Text>
 				</Link>
@@ -30,10 +30,10 @@ const SignUpScreen = () => {
 			{/* Here will be button */}
 			<Link
 				href={'/'}
-				className="w-[80%] h-[50px] font-RalewayRegular color-FontColor text-center"
+				className="w-[80%] h-[50px] font-MontserratRegular color-FontColor text-center"
 			>
 				Masz już konto?{' '}
-				<Text className="text-FontColor font-RalewaySemiBold">
+				<Text className="text-FontColor font-MontserratSemiBold">
 					Zaloguj się!
 				</Text>
 			</Link>
