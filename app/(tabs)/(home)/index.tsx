@@ -1,6 +1,7 @@
 import { View, Text } from 'react-native';
 import React from 'react';
 import MainScreenCard from '@/components/Cards/MainScreenCard';
+import BalanceMainView from '@/components/MainViews/BalanceMainView';
 
 const HomeScreen = () => {
 	return (
@@ -12,7 +13,7 @@ const HomeScreen = () => {
 					backgroundColor="bg-Khaki"
 					pressedBackgroundColor="bg-LightKhaki"
 				>
-					<Text>Stan konta</Text>
+					<BalanceMainView />
 				</MainScreenCard>
 				<MainScreenCard
 					path={'/(tabs)/(profile)/cars'}
