@@ -21,7 +21,7 @@ const OutlineButton = ({
 			onPressOut={() => setIsPressed(false)}
 			className={`${
 				isPressed ? 'bg-Khaki' : 'bg-LightKhaki'
-			} ${w} ${h} min-w-[150px] min-h-[50px] flex flex-row rounded-xl py-1 px-2 justify-center items-center border-[2px] border-Khaki`}
+			} ${w} ${h} min-w-[150px] min-h-[50px] flex flex-row rounded-md py-1 px-2 justify-center items-center border-[2px] border-Khaki`}
 		>
 			<Text className="font-MontserratRegular text-FontColor">{text}</Text>
 		</Pressable>

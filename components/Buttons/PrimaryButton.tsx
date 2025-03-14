@@ -21,7 +21,7 @@ const PrimaryButton = ({
 			onPressOut={() => setIsPressed(false)}
 			className={`${
 				isPressed ? 'bg-LightKhaki' : 'bg-Khaki'
-			} ${w} ${h} min-w-[150px] min-h-[50px] flex flex-row rounded-xl py-1 px-2 justify-center items-center`}
+			} ${w} ${h} min-w-[150px] min-h-[50px] flex flex-row rounded-md py-1 px-2 justify-center items-center`}
 		>
 			<Text className="font-MontserratRegular text-FontColor">{text}</Text>
 		</Pressable>

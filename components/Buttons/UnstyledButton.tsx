@@ -1,4 +1,4 @@
-import { View, Text, Pressable } from 'react-native';
+import { Pressable } from 'react-native';
 import React, { ReactNode, useState } from 'react';
 
 const UnstyledButton = ({
@@ -21,7 +21,7 @@ const UnstyledButton = ({
 			onPressOut={() => setIsPressed(false)}
 			className={`${
 				isPressed ? 'bg-gray-300' : ''
-			} ${w} ${h} min-w-[150px] min-h-[50px] flex flex-row py-1 px-2 justify-center items-center`}
+			} ${w} ${h} min-w-[150px] min-h-[50px] flex flex-row py-1 px-2 items-center`}
 		>
 			{children}
 		</Pressable>

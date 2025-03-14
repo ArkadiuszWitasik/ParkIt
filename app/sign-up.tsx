@@ -1,8 +1,15 @@
 import { View, Text, TextInput } from 'react-native';
 import React from 'react';
-import { Link } from 'expo-router';
+import { Href, Link, router } from 'expo-router';
+import PrimaryButton from '@/components/Buttons/PrimaryButton';
+import UnstyledButton from '@/components/Buttons/UnstyledButton';
 
 const SignUpScreen = () => {
+	const navigate = (path: Href) => {
+		router.navigate(path);
+		// router.replace(path);
+	};
+
 	return (
 		<View className="flex-1 flex justify-between items-center bg-AppBackground mt-[25vh] mb-[5vh]">
 			<View className="w-[80%] flex gap-3">
@@ -18,25 +25,20 @@ const SignUpScreen = () => {
 					placeholder="hasło"
 				/>
 
-				{/* Here will be button */}
-				<Link
-					href={'/(tabs)/(home)'}
-					className="bg-Khaki w-full text-center pt-4 h-[50px] font-MontserratRegular rounded-md"
-				>
-					<Text>Zarejestruj się</Text>
-				</Link>
+				<PrimaryButton
+					text="Zarejestruj się"
+					onPressFn={() => navigate('/(tabs)/(home)')}
+				/>
 			</View>
 
-			{/* Here will be button */}
-			<Link
-				href={'/'}
-				className="w-[80%] h-[50px] font-MontserratRegular color-FontColor text-center"
-			>
-				Masz już konto?{' '}
+			<UnstyledButton onPressFn={() => navigate('/')}>
+				<Text className="text-FontColor font-MontserratRegular">
+					Masz już konto?{' '}
+				</Text>
 				<Text className="text-FontColor font-MontserratSemiBold">
 					Zaloguj się!
 				</Text>
-			</Link>
+			</UnstyledButton>
 		</View>
 	);
 };

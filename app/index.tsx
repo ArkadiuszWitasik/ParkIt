@@ -1,8 +1,10 @@
 import { View, Text, TextInput } from 'react-native';
 import React, { useEffect } from 'react';
-import { Link } from 'expo-router';
+import { Href, Link, router } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useFonts } from 'expo-font';
+import PrimaryButton from '@/components/Buttons/PrimaryButton';
+import UnstyledButton from '@/components/Buttons/UnstyledButton';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -25,6 +27,11 @@ const SignInScreen = () => {
 		return null;
 	}
 
+	const navigate = (path: Href) => {
+		router.navigate(path);
+		// router.replace(path);
+	};
+
 	return (
 		<View className="flex-1 flex justify-between items-center bg-AppBackground mt-[25vh] mb-[5vh]">
 			<View className="w-[80%] flex gap-3">
@@ -40,13 +47,10 @@ const SignInScreen = () => {
 					placeholder="hasło"
 				/>
 
-				{/* Here will be button */}
-				<Link
-					href={'/(tabs)/(home)'}
-					className="bg-Khaki w-full text-center pt-4 h-[50px] font-MontserratRegular rounded-md"
-				>
-					<Text>Zaloguj się</Text>
-				</Link>
+				<PrimaryButton
+					text="Zaloguj się"
+					onPressFn={() => navigate('/(tabs)/(home)')}
+				/>
 
 				<View className="flex flex-row justify-between">
 					<Text className="text-FontColor font-MontserratRegular">
@@ -58,16 +62,14 @@ const SignInScreen = () => {
 				</View>
 			</View>
 
-			{/* Here will be button */}
-			<Link
-				href={'/sign-up'}
-				className="w-[80%] h-[50px] font-MontserratRegular color-FontColor text-center"
-			>
-				Nie masz konta?{' '}
+			<UnstyledButton onPressFn={() => navigate('/sign-up')}>
+				<Text className="text-FontColor font-MontserratRegular">
+					Nie masz konta?{' '}
+				</Text>
 				<Text className="text-FontColor font-MontserratSemiBold">
 					Utwórz już dziś!
 				</Text>
-			</Link>
+			</UnstyledButton>
 		</View>
 	);
 };
