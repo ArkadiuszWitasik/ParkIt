@@ -1,4 +1,10 @@
-import { View, Text, TextInput } from 'react-native';
+import {
+	View,
+	Text,
+	TextInput,
+	TouchableWithoutFeedback,
+	Keyboard,
+} from 'react-native';
 import React from 'react';
 import { Href, Link, router } from 'expo-router';
 import PrimaryButton from '@/components/Buttons/PrimaryButton';
@@ -11,35 +17,37 @@ const SignUpScreen = () => {
 	};
 
 	return (
-		<View className="flex-1 flex justify-between items-center bg-AppBackground mt-[25vh] mb-[5vh]">
-			<View className="w-[80%] flex gap-3">
-				<Text className="font-BebasNeueRegular text-[56px] text-center text-FontColor">
-					Park It
-				</Text>
-				<TextInput
-					className="bg-SecoundLayer w-full h-[50px] px-4 font-MontserratRegular rounded-md placeholder:color-GrayFontColor"
-					placeholder="e-mail"
-				/>
-				<TextInput
-					className="bg-SecoundLayer w-full h-[50px] px-4 font-MontserratRegular rounded-md placeholder:color-GrayFontColor"
-					placeholder="hasło"
-				/>
+		<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+			<View className="flex-1 flex justify-between items-center bg-AppBackground pt-[25vh] mb-[5vh]">
+				<View className="w-[80%] flex gap-3">
+					<Text className="font-BebasNeueRegular text-[56px] text-center text-FontColor">
+						Park It
+					</Text>
+					<TextInput
+						className="bg-SecoundLayer w-full h-[50px] px-4 font-MontserratRegular rounded-md placeholder:color-GrayFontColor"
+						placeholder="e-mail"
+					/>
+					<TextInput
+						className="bg-SecoundLayer w-full h-[50px] px-4 font-MontserratRegular rounded-md placeholder:color-GrayFontColor"
+						placeholder="hasło"
+					/>
 
-				<PrimaryButton
-					text="Zarejestruj się"
-					onPressFn={() => navigate('/(tabs)/(home)')}
-				/>
+					<PrimaryButton
+						text="Zarejestruj się"
+						onPressFn={() => navigate('/(tabs)/(home)')}
+					/>
+				</View>
+
+				<UnstyledButton onPressFn={() => navigate('/')}>
+					<Text className="text-FontColor font-MontserratRegular">
+						Masz już konto?{' '}
+					</Text>
+					<Text className="text-FontColor font-MontserratSemiBold">
+						Zaloguj się!
+					</Text>
+				</UnstyledButton>
 			</View>
-
-			<UnstyledButton onPressFn={() => navigate('/')}>
-				<Text className="text-FontColor font-MontserratRegular">
-					Masz już konto?{' '}
-				</Text>
-				<Text className="text-FontColor font-MontserratSemiBold">
-					Zaloguj się!
-				</Text>
-			</UnstyledButton>
-		</View>
+		</TouchableWithoutFeedback>
 	);
 };
 
