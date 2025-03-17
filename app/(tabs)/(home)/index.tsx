@@ -2,6 +2,7 @@ import { View, Text } from 'react-native';
 import React from 'react';
 import MainScreenCard from '@/components/Cards/MainScreenCard';
 import BalanceMainView from '@/components/MainViews/BalanceMainView';
+import LoyalityMainView from '@/components/MainViews/LoyalityMainView';
 
 const HomeScreen = () => {
 	return (
@@ -31,7 +32,7 @@ const HomeScreen = () => {
 					backgroundColor="bg-Khaki"
 					pressedBackgroundColor="bg-LightKhaki"
 				>
-					<Text>Program lojalnościowy</Text>
+					<LoyalityMainView />
 				</MainScreenCard>
 			</View>
 			<View className="h-[150px]">
