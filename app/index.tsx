@@ -5,7 +5,7 @@ import {
 	TouchableWithoutFeedback,
 	Keyboard,
 } from 'react-native';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Href, Link, router } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useFonts } from 'expo-font';
@@ -24,6 +24,22 @@ const SignInScreen = () => {
 		'Montserrat-SemiBold': require('../assets/fonts/Montserrat-SemiBold.ttf'),
 	});
 
+	const [userEmail, setUserEmail] = useState('');
+	const [userPassword, setUserPassword] = useState<string>('');
+
+	const navigate = (path: Href) => {
+		//futher logics
+
+		router.navigate(path);
+		// router.replace(path);
+
+		// console.log('email', userEmail);
+		// console.log('haslo', userPassword);
+
+		// setUserEmail('');
+		// setUserPassword('');
+	};
+
 	useEffect(() => {
 		if (loaded || error) {
 			SplashScreen.hideAsync();
@@ -34,11 +50,6 @@ const SignInScreen = () => {
 		return null;
 	}
 
-	const navigate = (path: Href) => {
-		router.navigate(path);
-		// router.replace(path);
-	};
-
 	return (
 		<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
 			<View className="flex-1 flex justify-between items-center bg-AppBackground pt-[25vh] mb-[5vh]">
@@ -47,14 +58,22 @@ const SignInScreen = () => {
 						Park It
 					</Text>
 					<CustomInput
+						value={userEmail}
+						onChange={(event) => {
+							setUserEmail(event.nativeEvent.text);
+						}}
 						label="Adres e-mail"
 						textInputStyles="bg-SecoundLayer w-full h-[50px] rounded-md"
-						placeholder="email"
+						placeholder="e-mail"
 						inputMode="email"
 						textContentType="emailAddress"
 					/>
 
 					<CustomInput
+						value={userPassword}
+						onChange={(event) => {
+							setUserPassword(event.nativeEvent.text);
+						}}
 						label="Hasło"
 						textInputStyles="bg-SecoundLayer w-full h-[50px] rounded-md"
 						placeholder="hasło"

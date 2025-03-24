@@ -6,7 +6,7 @@ import {
 	TextInputProps,
 	Pressable,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import EyeIcon from '@/assets/Icons/EyeIcon';
 import EyeSlashIcon from '@/assets/Icons/EyeSlashIcon';
 
@@ -27,7 +27,7 @@ const CustomInput = (props: CustomInputProps) => {
 
 	const [hidePassword, setHidePassword] = useState<boolean>(true);
 
-	const changePasswordVisibility = () => {
+	const handleChangePasswordVisibility = () => {
 		setHidePassword(!hidePassword);
 	};
 
@@ -52,11 +52,13 @@ const CustomInput = (props: CustomInputProps) => {
 				onFocus={customOnFocus}
 				textContentType={props.textContentType}
 				secureTextEntry={props.isPassword && hidePassword}
+				value={props.value}
+				onChange={props.onChange}
 			/>
 			{props.isPassword && (
 				<Pressable
 					className="absolute right-[10px] top-[31px] z-1"
-					onPress={changePasswordVisibility}
+					onPress={handleChangePasswordVisibility}
 				>
 					{hidePassword ? (
 						<EyeSlashIcon
