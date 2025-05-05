@@ -1,20 +1,34 @@
 import { View, Text } from 'react-native';
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import BaseModal from './BaseModal';
 import PrimaryButton from '../Buttons/PrimaryButton';
 import CustomInput from '../CustomInput';
 import OutlineButton from '../Buttons/OutlineButton';
+import { useCarStore } from '@/store/carStore';
 
 type AddCarModalProps = {
-	carName: string;
-	setCarName: Dispatch<SetStateAction<string>>;
-	carRegistrationNumber: string;
-	setCarRegistrationNumber: Dispatch<SetStateAction<string>>;
 	isModalVisible: boolean;
 	setIsModalVisible: Dispatch<SetStateAction<boolean>>;
 };
 
 const AddCarModal = (props: AddCarModalProps) => {
+	const [carName, setCarName] = useState<string>('');
+
+	const [carRegistrationNumber, setCarRegistrationNumber] =
+		useState<string>('');
+
+	const { addCar } = useCarStore();
+
+	const handleAddNewCar = () => {
+		addCar({
+			id: 4,
+			carName: carName,
+			carRegistrationNumber: carRegistrationNumber,
+		});
+		setCarName('');
+		setCarRegistrationNumber('');
+	};
+
 	return (
 		<BaseModal
 			w="w-[350px]"
@@ -28,9 +42,9 @@ const AddCarModal = (props: AddCarModalProps) => {
 				</Text>
 				<View className="w-[80%] flex flex-col gap-3">
 					<CustomInput
-						value={props.carName}
+						value={carName}
 						onChange={(event) => {
-							props.setCarName(event.nativeEvent.text);
+							setCarName(event.nativeEvent.text);
 						}}
 						label="Nazwa auta"
 						textInputStyles="bg-SecoundLayer w-full h-[50px] rounded-md"
@@ -39,9 +53,9 @@ const AddCarModal = (props: AddCarModalProps) => {
 					/>
 
 					<CustomInput
-						value={props.carRegistrationNumber}
+						value={carRegistrationNumber}
 						onChange={(event) => {
-							props.setCarRegistrationNumber(event.nativeEvent.text);
+							setCarRegistrationNumber(event.nativeEvent.text);
 						}}
 						label="Numer rejestracyjny"
 						textInputStyles="bg-SecoundLayer w-full h-[50px] rounded-md"
@@ -54,16 +68,15 @@ const AddCarModal = (props: AddCarModalProps) => {
 					<OutlineButton
 						onPressFn={() => {
 							props.setIsModalVisible(false);
-							props.setCarName('');
-							props.setCarRegistrationNumber('');
+							setCarName('');
+							setCarRegistrationNumber('');
 						}}
 						text="Anuluj"
 					/>
 					<PrimaryButton
 						onPressFn={() => {
+							handleAddNewCar();
 							props.setIsModalVisible(false);
-							props.setCarName('');
-							props.setCarRegistrationNumber('');
 						}}
 						text="Dodaj"
 					/>
