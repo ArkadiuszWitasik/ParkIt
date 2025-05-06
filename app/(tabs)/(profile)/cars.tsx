@@ -24,6 +24,7 @@ const CarsScreen = () => {
 			<Divider />
 			{cars.map((car) => (
 				<CarCard
+					id={car.id}
 					carName={car.carName}
 					carRegistrationNumber={car.carRegistrationNumber}
 					key={car.id}
