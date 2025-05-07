@@ -1,8 +1,9 @@
 import { View, Text } from 'react-native';
 import React from 'react';
-import MainScreenCard from '@/components/Cards/MainScreenCard';
+import MainScreenCard from '@/components/MainViews/MainScreenCard';
 import BalanceMainView from '@/components/MainViews/BalanceMainView';
 import LoyalityMainView from '@/components/MainViews/LoyalityMainView';
+import CarMainView from '@/components/MainViews/CarMainView';
 
 const HomeScreen = () => {
 	return (
@@ -22,7 +23,7 @@ const HomeScreen = () => {
 					backgroundColor="bg-Khaki"
 					pressedBackgroundColor="bg-LightKhaki"
 				>
-					<Text>Moje pojazdy</Text>
+					<CarMainView />
 				</MainScreenCard>
 			</View>
 			<View className="h-[150px]">
