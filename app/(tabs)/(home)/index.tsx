@@ -4,6 +4,7 @@ import MainScreenCard from '@/components/MainViews/MainScreenCard';
 import BalanceMainView from '@/components/MainViews/BalanceMainView';
 import LoyalityMainView from '@/components/MainViews/LoyalityMainView';
 import CarMainView from '@/components/MainViews/CarMainView';
+import ReservationsMainView from '@/components/MainViews/ReservationsMainView';
 
 const HomeScreen = () => {
 	return (
@@ -43,7 +44,7 @@ const HomeScreen = () => {
 					backgroundColor="bg-Khaki"
 					pressedBackgroundColor="bg-LightKhaki"
 				>
-					<Text>Aktualna rezerwacja</Text>
+					<ReservationsMainView />
 				</MainScreenCard>
 			</View>
 		</View>

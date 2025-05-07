@@ -8,22 +8,53 @@ const LoyalityMainView = () => {
 			<View className="flex flex-row justify-between">
 				<View>
 					<Text className="font-MontserratRegular text-FontColor text-[18px]">
-						Program
-					</Text>
-					<Text className="font-MontserratRegular text-FontColor text-[18px]">
-						lojalnościowy
+						Program lojalnościowy
 					</Text>
 				</View>
-				<View className="bg-LightKhaki w-[50] h-[50] rounded-[50] flex justify-center items-center">
+			</View>
+			{/* Loop with amount reservations in color */}
+			<View className="flex flex-row justify-center items-center gap-3">
+				<View className="bg-LightKhaki w-[42] h-[42] rounded-[50] flex justify-center items-center">
 					<FireIcon
 						style={{
-							width: 24,
-							height: 24,
+							width: 20,
+							height: 20,
+						}}
+					/>
+				</View>
+				<View className="bg-LightKhaki w-[42] h-[42] rounded-[50] flex justify-center items-center">
+					<FireIcon
+						style={{
+							width: 20,
+							height: 20,
+						}}
+					/>
+				</View>
+				<View className="bg-LightKhaki w-[42] h-[42] rounded-[50] flex justify-center items-center">
+					<FireIcon
+						style={{
+							width: 20,
+							height: 20,
+						}}
+					/>
+				</View>
+				<View className="bg-LightKhaki w-[42] h-[42] rounded-[50] flex justify-center items-center">
+					<FireIcon
+						style={{
+							width: 20,
+							height: 20,
+						}}
+					/>
+				</View>
+				<View className="bg-LightKhaki w-[42] h-[42] rounded-[50] flex justify-center items-center">
+					<FireIcon
+						style={{
+							width: 20,
+							height: 20,
 						}}
 					/>
 				</View>
 			</View>
-			<View className="border border-sky-500"></View>
 			<View className="flex justify-center flex-row items-center">
 				<Text className="font-MontserratRegular text-FontColor">Jeszcze </Text>
 				<Text className="font-MontserratSemiBold text-FontColor">3</Text>
