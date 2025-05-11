@@ -6,6 +6,7 @@ type PrimaryButtonProps = {
 	h?: string;
 	w?: string;
 	text?: string;
+	disabled?: boolean;
 };
 
 const PrimaryButton = (props: PrimaryButtonProps) => {
@@ -13,11 +14,14 @@ const PrimaryButton = (props: PrimaryButtonProps) => {
 
 	return (
 		<Pressable
+			disabled={props.disabled}
 			onPress={props.onPressFn}
 			onPressIn={() => setIsPressed(true)}
 			onPressOut={() => setIsPressed(false)}
 			className={`${isPressed ? 'bg-LightKhaki' : 'bg-Khaki'} ${props.w} ${
 				props.h
+			} ${
+				props.disabled ? 'bg-gray-600' : ''
 			} min-w-[150px] min-h-[50px] flex flex-row rounded-md py-1 px-2 justify-center items-center`}
 		>
 			<Text className="font-MontserratRegular text-FontColor">

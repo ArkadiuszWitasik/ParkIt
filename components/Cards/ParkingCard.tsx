@@ -1,0 +1,30 @@
+import { View, Text, Pressable } from 'react-native';
+import React from 'react';
+
+type ParkingCardProps = {
+	parkingId: number;
+	parkingName: string;
+	parkingSpacesLeft: number;
+	selectedParking: number;
+	onPressFn: () => void;
+};
+
+const ParkingCard = (props: ParkingCardProps) => {
+	return (
+		<Pressable
+			onPress={props.onPressFn}
+			className={`${
+				props.parkingId === props.selectedParking ? 'bg-Khaki' : 'bg-LightKhaki'
+			} min-h-[50] p-3 rounded-md`}
+		>
+			<Text className="font-RalewayRegular text-[18px]">
+				{props.parkingName}
+			</Text>
+			<Text className="font-RalewayRegular">
+				{props.parkingSpacesLeft} wolnych miejsc
+			</Text>
+		</Pressable>
+	);
+};
+
+export default ParkingCard;

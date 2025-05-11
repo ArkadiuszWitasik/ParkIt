@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Href, router } from 'expo-router';
 import PrimaryButton from '@/components/Buttons/PrimaryButton';
 import { useReservationStore } from '@/store/reservationStore';
+import ParkingCard from '@/components/Cards/ParkingCard';
 
 // Trzeba zrobić coś takiego, że zapisuje id parkingu, a wszystkie parkingi będą pobierać się z firebase do store
 
@@ -50,24 +51,19 @@ const ChooseParkingScreen = () => {
 
 			<View className=" w-full flex flex-col gap-3">
 				{parkingMockUP.map((parking) => (
-					<Pressable
-						onPress={() => setSelectedParking(parking.id)}
+					<ParkingCard
 						key={parking.id}
-						className={`${
-							parking.id === selectedParking ? 'bg-Khaki' : 'bg-LightKhaki'
-						} min-h-[50] p-3 rounded-md`}
-					>
-						<Text className="font-RalewayRegular text-[18px]">
-							{parking.name}
-						</Text>
-						<Text className="font-RalewayRegular ">
-							{parking.spacesLeft} wolnych miejsc
-						</Text>
-					</Pressable>
+						parkingId={parking.id}
+						parkingName={parking.name}
+						parkingSpacesLeft={parking.spacesLeft}
+						selectedParking={selectedParking}
+						onPressFn={() => setSelectedParking(parking.id)}
+					/>
 				))}
 			</View>
 
 			<PrimaryButton
+				disabled={selectedParking === 0}
 				onPressFn={() => {
 					updateReservation({ parking: selectedParking });
 					navigate('/(tabs)/(reservations)/(new-reservation)/spot');

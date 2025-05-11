@@ -1,5 +1,5 @@
-import { View, Text } from 'react-native';
-import React from 'react';
+import { View, Text, Pressable } from 'react-native';
+import React, { useState } from 'react';
 import PrimaryButton from '@/components/Buttons/PrimaryButton';
 import { Href, router } from 'expo-router';
 import { useReservationStore } from '@/store/reservationStore';
@@ -59,6 +59,8 @@ const spotMockUP = [
 ];
 
 const ChooseSpotScreen = () => {
+	const [selectedSpot, setSelectedSpot] = useState<number>(0);
+
 	const { updateReservation, reservation } = useReservationStore();
 
 	const navigate = (path: Href) => {
@@ -69,16 +71,16 @@ const ChooseSpotScreen = () => {
 		<View className="flex-1 mt-10 mr-3 ml-3 mb-3 flex flex-col gap-10 items-center ">
 			<Text className="font-RalewayRegular text-[24px]">Wybierz miejsce</Text>
 			<View className="flex flex-col gap-1 justify-center items-center">
-				<Text className="font-RalewayRegular">
+				<Text className="font-RalewayRegular text-FontColor">
 					Informacje o aktualnej rezerwacji
 				</Text>
 				<View className="flex flex-row">
-					<Text className="font-RalewayRegular">
+					<Text className="font-RalewayRegular text-FontColor">
 						{reservation.startDate?.toLocaleDateString()}{' '}
 						{reservation.startTime?.toLocaleTimeString()}
 					</Text>
-					<Text className="font-RalewayRegular"> - </Text>
-					<Text className="font-RalewayRegular">
+					<Text className="font-RalewayRegular text-FontColor"> - </Text>
+					<Text className="font-RalewayRegular text-FontColor">
 						{reservation.endDate?.toLocaleDateString()}{' '}
 						{reservation.endTime?.toLocaleTimeString()}
 					</Text>
@@ -89,23 +91,32 @@ const ChooseSpotScreen = () => {
 			</View>
 			<View className="w-full">
 				{spotMockUP.map((zone) => (
-					<View key={zone.id}>
-						<Text>{zone.name}</Text>
+					<View key={zone.id} className="">
+						<Text className="font-RalewayBold text-FontColor mb-2 ml-3">
+							{zone.name}
+						</Text>
 						<View className="w-full justify-center flex flex-row gap-2 flex-wrap">
 							{zone.spots.map((spot) => (
-								<View
+								<Pressable
 									key={spot.id}
-									className="border border-blue-500 w-[30%] h-[50px]"
+									onPress={() => setSelectedSpot(spot.id)}
+									className={`${
+										selectedSpot === spot.id ? 'bg-Khaki' : 'bg-LightKhaki'
+									} w-[30%] h-[50px] flex justify-center items-center rounded-md`}
 								>
 									<Text>{spot.name}</Text>
-								</View>
+								</Pressable>
 							))}
 						</View>
 					</View>
 				))}
 			</View>
 			<PrimaryButton
-				onPressFn={() => navigate('/(tabs)/(reservations)')}
+				disabled={selectedSpot === 0}
+				onPressFn={() => {
+					updateReservation({ spot: selectedSpot.toString() });
+					navigate('/(tabs)/(reservations)');
+				}}
 				text="Zarezerwuj"
 			/>
 		</View>
