@@ -3,7 +3,6 @@ import React, { Dispatch, SetStateAction, useState } from 'react';
 import BaseModal from './BaseModal';
 import PrimaryButton from '../Buttons/PrimaryButton';
 import CustomInput from '../CustomInput';
-import OutlineButton from '../Buttons/OutlineButton';
 import { useCarStore } from '@/store/carStore';
 
 type AddCarModalProps = {
@@ -65,7 +64,7 @@ const AddCarModal = (props: AddCarModalProps) => {
 				</View>
 
 				<View className="flex flex-row gap-2">
-					<OutlineButton
+					<PrimaryButton
 						onPressFn={() => {
 							props.setIsModalVisible(false);
 							setCarName('');

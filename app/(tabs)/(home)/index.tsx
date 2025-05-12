@@ -13,16 +13,16 @@ const HomeScreen = () => {
 				<MainScreenCard
 					path={'/(tabs)/(profile)/balance'}
 					cardStyles="flex-1 rounded-md"
-					backgroundColor="bg-Khaki"
-					pressedBackgroundColor="bg-LightKhaki"
+					backgroundColor="bg-white"
+					pressedBackgroundColor="bg-AppBackground"
 				>
 					<BalanceMainView />
 				</MainScreenCard>
 				<MainScreenCard
 					path={'/(tabs)/(profile)/cars'}
 					cardStyles="flex-1 rounded-md"
-					backgroundColor="bg-Khaki"
-					pressedBackgroundColor="bg-LightKhaki"
+					backgroundColor="bg-white"
+					pressedBackgroundColor="bg-AppBackground"
 				>
 					<CarMainView />
 				</MainScreenCard>
@@ -31,8 +31,8 @@ const HomeScreen = () => {
 				<MainScreenCard
 					path={'/(tabs)/(profile)/loyality'}
 					cardStyles="flex-grow rounded-md"
-					backgroundColor="bg-Khaki"
-					pressedBackgroundColor="bg-LightKhaki"
+					backgroundColor="bg-white"
+					pressedBackgroundColor="bg-AppBackground"
 				>
 					<LoyalityMainView />
 				</MainScreenCard>
@@ -41,8 +41,8 @@ const HomeScreen = () => {
 				<MainScreenCard
 					path={'/(tabs)/(reservations)'}
 					cardStyles="flex-grow rounded-md"
-					backgroundColor="bg-Khaki"
-					pressedBackgroundColor="bg-LightKhaki"
+					backgroundColor="bg-white"
+					pressedBackgroundColor="bg-AppBackground"
 				>
 					<ReservationsMainView />
 				</MainScreenCard>

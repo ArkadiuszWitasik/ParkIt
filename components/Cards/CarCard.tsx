@@ -19,7 +19,7 @@ const CarCard = (props: CarCardProps) => {
 		useState<boolean>(false);
 
 	return (
-		<View className="bg-Khaki flex flex-row justify-between rounded-2xl">
+		<View className="bg-white flex flex-row justify-between rounded-2xl">
 			<EditCarModal
 				isModalVisible={isEditModalVisible}
 				setIsModalVisible={setIsEditModalVisible}
@@ -35,12 +35,14 @@ const CarCard = (props: CarCardProps) => {
 				carRegistrationNumber={props.carRegistrationNumber}
 			/>
 			<View className="w-[15%] flex justify-center items-center pl-5">
-				<CarIcon
-					style={{
-						width: 24,
-						height: 24,
-					}}
-				/>
+				<View className="bg-AppBackground w-[50] h-[50] rounded-[50] flex justify-center items-center">
+					<CarIcon
+						style={{
+							width: 24,
+							height: 24,
+						}}
+					/>
+				</View>
 			</View>
 			<View className="w-[50%] flex justify-center">
 				<Text className="font-MontserratRegular text-FontColor text-[22px]">

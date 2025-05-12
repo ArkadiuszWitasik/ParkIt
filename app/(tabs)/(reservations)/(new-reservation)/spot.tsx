@@ -101,7 +101,7 @@ const ChooseSpotScreen = () => {
 									key={spot.id}
 									onPress={() => setSelectedSpot(spot.id)}
 									className={`${
-										selectedSpot === spot.id ? 'bg-Khaki' : 'bg-LightKhaki'
+										selectedSpot === spot.id ? 'bg-AppPrimaryColor' : 'bg-white'
 									} w-[30%] h-[50px] flex justify-center items-center rounded-md`}
 								>
 									<Text>{spot.name}</Text>

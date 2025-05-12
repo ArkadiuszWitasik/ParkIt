@@ -10,7 +10,7 @@ const SettingsScreen = () => {
 
 	return (
 		<View className="flex-1 m-3 flex flex-col gap-2">
-			<Divider text="Ustawienia aplikacji" />
+			<Text>Ustawienia aplikacji</Text>
 			<UnstyledButton onPressFn={() => tmp()}>
 				<Text className="text-FontColor font-MontserratRegular">
 					Powiadomienia
@@ -24,7 +24,7 @@ const SettingsScreen = () => {
 			<UnstyledButton onPressFn={() => tmp()}>
 				<Text className="text-FontColor font-MontserratRegular">Motyw</Text>
 			</UnstyledButton>
-			<Divider text="Ustawienia konta" />
+			<Text>Ustawienia konta</Text>
 			<UnstyledButton onPressFn={() => tmp()}>
 				<Text className="text-FontColor font-MontserratRegular">
 					Zmień adres e-mail

@@ -13,7 +13,7 @@ const ReservationsMainView = () => {
 			</View>
 			<View className="flex flex-row justify-between items-center">
 				<View className="flex-row gap-2 items-center">
-					<View className="bg-LightKhaki w-[50] h-[50] rounded-[50] flex justify-center items-center">
+					<View className="bg-AppBackground w-[50] h-[50] rounded-[50] flex justify-center items-center">
 						<CalendarIcon style={{ width: 24, height: 24 }} />
 					</View>
 					<View className="flex gap-1 flex-col">

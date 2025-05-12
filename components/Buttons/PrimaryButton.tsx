@@ -18,7 +18,7 @@ const PrimaryButton = (props: PrimaryButtonProps) => {
 			onPress={props.onPressFn}
 			onPressIn={() => setIsPressed(true)}
 			onPressOut={() => setIsPressed(false)}
-			className={`${isPressed ? 'bg-LightKhaki' : 'bg-Khaki'} ${props.w} ${
+			className={`${isPressed ? 'bg-AppBackground' : 'bg-white'} ${props.w} ${
 				props.h
 			} ${
 				props.disabled ? 'bg-gray-600' : ''

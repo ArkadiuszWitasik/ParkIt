@@ -9,7 +9,7 @@ const CarMainView = () => {
 				<Text className="font-MontserratRegular text-FontColor text-[24px]">
 					Moje
 				</Text>
-				<View className="bg-LightKhaki w-[50] h-[50] rounded-[50] flex justify-center items-center">
+				<View className="bg-AppBackground w-[50] h-[50] rounded-[50] flex justify-center items-center">
 					<CarIcon
 						style={{
 							width: 24,

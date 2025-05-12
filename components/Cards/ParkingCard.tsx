@@ -14,7 +14,9 @@ const ParkingCard = (props: ParkingCardProps) => {
 		<Pressable
 			onPress={props.onPressFn}
 			className={`${
-				props.parkingId === props.selectedParking ? 'bg-Khaki' : 'bg-LightKhaki'
+				props.parkingId === props.selectedParking
+					? 'bg-AppPrimaryColor'
+					: 'bg-white'
 			} min-h-[50] p-3 rounded-md`}
 		>
 			<Text className="font-RalewayRegular text-[18px]">

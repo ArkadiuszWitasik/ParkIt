@@ -14,7 +14,7 @@ const LoyalityMainView = () => {
 			</View>
 			{/* Loop with amount reservations in color */}
 			<View className="flex flex-row justify-center items-center gap-3">
-				<View className="bg-LightKhaki w-[42] h-[42] rounded-[50] flex justify-center items-center">
+				<View className="bg-AppBackground w-[42] h-[42] rounded-[50] flex justify-center items-center">
 					<FireIcon
 						style={{
 							width: 20,
@@ -22,7 +22,7 @@ const LoyalityMainView = () => {
 						}}
 					/>
 				</View>
-				<View className="bg-LightKhaki w-[42] h-[42] rounded-[50] flex justify-center items-center">
+				<View className="bg-AppBackground w-[42] h-[42] rounded-[50] flex justify-center items-center">
 					<FireIcon
 						style={{
 							width: 20,
@@ -30,7 +30,7 @@ const LoyalityMainView = () => {
 						}}
 					/>
 				</View>
-				<View className="bg-LightKhaki w-[42] h-[42] rounded-[50] flex justify-center items-center">
+				<View className="bg-AppBackground w-[42] h-[42] rounded-[50] flex justify-center items-center">
 					<FireIcon
 						style={{
 							width: 20,
@@ -38,7 +38,7 @@ const LoyalityMainView = () => {
 						}}
 					/>
 				</View>
-				<View className="bg-LightKhaki w-[42] h-[42] rounded-[50] flex justify-center items-center">
+				<View className="bg-AppBackground w-[42] h-[42] rounded-[50] flex justify-center items-center">
 					<FireIcon
 						style={{
 							width: 20,
@@ -46,7 +46,7 @@ const LoyalityMainView = () => {
 						}}
 					/>
 				</View>
-				<View className="bg-LightKhaki w-[42] h-[42] rounded-[50] flex justify-center items-center">
+				<View className="bg-AppBackground w-[42] h-[42] rounded-[50] flex justify-center items-center">
 					<FireIcon
 						style={{
 							width: 20,

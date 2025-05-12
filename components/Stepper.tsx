@@ -19,33 +19,33 @@ const Stepper = () => {
 			<View
 				className={`
 					${
-						pathNumber >= 1 ? 'bg-Khaki' : 'bg-SecoundLayer'
+						pathNumber >= 1 ? 'bg-AppPrimaryColor' : 'bg-white'
 					} h-[30] w-[30]  rounded-full flex items-center justify-center`}
 			>
 				<Text>1</Text>
 			</View>
 			<View
 				className={` ${
-					pathNumber >= 2 ? 'bg-Khaki' : 'bg-SecoundLayer'
-				} h-[5] w-[70] bg-Khaki rounded-full`}
+					pathNumber >= 2 ? 'bg-AppPrimaryColor' : 'bg-white'
+				} h-[5] w-[70] bg-AppPrimaryColor rounded-full`}
 			/>
 			<View
 				className={`
 					${
-						pathNumber >= 2 ? 'bg-Khaki' : 'bg-SecoundLayer'
+						pathNumber >= 2 ? 'bg-AppPrimaryColor' : 'bg-white'
 					} h-[30] w-[30]  rounded-full flex items-center justify-center`}
 			>
 				<Text>2</Text>
 			</View>
 			<View
 				className={` ${
-					pathNumber >= 3 ? 'bg-Khaki' : 'bg-SecoundLayer'
-				} h-[5] w-[70] bg-Khaki rounded-full`}
+					pathNumber >= 3 ? 'bg-AppPrimaryColor' : 'bg-white'
+				} h-[5] w-[70] bg-AppPrimaryColor rounded-full`}
 			/>
 			<View
 				className={`
 					${
-						pathNumber >= 3 ? 'bg-Khaki' : 'bg-SecoundLayer'
+						pathNumber >= 3 ? 'bg-AppPrimaryColor' : 'bg-white'
 					} h-[30] w-[30]  rounded-full flex items-center justify-center`}
 			>
 				<Text>3</Text>

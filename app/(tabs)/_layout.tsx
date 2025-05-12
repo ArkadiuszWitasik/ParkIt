@@ -31,7 +31,7 @@ const TabLayout = () => {
 					tabBarIcon: ({ focused }) => (
 						<View
 							className={`${
-								focused ? 'bg-Khaki' : 'bg-ThirdLayer'
+								focused ? 'bg-AppPrimaryColor' : 'bg-AppBackground'
 							} w-[50] h-[50] mt-[25px] rounded-[50] flex justify-center items-center`}
 						>
 							<HomeIcon
@@ -53,7 +53,7 @@ const TabLayout = () => {
 					tabBarIcon: ({ focused }) => (
 						<View
 							className={`${
-								focused ? 'bg-Khaki' : 'bg-ThirdLayer'
+								focused ? 'bg-AppPrimaryColor' : 'bg-AppBackground'
 							} w-[50] h-[50] mt-[25px] rounded-[50] flex justify-center items-center`}
 						>
 							<CalendarIcon
@@ -75,7 +75,7 @@ const TabLayout = () => {
 					tabBarIcon: ({ focused }) => (
 						<View
 							className={`${
-								focused ? 'bg-Khaki' : 'bg-ThirdLayer'
+								focused ? 'bg-AppPrimaryColor' : 'bg-AppBackground'
 							} w-[50] h-[50] mt-[25px] rounded-[50] flex justify-center items-center`}
 						>
 							<ProfileIcon
@@ -97,7 +97,7 @@ const TabLayout = () => {
 					tabBarIcon: ({ focused }) => (
 						<View
 							className={`${
-								focused ? 'bg-Khaki' : 'bg-ThirdLayer'
+								focused ? 'bg-AppPrimaryColor' : 'bg-AppBackground'
 							} w-[50] h-[50] mt-[25px] rounded-[50] flex justify-center items-center`}
 						>
 							<SettingsIcon

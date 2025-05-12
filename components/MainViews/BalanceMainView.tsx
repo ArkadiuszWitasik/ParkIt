@@ -14,7 +14,7 @@ const BalanceMainView = () => {
 						konta
 					</Text>
 				</View>
-				<View className="bg-LightKhaki w-[50] h-[50] rounded-[50] flex justify-center items-center">
+				<View className="bg-AppBackground w-[50] h-[50] rounded-[50] flex justify-center items-center">
 					<WalletIcon
 						style={{
 							width: 24,
