@@ -4,12 +4,12 @@ import PrimaryButton from '@/components/Buttons/PrimaryButton';
 import AddCarModal from '@/components/Modals/AddCarModal';
 import Divider from '@/components/Divider';
 import CarCard from '@/components/Cards/CarCard';
-import { useCarStore } from '@/store/carStore';
+import { useUserStore } from '@/store/userStore';
 
 const CarsScreen = () => {
 	const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
 
-	const { cars } = useCarStore();
+	const { user } = useUserStore();
 
 	return (
 		<View className="flex-1 m-3 flex gap-3">
@@ -22,12 +22,12 @@ const CarsScreen = () => {
 				setIsModalVisible={setIsModalVisible}
 			/>
 			<Divider />
-			{cars.map((car) => (
+			{user?.cars.map((car) => (
 				<CarCard
-					id={car.id}
+					id={car.carId}
 					carName={car.carName}
 					carRegistrationNumber={car.carRegistrationNumber}
-					key={car.id}
+					key={car.carId}
 				/>
 			))}
 		</View>

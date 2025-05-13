@@ -1,14 +1,21 @@
-import { View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import {
+	View,
+	Text,
+	TouchableWithoutFeedback,
+	Keyboard,
+	ActivityIndicator,
+} from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { Href, router } from 'expo-router';
 import { useFonts } from 'expo-font';
 import PrimaryButton from '@/components/Buttons/PrimaryButton';
 import UnstyledButton from '@/components/Buttons/UnstyledButton';
 import CustomInput from '@/components/CustomInput';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
 import { db, auth } from '../db/store';
 import { useParkingLotsStore } from '@/store/parkingLotsStore';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useUserStore } from '@/store/userStore';
 
 export default function SignInScreen() {
 	const [loaded, error] = useFonts({
@@ -19,10 +26,12 @@ export default function SignInScreen() {
 		'Montserrat-SemiBold': require('../assets/fonts/Montserrat-SemiBold.ttf'),
 	});
 
-	const [userEmail, setUserEmail] = useState('');
-	const [userPassword, setUserPassword] = useState<string>('');
+	const [userEmail, setUserEmail] = useState('user@test.com');
+	const [userPassword, setUserPassword] = useState<string>('PASSWORD123');
+	const [isUserDataLoading, setIsUserDataLoading] = useState<boolean>(false);
 
 	const { setParkingLots } = useParkingLotsStore();
+	const { setUser } = useUserStore();
 
 	const fetchParkingLots = async () => {
 		try {
@@ -40,6 +49,13 @@ export default function SignInScreen() {
 		}
 	};
 
+	const navigate = (path: Href) => {
+		//futher logics
+
+		router.navigate(path);
+		// router.replace(path);
+	};
+
 	const handleSignIn = async (email: string, password: string) => {
 		try {
 			const userCredential = await signInWithEmailAndPassword(
@@ -47,24 +63,33 @@ export default function SignInScreen() {
 				email,
 				password
 			);
-			console.log('Zalogowano użytkownika:', userCredential.user);
-			navigate('/(tabs)/(home)');
+			if (userCredential.user) {
+				setIsUserDataLoading(true);
+
+				const docUserRef = doc(db, 'users', userCredential.user.uid);
+
+				const docUserSnap = await getDoc(docUserRef);
+
+				if (docUserSnap.exists()) {
+					const formaterUserData = {
+						userId: docUserSnap.id,
+						isDiscountApplyed: docUserSnap.data().isDiscountApplyed,
+						loyalityCount: docUserSnap.data().loyalityCount,
+						balance: docUserSnap.data().balance,
+						reservations: docUserSnap.data().reservations,
+						cars: docUserSnap.data().cars,
+					};
+					setUser(formaterUserData);
+				}
+
+				setTimeout(() => {
+					setIsUserDataLoading(false);
+					navigate('/(tabs)/(home)');
+				}, 2000);
+			}
 		} catch (error: any) {
 			console.error('Błąd logowania:', error.message);
 		}
-	};
-
-	const navigate = (path: Href) => {
-		//futher logics
-
-		router.navigate(path);
-		// router.replace(path);
-
-		// console.log('email', userEmail);
-		// console.log('haslo', userPassword);
-
-		// setUserEmail('');
-		// setUserPassword('');
 	};
 
 	useEffect(() => {
@@ -73,6 +98,25 @@ export default function SignInScreen() {
 
 	if (!loaded && !error) {
 		return null;
+	}
+
+	if (isUserDataLoading) {
+		return (
+			<View className="flex-1 justify-center items-center bg-AppBackground gap-3">
+				<Text className="text-[56px] font-BebasNeueRegular pt-[40px] text-FontColor">
+					Park It
+				</Text>
+				<View className="flex flex-col justify-center items-center">
+					<Text className="text-2xl font-RalewaySemiBold text-FontColor">
+						Ładowanie informacji
+					</Text>
+					<Text className="text-2xl font-RalewaySemiBold text-FontColor">
+						o użytkowniku
+					</Text>
+				</View>
+				<ActivityIndicator size="large" className="mt-3" />
+			</View>
+		);
 	}
 
 	return (
@@ -109,8 +153,7 @@ export default function SignInScreen() {
 					<PrimaryButton
 						text="Zaloguj się"
 						onPressFn={() => {
-							handleSignIn('user@test.com', 'Maslo123!x');
-							// navigate('/(tabs)/(home)');
+							handleSignIn(userEmail, userPassword);
 						}}
 					/>
 
