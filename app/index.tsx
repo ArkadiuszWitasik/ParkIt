@@ -7,8 +7,9 @@ import PrimaryButton from '@/components/Buttons/PrimaryButton';
 import UnstyledButton from '@/components/Buttons/UnstyledButton';
 import CustomInput from '@/components/CustomInput';
 import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../db/store';
+import { db, auth } from '../db/store';
 import { useParkingLotsStore } from '@/store/parkingLotsStore';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -41,6 +42,20 @@ const SignInScreen = () => {
 			console.error('Błąd podczas pobierania danych:', error);
 		}
 	};
+
+	// const handleSignIn = async (email: string, password: string) => {
+	// 	try {
+	// 		const userCredential = await signInWithEmailAndPassword(
+	// 			auth,
+	// 			email,
+	// 			password
+	// 		);
+	// 		console.log('Zalogowano użytkownika:', userCredential.user);
+	// 		navigate('/(tabs)/(home)');
+	// 	} catch (error: any) {
+	// 		console.error('Błąd logowania:', error.message);
+	// 	}
+	// };
 
 	const navigate = (path: Href) => {
 		//futher logics

@@ -25,12 +25,11 @@ const ChooseSpotScreen = () => {
 				</Text>
 				<View className="flex flex-row">
 					<Text className="font-RalewayRegular text-FontColor">
-						{reservation.startDate?.toLocaleDateString()}{' '}
+						{reservation.date?.toLocaleDateString()}{' '}
 						{reservation.startTime?.toLocaleTimeString()}
 					</Text>
 					<Text className="font-RalewayRegular text-FontColor"> - </Text>
 					<Text className="font-RalewayRegular text-FontColor">
-						{reservation.endDate?.toLocaleDateString()}{' '}
 						{reservation.endTime?.toLocaleTimeString()}
 					</Text>
 				</View>

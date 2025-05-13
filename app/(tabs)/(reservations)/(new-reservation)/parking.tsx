@@ -27,12 +27,11 @@ const ChooseParkingScreen = () => {
 				</Text>
 				<View className="flex flex-row">
 					<Text className="font-RalewayRegular">
-						{reservation.startDate?.toLocaleDateString()}{' '}
+						{reservation.date?.toLocaleDateString()}{' '}
 						{reservation.startTime?.toLocaleTimeString()}
 					</Text>
 					<Text className="font-RalewayRegular"> - </Text>
 					<Text className="font-RalewayRegular">
-						{reservation.endDate?.toLocaleDateString()}{' '}
 						{reservation.endTime?.toLocaleTimeString()}
 					</Text>
 				</View>

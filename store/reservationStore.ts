@@ -2,9 +2,8 @@ import { create } from 'zustand';
 
 export interface Reservation {
 	id: number;
-	startDate: Date;
+	date: Date;
 	startTime: Date;
-	endDate: Date;
 	endTime: Date;
 	parking: string;
 	spot: string;
@@ -12,9 +11,8 @@ export interface Reservation {
 
 const defaultDates = () => {
 	return {
-		startDate: new Date(),
+		date: new Date(),
 		startTime: new Date(),
-		endDate: new Date(),
 		endTime: new Date(Date.now() + 10 * 60 * 1000),
 	};
 };

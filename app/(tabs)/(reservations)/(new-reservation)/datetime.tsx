@@ -17,8 +17,7 @@ const ChooseTimeAndDateScreen = () => {
 		{ label: 'Opcja 3', value: 'option3' },
 	]);
 
-	const [startDate, setStartDate] = useState(new Date());
-	const [endDate, setEndDate] = useState(new Date());
+	const [date, setDate] = useState(new Date());
 	const [startTime, setStartTime] = useState(new Date());
 	const [endTime, setEndTime] = useState(new Date(Date.now() + 10 * 60 * 1000));
 
@@ -28,15 +27,8 @@ const ChooseTimeAndDateScreen = () => {
 
 	const handleStartDateChange = (_: any, selectedDate: Date | undefined) => {
 		if (selectedDate) {
-			setStartDate(selectedDate);
-			updateReservation({ startDate: selectedDate });
-		}
-	};
-
-	const handleEndDateChange = (_: any, selectedDate: Date | undefined) => {
-		if (selectedDate) {
-			setEndDate(selectedDate);
-			updateReservation({ endDate: selectedDate });
+			setDate(selectedDate);
+			updateReservation({ date: selectedDate });
 		}
 	};
 
@@ -63,7 +55,7 @@ const ChooseTimeAndDateScreen = () => {
 				<Text className="font-RalewayRegular ">Początek rezerwacji</Text>
 				<View className="flex flex-row gap-2">
 					<DateTimePicker
-						value={startDate}
+						value={date}
 						mode={'date'}
 						is24Hour={true}
 						onChange={handleStartDateChange}
@@ -82,22 +74,11 @@ const ChooseTimeAndDateScreen = () => {
 				<Text className="font-RalewayRegular ">Koniec rezerwacji</Text>
 				<View className="flex flex-row gap-2">
 					<DateTimePicker
-						value={endDate}
-						mode={'date'}
-						is24Hour={true}
-						onChange={handleEndDateChange}
-						minimumDate={new Date()}
-					/>
-					<DateTimePicker
 						value={endTime}
 						mode={'time'}
 						is24Hour={true}
 						onChange={handleEndTimeChange}
-						minimumDate={
-							startDate.toDateString() === endDate.toDateString()
-								? new Date(Date.now() + 10 * 60 * 1000)
-								: undefined
-						}
+						minimumDate={new Date(Date.now() + 10 * 60 * 1000)}
 					/>
 				</View>
 				<DropDownPicker
