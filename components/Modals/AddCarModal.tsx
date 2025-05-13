@@ -3,7 +3,7 @@ import React, { Dispatch, SetStateAction, useState } from 'react';
 import BaseModal from './BaseModal';
 import PrimaryButton from '../Buttons/PrimaryButton';
 import CustomInput from '../CustomInput';
-import { useCarStore } from '@/store/carStore';
+import { useUserStore } from '@/store/userStore';
 
 type AddCarModalProps = {
 	isModalVisible: boolean;
@@ -16,14 +16,26 @@ const AddCarModal = (props: AddCarModalProps) => {
 	const [carRegistrationNumber, setCarRegistrationNumber] =
 		useState<string>('');
 
-	const { addCar } = useCarStore();
+	const { updateUser, user } = useUserStore();
 
 	const handleAddNewCar = () => {
-		addCar({
-			id: 4,
-			carName: carName,
-			carRegistrationNumber: carRegistrationNumber,
+		const userCarList = useUserStore.getState().user?.cars || [];
+
+		const lastCarId = userCarList.length
+			? Math.max(...userCarList.map((car) => car.carId))
+			: 0;
+
+		const newCar = {
+			carId: lastCarId + 1,
+			carName,
+			carRegistrationNumber,
+		};
+
+		updateUser({
+			...user,
+			cars: [...userCarList, newCar],
 		});
+
 		setCarName('');
 		setCarRegistrationNumber('');
 	};

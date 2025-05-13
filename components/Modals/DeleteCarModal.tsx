@@ -1,9 +1,9 @@
 import { View, Text } from 'react-native';
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import BaseModal from './BaseModal';
 import PrimaryButton from '../Buttons/PrimaryButton';
-import CustomInput from '../CustomInput';
-import { useCarStore } from '@/store/carStore';
+
+import { useUserStore } from '@/store/userStore';
 
 type DeleteCarModalProps = {
 	carId: number;
@@ -14,13 +14,18 @@ type DeleteCarModalProps = {
 };
 
 const DeleteCarModal = (props: DeleteCarModalProps) => {
-	const { deleteCar } = useCarStore();
+	const { updateUser, user } = useUserStore();
 
 	const handleDeleteCar = () => {
-		deleteCar({
-			id: props.carId,
-			carName: props.carName,
-			carRegistrationNumber: props.carRegistrationNumber,
+		const userCarList = useUserStore.getState().user?.cars || [];
+
+		const updatedCarList = userCarList.filter(
+			(car) => car.carId !== props.carId
+		);
+
+		updateUser({
+			...user,
+			cars: updatedCarList,
 		});
 	};
 

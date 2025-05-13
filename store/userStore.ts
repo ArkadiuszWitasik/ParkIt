@@ -1,3 +1,5 @@
+import { db } from '@/db/store';
+import { doc, setDoc } from 'firebase/firestore';
 import { create } from 'zustand';
 
 export interface Car {
@@ -27,7 +29,7 @@ export interface User {
 export interface UserState {
 	user: User | null;
 	setUser: (data: User) => void;
-	updateUser: (data: User) => void;
+	updateUser: (data: Partial<User>) => void;
 }
 
 export const useUserStore = create<UserState>()((set) => ({
@@ -36,8 +38,29 @@ export const useUserStore = create<UserState>()((set) => ({
 		set(() => ({
 			user: data,
 		})),
-	updateUser: (data) =>
-		set((state) => ({
-			user: { ...state.user, ...data },
-		})),
+	updateUser: (data: Partial<User>) =>
+		set((state) => {
+			if (!state.user) {
+				return state;
+			}
+
+			const updatedUser = { ...state.user, ...data };
+
+			saveUserToFirebase(updatedUser).catch((error) => {
+				console.error('Error during saving user data to Firebase:', error);
+			});
+
+			return {
+				user: updatedUser,
+			};
+		}),
 }));
+
+const saveUserToFirebase = async (user: User) => {
+	if (!user.userId) {
+		throw new Error('No userId provided');
+	}
+
+	const userDocRef = doc(db, 'users', user.userId);
+	await setDoc(userDocRef, user);
+};

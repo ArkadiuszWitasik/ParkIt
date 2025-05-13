@@ -3,7 +3,7 @@ import React, { Dispatch, SetStateAction, useState } from 'react';
 import BaseModal from './BaseModal';
 import PrimaryButton from '../Buttons/PrimaryButton';
 import CustomInput from '../CustomInput';
-import { useCarStore } from '@/store/carStore';
+import { useUserStore } from '@/store/userStore';
 
 type EditCarModalProps = {
 	carId: number;
@@ -20,13 +20,20 @@ const EditCarModal = (props: EditCarModalProps) => {
 		props.carRegistrationNumber
 	);
 
-	const { editCar } = useCarStore();
+	const { updateUser, user } = useUserStore();
 
 	const handleEditCar = () => {
-		editCar({
-			id: props.carId,
-			carName: carName,
-			carRegistrationNumber: carRegistrationNumber,
+		const userCarList = useUserStore.getState().user?.cars || [];
+
+		const updatedCarList = userCarList.map((car) =>
+			car.carId === props.carId
+				? { ...car, carName, carRegistrationNumber }
+				: car
+		);
+
+		updateUser({
+			...user,
+			cars: updatedCarList,
 		});
 	};
 

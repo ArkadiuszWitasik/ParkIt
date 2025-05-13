@@ -1,8 +1,11 @@
 import { View, Text } from 'react-native';
 import React from 'react';
 import WalletIcon from '@/assets/Icons/WalletIcon';
+import { useUserStore } from '@/store/userStore';
 
 const BalanceMainView = () => {
+	const { user } = useUserStore();
+
 	return (
 		<View className="flex-1 p-3 justify-between">
 			<View className="flex flex-row justify-between">
@@ -25,7 +28,7 @@ const BalanceMainView = () => {
 			</View>
 			<View className="flex flex-row items-start gap-2 justify-start">
 				<Text className="font-MontserratSemiBold text-FontColor text-[34px]">
-					100.00
+					{user?.balance}
 				</Text>
 				<Text className="font-MontserratSemiBold text-FontColor text-[16px] pt-2">
 					ZŁ
