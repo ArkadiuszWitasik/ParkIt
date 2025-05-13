@@ -1,7 +1,6 @@
 import { View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { Href, router } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
 import { useFonts } from 'expo-font';
 import PrimaryButton from '@/components/Buttons/PrimaryButton';
 import UnstyledButton from '@/components/Buttons/UnstyledButton';
@@ -11,9 +10,7 @@ import { db, auth } from '../db/store';
 import { useParkingLotsStore } from '@/store/parkingLotsStore';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
-SplashScreen.preventAutoHideAsync();
-
-const SignInScreen = () => {
+export default function SignInScreen() {
 	const [loaded, error] = useFonts({
 		'BebasNeue-Regular': require('../assets/fonts/BebasNeue-Regular.ttf'),
 		'Raleway-Regular': require('../assets/fonts/Raleway-Regular.ttf'),
@@ -43,19 +40,19 @@ const SignInScreen = () => {
 		}
 	};
 
-	// const handleSignIn = async (email: string, password: string) => {
-	// 	try {
-	// 		const userCredential = await signInWithEmailAndPassword(
-	// 			auth,
-	// 			email,
-	// 			password
-	// 		);
-	// 		console.log('Zalogowano użytkownika:', userCredential.user);
-	// 		navigate('/(tabs)/(home)');
-	// 	} catch (error: any) {
-	// 		console.error('Błąd logowania:', error.message);
-	// 	}
-	// };
+	const handleSignIn = async (email: string, password: string) => {
+		try {
+			const userCredential = await signInWithEmailAndPassword(
+				auth,
+				email,
+				password
+			);
+			console.log('Zalogowano użytkownika:', userCredential.user);
+			navigate('/(tabs)/(home)');
+		} catch (error: any) {
+			console.error('Błąd logowania:', error.message);
+		}
+	};
 
 	const navigate = (path: Href) => {
 		//futher logics
@@ -71,9 +68,6 @@ const SignInScreen = () => {
 	};
 
 	useEffect(() => {
-		if (loaded || error) {
-			SplashScreen.hideAsync();
-		}
 		fetchParkingLots();
 	}, [loaded, error]);
 
@@ -114,7 +108,10 @@ const SignInScreen = () => {
 
 					<PrimaryButton
 						text="Zaloguj się"
-						onPressFn={() => navigate('/(tabs)/(home)')}
+						onPressFn={() => {
+							handleSignIn('user@test.com', 'Maslo123!x');
+							// navigate('/(tabs)/(home)');
+						}}
 					/>
 
 					<View className="flex flex-row justify-between">
@@ -138,6 +135,6 @@ const SignInScreen = () => {
 			</View>
 		</TouchableWithoutFeedback>
 	);
-};
+}
 
-export default SignInScreen;
+// export default SignInScreen;

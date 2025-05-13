@@ -37,7 +37,7 @@ const ChooseParkingScreen = () => {
 				</View>
 			</View>
 
-			<View className="h-[300px] w-full flex">
+			<View className="h-[300px] w-full flex border border-red-500">
 				<FlashList
 					data={parkingLots}
 					extraData={selectedParking}
