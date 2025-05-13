@@ -1,29 +1,18 @@
-import { View, Text, Pressable } from 'react-native';
+import { View, Text } from 'react-native';
 import React, { useState } from 'react';
 import { Href, router } from 'expo-router';
 import PrimaryButton from '@/components/Buttons/PrimaryButton';
 import { useReservationStore } from '@/store/reservationStore';
 import ParkingCard from '@/components/Cards/ParkingCard';
-
-// Trzeba zrobić coś takiego, że zapisuje id parkingu, a wszystkie parkingi będą pobierać się z firebase do store
-
-const parkingMockUP = [
-	{
-		id: 1,
-		name: 'Aura',
-		spacesLeft: 42,
-	},
-	{
-		id: 2,
-		name: 'Galeria Warmińska',
-		spacesLeft: 10,
-	},
-];
+import { FlashList } from '@shopify/flash-list';
+import { useParkingLotsStore } from '@/store/parkingLotsStore';
 
 const ChooseParkingScreen = () => {
 	const { updateReservation, reservation } = useReservationStore();
 
-	const [selectedParking, setSelectedParking] = useState<number>(0);
+	const { parkingLots } = useParkingLotsStore();
+
+	const [selectedParking, setSelectedParking] = useState<string>('0');
 
 	const navigate = (path: Href) => {
 		router.replace(path);
@@ -49,21 +38,26 @@ const ChooseParkingScreen = () => {
 				</View>
 			</View>
 
-			<View className=" w-full flex flex-col gap-3">
-				{parkingMockUP.map((parking) => (
-					<ParkingCard
-						key={parking.id}
-						parkingId={parking.id}
-						parkingName={parking.name}
-						parkingSpacesLeft={parking.spacesLeft}
-						selectedParking={selectedParking}
-						onPressFn={() => setSelectedParking(parking.id)}
-					/>
-				))}
+			<View className="h-[300px] w-full flex">
+				<FlashList
+					data={parkingLots}
+					extraData={selectedParking}
+					estimatedItemSize={10}
+					renderItem={({ item }) => (
+						<ParkingCard
+							key={item.parkingId}
+							parkingId={item.parkingId}
+							parkingName={item.parkingName}
+							parkingSpacesLeft={item.parkingSpacesLeft}
+							selectedParking={selectedParking}
+							onPressFn={() => setSelectedParking(item.parkingId)}
+						/>
+					)}
+				/>
 			</View>
 
 			<PrimaryButton
-				disabled={selectedParking === 0}
+				disabled={selectedParking === '0'}
 				onPressFn={() => {
 					updateReservation({ parking: selectedParking });
 					navigate('/(tabs)/(reservations)/(new-reservation)/spot');

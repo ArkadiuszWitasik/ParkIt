@@ -2,10 +2,10 @@ import { View, Text, Pressable } from 'react-native';
 import React from 'react';
 
 type ParkingCardProps = {
-	parkingId: number;
+	parkingId: string;
 	parkingName: string;
 	parkingSpacesLeft: number;
-	selectedParking: number;
+	selectedParking: string;
 	onPressFn: () => void;
 };
 
@@ -17,7 +17,7 @@ const ParkingCard = (props: ParkingCardProps) => {
 				props.parkingId === props.selectedParking
 					? 'bg-AppPrimaryColor'
 					: 'bg-white'
-			} min-h-[50] p-3 rounded-md`}
+			} min-h-[50] p-3 rounded-md mb-4 z-30`}
 		>
 			<Text className="font-RalewayRegular text-[18px]">
 				{props.parkingName}

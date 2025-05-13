@@ -4,9 +4,18 @@ import PrimaryButton from '@/components/Buttons/PrimaryButton';
 import { Href, router } from 'expo-router';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useReservationStore } from '@/store/reservationStore';
+import DropDownPicker from 'react-native-dropdown-picker';
 
 const ChooseTimeAndDateScreen = () => {
 	const { updateReservation, reservation } = useReservationStore();
+
+	const [open, setOpen] = useState(false);
+	const [value, setValue] = useState<string | null>(null);
+	const [items, setItems] = useState([
+		{ label: 'Opcja 1', value: 'option1' },
+		{ label: 'Opcja 2', value: 'option2' },
+		{ label: 'Opcja 3', value: 'option3' },
+	]);
 
 	const [startDate, setStartDate] = useState(new Date());
 	const [endDate, setEndDate] = useState(new Date());
@@ -91,7 +100,16 @@ const ChooseTimeAndDateScreen = () => {
 						}
 					/>
 				</View>
+				<DropDownPicker
+					open={open}
+					value={value}
+					items={items}
+					setOpen={setOpen}
+					setValue={setValue}
+					setItems={setItems}
+				/>
 			</View>
+
 			<PrimaryButton
 				onPressFn={() =>
 					navigate('/(tabs)/(reservations)/(new-reservation)/parking')

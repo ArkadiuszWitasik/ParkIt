@@ -1,17 +1,14 @@
-import {
-	View,
-	Text,
-	TextInput,
-	TouchableWithoutFeedback,
-	Keyboard,
-} from 'react-native';
+import { View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import { Href, Link, router } from 'expo-router';
+import { Href, router } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useFonts } from 'expo-font';
 import PrimaryButton from '@/components/Buttons/PrimaryButton';
 import UnstyledButton from '@/components/Buttons/UnstyledButton';
 import CustomInput from '@/components/CustomInput';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../db/store';
+import { useParkingLotsStore } from '@/store/parkingLotsStore';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -26,6 +23,24 @@ const SignInScreen = () => {
 
 	const [userEmail, setUserEmail] = useState('');
 	const [userPassword, setUserPassword] = useState<string>('');
+
+	const { setParkingLots } = useParkingLotsStore();
+
+	const fetchParkingLots = async () => {
+		try {
+			const querySnapshot = await getDocs(collection(db, 'parking_lots'));
+			const data = querySnapshot.docs.map((doc) => ({
+				parkingId: doc.id,
+				parkingName: doc.data().parkingName,
+				parkingLocation: doc.data().parkingLocation || '',
+				parkingSpacesLeft: doc.data().parkingSpacesLeft || 0,
+				zones: doc.data().zones || [],
+			}));
+			setParkingLots(data);
+		} catch (error) {
+			console.error('Błąd podczas pobierania danych:', error);
+		}
+	};
 
 	const navigate = (path: Href) => {
 		//futher logics
@@ -44,6 +59,7 @@ const SignInScreen = () => {
 		if (loaded || error) {
 			SplashScreen.hideAsync();
 		}
+		fetchParkingLots();
 	}, [loaded, error]);
 
 	if (!loaded && !error) {

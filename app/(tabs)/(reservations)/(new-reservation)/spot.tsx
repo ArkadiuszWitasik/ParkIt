@@ -3,65 +3,14 @@ import React, { useState } from 'react';
 import PrimaryButton from '@/components/Buttons/PrimaryButton';
 import { Href, router } from 'expo-router';
 import { useReservationStore } from '@/store/reservationStore';
-
-const spotMockUP = [
-	{
-		id: 1,
-		name: 'Strefa A',
-		spots: [
-			{
-				id: 1,
-				name: 'A01',
-				status: 'free',
-			},
-			{
-				id: 2,
-				name: 'A02',
-				status: 'taken',
-			},
-			{
-				id: 3,
-				name: 'A03',
-				status: 'reservation',
-			},
-			{
-				id: 4,
-				name: 'A04',
-				status: 'reservation',
-			},
-			{
-				id: 5,
-				name: 'A05',
-				status: 'free',
-			},
-			{
-				id: 6,
-				name: 'A06',
-				status: 'reservation',
-			},
-			{
-				id: 7,
-				name: 'A07',
-				status: 'free',
-			},
-			{
-				id: 8,
-				name: 'A08',
-				status: 'taken',
-			},
-			{
-				id: 9,
-				name: 'A09',
-				status: 'free',
-			},
-		],
-	},
-];
+import { useParkingLotsStore } from '@/store/parkingLotsStore';
 
 const ChooseSpotScreen = () => {
-	const [selectedSpot, setSelectedSpot] = useState<number>(0);
+	const [selectedSpot, setSelectedSpot] = useState<string>('0');
 
 	const { updateReservation, reservation } = useReservationStore();
+
+	const { parkingLots } = useParkingLotsStore();
 
 	const navigate = (path: Href) => {
 		router.replace(path);
@@ -90,29 +39,38 @@ const ChooseSpotScreen = () => {
 				</Text>
 			</View>
 			<View className="w-full">
-				{spotMockUP.map((zone) => (
-					<View key={zone.id} className="">
-						<Text className="font-RalewayBold text-FontColor mb-2 ml-3">
-							{zone.name}
-						</Text>
-						<View className="w-full justify-center flex flex-row gap-2 flex-wrap">
-							{zone.spots.map((spot) => (
-								<Pressable
-									key={spot.id}
-									onPress={() => setSelectedSpot(spot.id)}
-									className={`${
-										selectedSpot === spot.id ? 'bg-AppPrimaryColor' : 'bg-white'
-									} w-[30%] h-[50px] flex justify-center items-center rounded-md`}
-								>
-									<Text>{spot.name}</Text>
-								</Pressable>
-							))}
+				{parkingLots
+					.find((parking) => parking.parkingId === reservation.parking)
+					?.zones.map((zone) => (
+						<View key={zone.zoneId} className="">
+							<Text className="font-RalewayBold text-FontColor mb-2 ml-3">
+								{zone.zoneName}
+							</Text>
+							<View className="w-full justify-center flex flex-row gap-2 flex-wrap">
+								{zone.spots.map((spot) => (
+									<Pressable
+										key={`${spot.sportId}-${spot.spotName}-${zone.zoneName}`}
+										onPress={() =>
+											setSelectedSpot(
+												`${spot.sportId}-${spot.spotName}-${zone.zoneName}`
+											)
+										}
+										className={`${
+											selectedSpot ===
+											`${spot.sportId}-${spot.spotName}-${zone.zoneName}`
+												? 'bg-AppPrimaryColor'
+												: 'bg-white'
+										} w-[30%] h-[50px] flex justify-center items-center rounded-md`}
+									>
+										<Text>{spot.spotName}</Text>
+									</Pressable>
+								))}
+							</View>
 						</View>
-					</View>
-				))}
+					))}
 			</View>
 			<PrimaryButton
-				disabled={selectedSpot === 0}
+				disabled={selectedSpot === '0'}
 				onPressFn={() => {
 					updateReservation({ spot: selectedSpot.toString() });
 					navigate('/(tabs)/(reservations)');
