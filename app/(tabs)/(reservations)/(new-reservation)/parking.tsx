@@ -14,16 +14,20 @@ const ChooseParkingScreen = () => {
 
 	const [selectedParking, setSelectedParking] = useState<string>('0');
 
-	const navigate = (path: Href) => {
-		router.replace(path);
+	const navigateForward = (path: Href) => {
+		router.push(path);
+	};
+
+	const navigateBackwards = () => {
+		router.back();
 	};
 
 	return (
 		<View className="flex-1 mt-10 mr-3 ml-3 mb-3 flex flex-col gap-10 items-center ">
 			<Text className="font-RalewayRegular text-[24px]">Wybierz parking</Text>
 			<View className="flex flex-col gap-1 justify-center items-center">
-				<Text className="font-RalewayRegular">
-					Informacje o miejscach wyświetlone dla przedziału
+				<Text className="font-RalewayRegular text-center">
+					Ilość dostępnych miejsc w przedziale
 				</Text>
 				<View className="flex flex-row">
 					<Text className="font-RalewayRegular">
@@ -37,7 +41,7 @@ const ChooseParkingScreen = () => {
 				</View>
 			</View>
 
-			<View className="h-[300px] w-full flex border border-red-500">
+			<View className="h-[200px] w-full flex">
 				<FlashList
 					data={parkingLots}
 					extraData={selectedParking}
@@ -55,14 +59,17 @@ const ChooseParkingScreen = () => {
 				/>
 			</View>
 
-			<PrimaryButton
-				disabled={selectedParking === '0'}
-				onPressFn={() => {
-					updateReservation({ parking: selectedParking });
-					navigate('/(tabs)/(reservations)/(new-reservation)/spot');
-				}}
-				text="Wybierz miejsce"
-			/>
+			<View className="flex flex-row gap-2">
+				<PrimaryButton onPressFn={() => navigateBackwards()} text="Powrót" />
+				<PrimaryButton
+					disabled={selectedParking === '0'}
+					onPressFn={() => {
+						updateReservation({ parkingId: selectedParking });
+						navigateForward('/(tabs)/(reservations)/(new-reservation)/spot');
+					}}
+					text="Wybierz miejsce"
+				/>
+			</View>
 		</View>
 	);
 };

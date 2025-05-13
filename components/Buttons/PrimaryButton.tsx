@@ -21,7 +21,7 @@ const PrimaryButton = (props: PrimaryButtonProps) => {
 			className={`${isPressed ? 'bg-AppBackground' : 'bg-white'} ${props.w} ${
 				props.h
 			} ${
-				props.disabled ? 'bg-gray-600' : ''
+				props.disabled ? 'bg-red-500' : ''
 			} min-w-[150px] min-h-[50px] flex flex-row rounded-md py-1 px-2 justify-center items-center`}
 		>
 			<Text className="font-MontserratRegular text-FontColor">

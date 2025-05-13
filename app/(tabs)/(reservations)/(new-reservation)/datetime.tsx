@@ -5,24 +5,37 @@ import { Href, router } from 'expo-router';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useReservationStore } from '@/store/reservationStore';
 import DropDownPicker from 'react-native-dropdown-picker';
+import { useUserStore } from '@/store/userStore';
 
 const ChooseTimeAndDateScreen = () => {
 	const { updateReservation, reservation } = useReservationStore();
+	const { user } = useUserStore();
 
 	const [open, setOpen] = useState(false);
-	const [value, setValue] = useState<string | null>(null);
-	const [items, setItems] = useState([
-		{ label: 'Opcja 1', value: 'option1' },
-		{ label: 'Opcja 2', value: 'option2' },
-		{ label: 'Opcja 3', value: 'option3' },
-	]);
+	const [value, setValue] = useState<number | null>(null);
+	const [items, setItems] = useState(
+		user?.cars.map((car) => ({
+			label: `${(car.carName, car.carRegistrationNumber)}`,
+			value: car.carId,
+		})) || []
+	);
 
 	const [date, setDate] = useState(new Date());
 	const [startTime, setStartTime] = useState(new Date());
 	const [endTime, setEndTime] = useState(new Date(Date.now() + 10 * 60 * 1000));
 
-	const navigate = (path: Href) => {
-		router.replace(path);
+	const navigateForward = (path: Href) => {
+		router.push(path);
+	};
+
+	const navigateBackwards = () => {
+		router.back();
+	};
+
+	const handleCarChange = (selectedCarId: number | null) => {
+		if (selectedCarId) {
+			updateReservation({ carId: selectedCarId });
+		}
 	};
 
 	const handleStartDateChange = (_: any, selectedDate: Date | undefined) => {
@@ -47,13 +60,12 @@ const ChooseTimeAndDateScreen = () => {
 	};
 
 	return (
-		<View className="flex-1 mt-10 mr-3 ml-3 mb- flex flex-col gap-10 items-center">
+		<View className="flex-1 mt-10 mr-3 ml-3 flex flex-col gap-10 items-center">
 			<Text className="font-RalewayRegular text-[24px]">
 				Wybierz datę i godzinę
 			</Text>
 			<View className="flex flex-col gap-2 justify-center items-center">
-				<Text className="font-RalewayRegular ">Początek rezerwacji</Text>
-				<View className="flex flex-row gap-2">
+				<View className="flex flex-row items-center justify-center">
 					<DateTimePicker
 						value={date}
 						mode={'date'}
@@ -68,11 +80,7 @@ const ChooseTimeAndDateScreen = () => {
 						onChange={handleStartTimeChange}
 						minimumDate={new Date()}
 					/>
-				</View>
-			</View>
-			<View className="flex flex-col gap-2 justify-center items-center">
-				<Text className="font-RalewayRegular ">Koniec rezerwacji</Text>
-				<View className="flex flex-row gap-2">
+					<Text className="ml-3 font-RalewaySemiBold text-FontColor">-</Text>
 					<DateTimePicker
 						value={endTime}
 						mode={'time'}
@@ -81,22 +89,30 @@ const ChooseTimeAndDateScreen = () => {
 						minimumDate={new Date(Date.now() + 10 * 60 * 1000)}
 					/>
 				</View>
+			</View>
+			<View className="flex flex-col gap-2 justify-center items-center m-3 w-[70%]">
 				<DropDownPicker
+					placeholder="Wybierz auto"
 					open={open}
 					value={value}
 					items={items}
 					setOpen={setOpen}
 					setValue={setValue}
 					setItems={setItems}
+					onChangeValue={() => handleCarChange(value)}
 				/>
 			</View>
 
-			<PrimaryButton
-				onPressFn={() =>
-					navigate('/(tabs)/(reservations)/(new-reservation)/parking')
-				}
-				text="Wyszukaj parking"
-			/>
+			<View className="flex flex-row gap-2">
+				<PrimaryButton onPressFn={() => navigateBackwards()} text="Anuluj" />
+				<PrimaryButton
+					disabled={!value}
+					onPressFn={() =>
+						navigateForward('/(tabs)/(reservations)/(new-reservation)/parking')
+					}
+					text="Wyszukaj parking"
+				/>
+			</View>
 		</View>
 	);
 };

@@ -5,8 +5,10 @@ export interface Reservation {
 	date: Date;
 	startTime: Date;
 	endTime: Date;
-	parking: string;
-	spot: string;
+	parkingId: string;
+	spotId: string;
+	carId: number;
+	price: number;
 }
 
 const defaultDates = () => {
@@ -19,8 +21,10 @@ const defaultDates = () => {
 
 const initialReservation: Partial<Reservation> = {
 	...defaultDates(),
-	parking: '0',
-	spot: '',
+	parkingId: '0',
+	spotId: '',
+	carId: 0,
+	price: 0,
 };
 
 export interface ReservationState {
@@ -38,5 +42,13 @@ export const useReservationStore = create<ReservationState>()((set) => ({
 		})),
 
 	resetReservation: () =>
-		set({ reservation: { ...defaultDates(), parking: '0', spot: '' } }),
+		set({
+			reservation: {
+				...defaultDates(),
+				parkingId: '0',
+				spotId: '',
+				carId: 0,
+				price: 0,
+			},
+		}),
 }));

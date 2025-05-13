@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
 export interface Spot {
-	sportId: number;
+	spotId: number;
 	spotName: string;
 	spotStatus: number;
 }
@@ -17,6 +17,7 @@ export interface Parking {
 	parkingName: string;
 	parkingLocation: string;
 	parkingSpacesLeft: number;
+	parkingRatePerMin: number;
 	zones: Zone[];
 }
 

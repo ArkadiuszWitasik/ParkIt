@@ -41,6 +41,7 @@ export default function SignInScreen() {
 				parkingName: doc.data().parkingName,
 				parkingLocation: doc.data().parkingLocation || '',
 				parkingSpacesLeft: doc.data().parkingSpacesLeft || 0,
+				parkingRatePerMin: doc.data().parkingRatePerMin || 0,
 				zones: doc.data().zones || [],
 			}));
 			setParkingLots(data);
