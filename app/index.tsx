@@ -112,7 +112,7 @@ export default function SignInScreen() {
 						Ładowanie informacji
 					</Text>
 					<Text className="text-2xl font-RalewaySemiBold text-FontColor">
-						o użytkowniku
+						o użytkowniku...
 					</Text>
 				</View>
 				<ActivityIndicator size="large" className="mt-3" />

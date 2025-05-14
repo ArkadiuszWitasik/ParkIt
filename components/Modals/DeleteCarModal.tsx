@@ -17,7 +17,7 @@ const DeleteCarModal = (props: DeleteCarModalProps) => {
 	const { updateUser, user } = useUserStore();
 
 	const handleDeleteCar = () => {
-		const userCarList = useUserStore.getState().user?.cars || [];
+		const userCarList = user?.cars || [];
 
 		const updatedCarList = userCarList.filter(
 			(car) => car.carId !== props.carId

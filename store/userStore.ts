@@ -15,6 +15,9 @@ export interface Reservation {
 	reservationEndTime: Date;
 	reservationParkingId: string;
 	reservationSpotId: string;
+	reservationPrice: number;
+	reservationStatus: number;
+	carId: number;
 }
 
 export interface User {

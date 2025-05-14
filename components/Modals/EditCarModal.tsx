@@ -23,7 +23,7 @@ const EditCarModal = (props: EditCarModalProps) => {
 	const { updateUser, user } = useUserStore();
 
 	const handleEditCar = () => {
-		const userCarList = useUserStore.getState().user?.cars || [];
+		const userCarList = user?.cars || [];
 
 		const updatedCarList = userCarList.map((car) =>
 			car.carId === props.carId

@@ -8,14 +8,14 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import { useUserStore } from '@/store/userStore';
 
 const ChooseTimeAndDateScreen = () => {
-	const { updateReservation, reservation } = useReservationStore();
+	const { updateReservation } = useReservationStore();
 	const { user } = useUserStore();
 
 	const [open, setOpen] = useState(false);
 	const [value, setValue] = useState<number | null>(null);
 	const [items, setItems] = useState(
 		user?.cars.map((car) => ({
-			label: `${(car.carName, car.carRegistrationNumber)}`,
+			label: `${car.carName}, ${car.carRegistrationNumber}`,
 			value: car.carId,
 		})) || []
 	);
@@ -26,6 +26,16 @@ const ChooseTimeAndDateScreen = () => {
 
 	const navigateForward = (path: Href) => {
 		router.push(path);
+
+		const userReservationList = user!.reservations;
+
+		const lastReservationId = userReservationList.length
+			? Math.max(...userReservationList.map((r) => r.reservationId))
+			: 0;
+
+		updateReservation({
+			reservationId: lastReservationId + 1,
+		});
 	};
 
 	const navigateBackwards = () => {
@@ -41,21 +51,21 @@ const ChooseTimeAndDateScreen = () => {
 	const handleStartDateChange = (_: any, selectedDate: Date | undefined) => {
 		if (selectedDate) {
 			setDate(selectedDate);
-			updateReservation({ date: selectedDate });
+			updateReservation({ reservationDate: selectedDate });
 		}
 	};
 
 	const handleStartTimeChange = (_: any, selectedDate: Date | undefined) => {
 		if (selectedDate) {
 			setStartTime(selectedDate);
-			updateReservation({ startTime: selectedDate });
+			updateReservation({ reservationStartTime: selectedDate });
 		}
 	};
 
 	const handleEndTimeChange = (_: any, selectedDate: Date | undefined) => {
 		if (selectedDate) {
 			setEndTime(selectedDate);
-			updateReservation({ endTime: selectedDate });
+			updateReservation({ reservationEndTime: selectedDate });
 		}
 	};
 

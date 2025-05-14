@@ -15,10 +15,27 @@ const ChooseSpotScreen = () => {
 	const { parkingLots } = useParkingLotsStore();
 
 	const parkingLotData = parkingLots.find(
-		(parking) => parking.parkingId === reservation.parkingId
+		(parking) => parking.parkingId === reservation.reservationParkingId
 	);
 
 	const navigateForward = (path: Href) => {
+		const choosenParkingLotRate = parkingLots.find(
+			(parking) => parking.parkingId === reservation!.reservationParkingId
+		)?.parkingRatePerMin;
+
+		const newReservationPrice =
+			reservation!.reservationEndTime &&
+			reservation!.reservationStartTime &&
+			choosenParkingLotRate
+				? (reservation!.reservationEndTime.getMinutes() -
+						reservation!.reservationStartTime.getMinutes()) *
+				  choosenParkingLotRate
+				: 0;
+
+		updateReservation({
+			reservationPrice: newReservationPrice,
+		});
+
 		router.push(path);
 	};
 
@@ -58,7 +75,7 @@ const ChooseSpotScreen = () => {
 				<PrimaryButton
 					disabled={selectedSpot === '0'}
 					onPressFn={() => {
-						updateReservation({ spotId: selectedSpot.toString() });
+						updateReservation({ reservationSpotId: selectedSpot.toString() });
 						navigateForward('/(tabs)/(reservations)/(new-reservation)/summary');
 					}}
 					text="Zarezerwuj"

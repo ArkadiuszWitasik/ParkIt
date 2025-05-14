@@ -31,12 +31,12 @@ const ChooseParkingScreen = () => {
 				</Text>
 				<View className="flex flex-row">
 					<Text className="font-RalewayRegular">
-						{reservation.date?.toLocaleDateString()}{' '}
-						{reservation.startTime?.toLocaleTimeString()}
+						{reservation.reservationDate?.toLocaleDateString()}{' '}
+						{reservation.reservationStartTime?.toLocaleTimeString()}
 					</Text>
 					<Text className="font-RalewayRegular"> - </Text>
 					<Text className="font-RalewayRegular">
-						{reservation.endTime?.toLocaleTimeString()}
+						{reservation.reservationEndTime?.toLocaleTimeString()}
 					</Text>
 				</View>
 			</View>
@@ -64,7 +64,7 @@ const ChooseParkingScreen = () => {
 				<PrimaryButton
 					disabled={selectedParking === '0'}
 					onPressFn={() => {
-						updateReservation({ parkingId: selectedParking });
+						updateReservation({ reservationParkingId: selectedParking });
 						navigateForward('/(tabs)/(reservations)/(new-reservation)/spot');
 					}}
 					text="Wybierz miejsce"

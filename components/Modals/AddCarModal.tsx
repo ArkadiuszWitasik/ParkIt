@@ -19,7 +19,7 @@ const AddCarModal = (props: AddCarModalProps) => {
 	const { updateUser, user } = useUserStore();
 
 	const handleAddNewCar = () => {
-		const userCarList = useUserStore.getState().user?.cars || [];
+		const userCarList = user?.cars || [];
 
 		const lastCarId = userCarList.length
 			? Math.max(...userCarList.map((car) => car.carId))

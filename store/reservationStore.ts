@@ -1,54 +1,60 @@
 import { create } from 'zustand';
 
 export interface Reservation {
-	id: number;
-	date: Date;
-	startTime: Date;
-	endTime: Date;
-	parkingId: string;
-	spotId: string;
+	reservationId: number;
+	reservationDate: Date;
+	reservationStartTime: Date;
+	reservationEndTime: Date;
+	reservationParkingId: string;
+	reservationSpotId: string;
+	reservationPrice: number;
+	reservationStatus: number;
 	carId: number;
-	price: number;
 }
 
-const defaultDates = () => {
-	return {
-		date: new Date(),
-		startTime: new Date(),
-		endTime: new Date(Date.now() + 10 * 60 * 1000),
-	};
-};
-
-const initialReservation: Partial<Reservation> = {
-	...defaultDates(),
-	parkingId: '0',
-	spotId: '',
-	carId: 0,
-	price: 0,
-};
-
 export interface ReservationState {
-	reservation: Partial<Reservation>;
+	reservation: Reservation;
 	updateReservation: (data: Partial<Reservation>) => void;
 	resetReservation: () => void;
 }
 
 export const useReservationStore = create<ReservationState>()((set) => ({
-	reservation: initialReservation,
+	reservation: {
+		reservationId: 1,
+		reservationDate: new Date(),
+		reservationStartTime: new Date(),
+		reservationEndTime: new Date(Date.now() + 10 * 60 * 1000),
+		reservationParkingId: '0',
+		reservationSpotId: '',
+		reservationPrice: 0,
+		reservationStatus: 0,
+		carId: 0,
+	},
 
-	updateReservation: (data) =>
-		set((state) => ({
-			reservation: { ...state.reservation, ...data },
-		})),
+	updateReservation: (data: Partial<Reservation>) =>
+		set((state) => {
+			if (!state.reservation) {
+				return state;
+			}
+			const updatedReservation = { ...state.reservation, ...data };
+
+			return {
+				reservation: updatedReservation,
+			};
+		}),
 
 	resetReservation: () =>
 		set({
 			reservation: {
-				...defaultDates(),
-				parkingId: '0',
-				spotId: '',
+				reservationId: 1,
+				reservationDate: new Date(),
+				reservationStartTime: new Date(),
+				reservationEndTime: new Date(Date.now() + 10 * 60 * 1000),
+				reservationParkingId: '0',
+				reservationSpotId: '',
+				reservationStatus: 0,
+				reservationPrice: 0,
 				carId: 0,
-				price: 0,
 			},
 		}),
 }));
