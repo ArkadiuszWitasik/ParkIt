@@ -52,10 +52,14 @@ const CarCard = (props: CarCardProps) => {
 					{props.carRegistrationNumber}
 				</Text>
 			</View>
-			<View className="w-[15%] flex justify-center">
+			<View className="w-[15%] flex justify-center gap-1">
 				<UnstyledButton
 					onPressFn={() => setIsEditModalVisible(true)}
 					w="w-[50px]"
+					h="h-[50px]"
+					bgColor=""
+					bgPressedColor="bg-gray-300"
+					otherStyles="flex items-center justify-center rounded-md"
 				>
 					<EditIcon
 						style={{
@@ -67,6 +71,10 @@ const CarCard = (props: CarCardProps) => {
 				<UnstyledButton
 					onPressFn={() => setIsDeleteModalVisible(true)}
 					w="w-[50px]"
+					h="h-[50px]"
+					bgColor=""
+					bgPressedColor="bg-gray-300"
+					otherStyles="flex items-center justify-center rounded-md"
 				>
 					<DeleteIcon
 						style={{

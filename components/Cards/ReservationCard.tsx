@@ -73,6 +73,9 @@ export default function ReservationCard(props: ReservationCardProps) {
 						onPressFn={() => setIsCancelModalVisible(true)}
 						w="w-[30px]"
 						h="h-[30px]"
+						bgColor=""
+						bgPressedColor="bg-gray-300"
+						otherStyles="flex justify-center items-center rounded-md"
 					>
 						<CancelIcon style={{ width: 25, height: 25 }} />
 					</UnstyledButton>

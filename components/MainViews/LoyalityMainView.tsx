@@ -15,7 +15,6 @@ const LoyalityMainView = () => {
 					</Text>
 				</View>
 			</View>
-			{/* Loop with amount reservations in color */}
 			<View className="flex flex-row justify-center items-center gap-3">
 				{[...Array(5)].map((_, index) => (
 					<View

@@ -32,29 +32,29 @@ const reservationStatusDecrypt = (status: number) => {
 	switch (status) {
 		case 0:
 			statusText = 'Nadchodzące';
-			statusColor = 'bg-gray-200';
-			statusTextColor = 'text-gray-500';
-			break;
+		// statusColor = 'bg-gray-200';
+		// statusTextColor = 'text-gray-500';
+		// break;
 		case 1:
 			statusText = 'W trakcie';
-			statusColor = 'bg-blue-200';
-			statusTextColor = 'text-blue-500';
+			// statusColor = 'bg-blue-200';
+			// statusTextColor = 'text-blue-500';
 			break;
 		case 2:
 			statusText = 'Zakończono';
-			statusColor = 'bg-green-200';
-			statusTextColor = 'text-green-500';
+			// statusColor = 'bg-green-200';
+			// statusTextColor = 'text-green-500';
 			break;
 		case 3:
 			statusText = 'Anulowano';
-			statusColor = 'bg-red-200';
-			statusTextColor = 'text-red-500';
+			// statusColor = 'bg-red-200';
+			// statusTextColor = 'text-red-500';
 			break;
 
 		default:
 			statusText = 'Nieznany status';
-			statusColor = 'bg-gray-200';
-			statusTextColor = 'text-gray-500';
+			// statusColor = 'bg-gray-200';
+			// statusTextColor = 'text-gray-500';
 			break;
 	}
 

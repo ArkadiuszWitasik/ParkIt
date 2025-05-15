@@ -11,37 +11,72 @@ const SettingsScreen = () => {
 	return (
 		<View className="flex-1 m-3 flex flex-col gap-2">
 			<Text>Ustawienia aplikacji</Text>
-			<UnstyledButton onPressFn={() => tmp()}>
+			<UnstyledButton
+				onPressFn={() => tmp()}
+				bgColor="bg-red-500"
+				bgPressedColor="bg-gray-300"
+				otherStyles="flex justify-center rounded-md"
+			>
 				<Text className="text-FontColor font-MontserratRegular">
 					Powiadomienia
 				</Text>
 			</UnstyledButton>
-			<UnstyledButton onPressFn={() => tmp()}>
+			<UnstyledButton
+				onPressFn={() => tmp()}
+				bgColor="bg-red-500"
+				bgPressedColor="bg-gray-300"
+				otherStyles="flex justify-center rounded-md"
+			>
 				<Text className="text-FontColor font-MontserratRegular">
 					Uprawnienia
 				</Text>
 			</UnstyledButton>
-			<UnstyledButton onPressFn={() => tmp()}>
+			<UnstyledButton
+				onPressFn={() => tmp()}
+				bgColor="bg-red-500"
+				bgPressedColor="bg-gray-300"
+				otherStyles="flex justify-center rounded-md"
+			>
 				<Text className="text-FontColor font-MontserratRegular">Motyw</Text>
 			</UnstyledButton>
 			<Text>Ustawienia konta</Text>
-			<UnstyledButton onPressFn={() => tmp()}>
+			<UnstyledButton
+				onPressFn={() => tmp()}
+				bgColor="bg-red-500"
+				bgPressedColor="bg-gray-300"
+				otherStyles="flex justify-center rounded-md"
+			>
 				<Text className="text-FontColor font-MontserratRegular">
 					Zmień adres e-mail
 				</Text>
 			</UnstyledButton>
-			<UnstyledButton onPressFn={() => tmp()}>
+			<UnstyledButton
+				onPressFn={() => tmp()}
+				bgColor="bg-red-500"
+				bgPressedColor="bg-gray-300"
+				otherStyles="flex justify-center rounded-md"
+			>
 				<Text className="text-FontColor font-MontserratRegular">
 					Zmień hasło
 				</Text>
 			</UnstyledButton>
-			<UnstyledButton onPressFn={() => tmp()}>
+			<UnstyledButton
+				onPressFn={() => tmp()}
+				bgColor="bg-red-500"
+				bgPressedColor="bg-gray-300"
+				otherStyles="flex justify-center rounded-md"
+			>
 				<Text className="text-FontColor font-MontserratRegular">
 					Ustawienia płatności
 				</Text>
 			</UnstyledButton>
 			<Divider />
-			<UnstyledButton onPressFn={() => tmp()}>
+			<UnstyledButton
+				onPressFn={() => tmp()}
+				bgColor="bg-red-500"
+				bgPressedColor="bg-gray-300"
+				otherStyles="flex justify-center rounded-md"
+			>
 				<Text className="text-FontColor font-MontserratRegular">
 					Usuń konto
 				</Text>

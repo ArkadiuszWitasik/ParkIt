@@ -38,7 +38,12 @@ const SignUpScreen = () => {
 					/>
 				</View>
 
-				<UnstyledButton onPressFn={() => navigate('/')}>
+				<UnstyledButton
+					onPressFn={() => navigate('/')}
+					bgColor=""
+					bgPressedColor="bg-gray-300"
+					otherStyles="flex items-center justify-center rounded-md"
+				>
 					<Text className="text-FontColor font-MontserratRegular">
 						Masz już konto?{' '}
 					</Text>

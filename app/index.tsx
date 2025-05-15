@@ -166,7 +166,12 @@ export default function SignInScreen() {
 					</View>
 				</View>
 
-				<UnstyledButton onPressFn={() => navigate('/sign-up')}>
+				<UnstyledButton
+					onPressFn={() => navigate('/sign-up')}
+					bgColor=""
+					bgPressedColor="bg-gray-300"
+					otherStyles="flex items-center justify-center rounded-md"
+				>
 					<Text className="text-FontColor font-MontserratRegular">
 						Nie masz konta?{' '}
 					</Text>

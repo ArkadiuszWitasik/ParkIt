@@ -5,6 +5,9 @@ type UnstyledButtonProps = {
 	onPressFn: () => void;
 	w?: string;
 	h?: string;
+	bgColor?: string;
+	bgPressedColor?: string;
+	otherStyles?: string;
 	children?: ReactNode;
 };
 
@@ -12,6 +15,9 @@ const UnstyledButton = ({
 	onPressFn,
 	w = 'w-[150px]',
 	h = 'h-[50px]',
+	bgColor,
+	bgPressedColor,
+	otherStyles,
 	children,
 }: UnstyledButtonProps) => {
 	const [isPressed, setIsPressed] = useState<boolean>(false);
@@ -22,8 +28,8 @@ const UnstyledButton = ({
 			onPressIn={() => setIsPressed(true)}
 			onPressOut={() => setIsPressed(false)}
 			className={`${
-				isPressed ? 'bg-gray-300' : ''
-			} ${w} ${h}  flex flex-row py-1 px-2 items-center justify-center`}
+				isPressed ? bgPressedColor : bgColor
+			} ${w} ${h} ${otherStyles}`}
 		>
 			{children}
 		</Pressable>
