@@ -6,7 +6,7 @@ import {
 	TextInputProps,
 	Pressable,
 } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import EyeIcon from '@/assets/Icons/EyeIcon';
 import EyeSlashIcon from '@/assets/Icons/EyeSlashIcon';
 
@@ -16,13 +16,14 @@ type ExtraInputProps = {
 	textInputStyles?: string;
 	placeholder?: string;
 	isPassword?: boolean;
+	isError?: boolean;
 };
 
 type CustomInputProps = TextInputProps & ExtraInputProps;
 
 const CustomInput = (props: CustomInputProps) => {
 	const [inputBorder, setInputBorder] = useState<string>(
-		'border-b-[3px] border-SecoundLayer'
+		'border-b-[3px] border-white'
 	);
 
 	const [hidePassword, setHidePassword] = useState<boolean>(true);
@@ -31,9 +32,11 @@ const CustomInput = (props: CustomInputProps) => {
 		setHidePassword(!hidePassword);
 	};
 
+	const errorBorder = 'border-b-[3px] border-red-500';
+
 	const customOnFocus = () => {
 		props?.onFocus;
-		setInputBorder('border-b-[3px] border-Khaki');
+		setInputBorder('border-b-[3px] border-AppPrimaryColor');
 	};
 
 	const customOnBlur = () => {
@@ -45,7 +48,9 @@ const CustomInput = (props: CustomInputProps) => {
 		<View className="w-full flex flex-col gap-1">
 			<Text className="text-[12px] font-MontserratRegular">{props.label}</Text>
 			<TextInput
-				className={`${props.textInputStyles} ${inputBorder} px-3 placeholder:color-GrayFontColor font-MontserratRegular pt-[3px]`}
+				className={`${props.textInputStyles} ${
+					props.isError ? errorBorder : inputBorder
+				} px-3 placeholder:color-GrayFontColor font-MontserratRegular pt-[3px]`}
 				placeholder={props.placeholder}
 				inputMode={props.inputMode}
 				onBlur={customOnBlur}

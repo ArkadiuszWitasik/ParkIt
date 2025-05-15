@@ -26,12 +26,13 @@ export default function SignInScreen() {
 		'Montserrat-SemiBold': require('../assets/fonts/Montserrat-SemiBold.ttf'),
 	});
 
-	const [userEmail, setUserEmail] = useState('user@test.com');
+	const [userEmail, setUserEmail] = useState<string>('user@test.com');
 	const [userPassword, setUserPassword] = useState<string>('PASSWORD123');
 	const [isUserDataLoading, setIsUserDataLoading] = useState<boolean>(false);
+	const [isError, setIsError] = useState<boolean>(false);
 
 	const { setParkingLots } = useParkingLotsStore();
-	const { setUser, user, updateUser } = useUserStore();
+	const { setUser } = useUserStore();
 
 	const fetchParkingLots = async () => {
 		try {
@@ -56,6 +57,7 @@ export default function SignInScreen() {
 	};
 
 	const handleSignIn = async (email: string, password: string) => {
+		Keyboard.dismiss();
 		try {
 			const userCredential = await signInWithEmailAndPassword(
 				auth,
@@ -87,7 +89,7 @@ export default function SignInScreen() {
 				}, 2000);
 			}
 		} catch (error: any) {
-			console.error('Błąd logowania:', error.message);
+			setIsError(true);
 		}
 	};
 
@@ -128,6 +130,7 @@ export default function SignInScreen() {
 					<CustomInput
 						value={userEmail}
 						onChange={(event) => {
+							setIsError(false);
 							setUserEmail(event.nativeEvent.text);
 						}}
 						label="Adres e-mail"
@@ -135,11 +138,13 @@ export default function SignInScreen() {
 						placeholder="e-mail"
 						inputMode="email"
 						textContentType="emailAddress"
+						isError={isError}
 					/>
 
 					<CustomInput
 						value={userPassword}
 						onChange={(event) => {
+							setIsError(false);
 							setUserPassword(event.nativeEvent.text);
 						}}
 						label="Hasło"
@@ -147,6 +152,7 @@ export default function SignInScreen() {
 						placeholder="hasło"
 						textContentType="password"
 						isPassword
+						isError={isError}
 					/>
 
 					<PrimaryButton
