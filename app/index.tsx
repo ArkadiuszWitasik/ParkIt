@@ -53,7 +53,6 @@ export default function SignInScreen() {
 
 	const navigate = (path: Href) => {
 		router.navigate(path);
-		// router.replace(path);
 	};
 
 	const handleSignIn = async (email: string, password: string) => {

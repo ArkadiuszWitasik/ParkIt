@@ -1,11 +1,23 @@
 import { View, Text } from 'react-native';
 import React from 'react';
 import UnstyledButton from '@/components/Buttons/UnstyledButton';
-import Divider from '@/components/Divider';
+import { signOut } from 'firebase/auth';
+import { auth } from '@/db/store';
+import { router } from 'expo-router';
 
 const SettingsScreen = () => {
 	const tmp = () => {
 		console.log('tmp settings screen');
+	};
+
+	const handleSingOut = () => {
+		signOut(auth)
+			.then(() => {
+				router.dismissAll();
+			})
+			.catch((error) => {
+				console.error(error.message);
+			});
 	};
 
 	return (
@@ -74,7 +86,7 @@ const SettingsScreen = () => {
 				</UnstyledButton>
 			</View>
 			<UnstyledButton
-				onPressFn={() => tmp()}
+				onPressFn={() => handleSingOut()}
 				w="w-full"
 				bgColor="bg-white"
 				bgPressedColor="bg-gray-300"
