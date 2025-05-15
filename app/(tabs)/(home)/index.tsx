@@ -1,12 +1,56 @@
 import { View, Text } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import MainScreenCard from '@/components/MainViews/MainScreenCard';
 import BalanceMainView from '@/components/MainViews/BalanceMainView';
 import LoyalityMainView from '@/components/MainViews/LoyalityMainView';
 import CarMainView from '@/components/MainViews/CarMainView';
 import ReservationsMainView from '@/components/MainViews/ReservationsMainView';
+import { useUserStore } from '@/store/userStore';
+import { formatFirebaseTimestamp } from '@/helpers/functions';
 
 const HomeScreen = () => {
+	const { user, updateUser } = useUserStore();
+
+	const updateUserReservations = () => {
+		if (user) {
+			const updatedReservations = user.reservations.map((reservation) => {
+				const { formatedDate, formatedStartTime, formatedEndTime } =
+					formatFirebaseTimestamp(
+						reservation.reservationDate,
+						reservation.reservationStartTime,
+						reservation.reservationEndTime
+					);
+				if (
+					formatedDate.toLocaleDateString() ===
+						new Date().toLocaleDateString() &&
+					new Date().toLocaleTimeString() >
+						formatedStartTime.toLocaleTimeString() &&
+					new Date().toLocaleTimeString() <
+						formatedEndTime.toLocaleTimeString() &&
+					reservation.reservationStatus === 0
+				) {
+					return { ...reservation, reservationStatus: 1 };
+				} else if (
+					formatedDate < new Date() &&
+					reservation.reservationStatus < 2
+				) {
+					return { ...reservation, reservationStatus: 2 };
+				}
+
+				return reservation;
+			});
+
+			updateUser({
+				...user,
+				reservations: updatedReservations,
+			});
+		}
+	};
+
+	useEffect(() => {
+		updateUserReservations();
+	}, []);
+
 	return (
 		<View className="flex-1 m-3 gap-5 bg-AppBackground">
 			<View className="flex flex-row h-[150px] gap-5">

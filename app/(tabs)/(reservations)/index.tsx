@@ -1,37 +1,15 @@
-import { Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import React from 'react';
 import PrimaryButton from '@/components/Buttons/PrimaryButton';
 import { Href, router } from 'expo-router';
 import { useReservationStore } from '@/store/reservationStore';
-import ReservationHistoryCard from '@/components/Cards/ReservationHistoryCard';
-
-const mockUP = [
-	{
-		reservationId: 1,
-		startDate: '11/05/2025',
-		startTime: '17:00',
-		endDate: '11/05/2025',
-		endTime: '20:30',
-		parkingId: 'Aura',
-		spotId: 'Strefa A15',
-		reservationStatus: 2,
-		price: 33,
-	},
-	{
-		reservationId: 2,
-		startDate: '11/05/2025',
-		startTime: '17:00',
-		endDate: '11/05/2025',
-		endTime: '20:30',
-		parkingId: 'Aura',
-		spotId: 'Strefa A15',
-		reservationStatus: 1,
-		price: 15,
-	},
-];
+import { useUserStore } from '@/store/userStore';
+import ReservationCard from '@/components/Cards/ReservationCard';
 
 const ReservationsScreen = () => {
 	const { resetReservation } = useReservationStore();
+
+	const { user } = useUserStore();
 
 	const navigate = (path: Href) => {
 		router.navigate(path);
@@ -46,22 +24,39 @@ const ReservationsScreen = () => {
 				}}
 				text="Nowa rezerwacja"
 			/>
-			<Text>Aktualne rezerwacje</Text>
-			<Text>Historia</Text>
-			{mockUP.map((reservation) => (
-				<ReservationHistoryCard
-					key={reservation.reservationId}
-					reservationId={reservation.reservationId}
-					startDate={reservation.startDate}
-					startTime={reservation.startTime}
-					endDate={reservation.endDate}
-					endTime={reservation.endTime}
-					parkingId={reservation.parkingId}
-					spotId={reservation.spotId}
-					price={15}
-					reservationStatus={reservation.reservationStatus}
-				/>
-			))}
+			<ScrollView className="max-h-[75%]" showsVerticalScrollIndicator={false}>
+				<Text className="text-[18px] font-RalewaySemiBold text-FontColor mt-2 mb-2">
+					Aktualne rezerwacje
+				</Text>
+				<View className="flex flex-col gap-3">
+					{user &&
+						user.reservations
+							.filter((reservation) => reservation.reservationStatus < 2)
+							.sort((a, b) => b.reservationStatus - a.reservationStatus)
+							.map((reservation) => (
+								<ReservationCard
+									key={reservation.reservationId}
+									reservation={reservation}
+									isHistoryCard={false}
+								/>
+							))}
+				</View>
+				<Text className="text-[18px] font-RalewaySemiBold text-FontColor mt-5 mb-2">
+					Historia
+				</Text>
+				<View className="flex flex-col gap-3">
+					{user &&
+						user.reservations
+							.filter((reservation) => reservation.reservationStatus > 0)
+							.map((reservation) => (
+								<ReservationCard
+									key={reservation.reservationId}
+									reservation={reservation}
+									isHistoryCard={true}
+								/>
+							))}
+				</View>
+			</ScrollView>
 		</View>
 	);
 };

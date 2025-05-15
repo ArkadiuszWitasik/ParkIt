@@ -31,7 +31,7 @@ export default function SignInScreen() {
 	const [isUserDataLoading, setIsUserDataLoading] = useState<boolean>(false);
 
 	const { setParkingLots } = useParkingLotsStore();
-	const { setUser } = useUserStore();
+	const { setUser, user, updateUser } = useUserStore();
 
 	const fetchParkingLots = async () => {
 		try {
@@ -51,8 +51,6 @@ export default function SignInScreen() {
 	};
 
 	const navigate = (path: Href) => {
-		//futher logics
-
 		router.navigate(path);
 		// router.replace(path);
 	};
