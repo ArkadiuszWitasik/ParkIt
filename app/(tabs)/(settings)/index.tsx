@@ -10,72 +10,86 @@ const SettingsScreen = () => {
 
 	return (
 		<View className="flex-1 m-3 flex flex-col gap-2">
-			<Text>Ustawienia aplikacji</Text>
+			<View className="bg-white rounded-md flex flex-col gap-2 p-3">
+				<Text className="font-RalewaySemiBold text-FontColor text-[16px]">
+					Ustawienia aplikacji
+				</Text>
+				<UnstyledButton
+					onPressFn={() => tmp()}
+					w="w-full"
+					bgColor=""
+					bgPressedColor="bg-gray-300"
+					otherStyles="flex justify-center items-center rounded-md"
+				>
+					<Text className="text-FontColor font-MontserratRegular">
+						Powiadomienia
+					</Text>
+				</UnstyledButton>
+				<UnstyledButton
+					onPressFn={() => tmp()}
+					w="w-full"
+					bgColor=""
+					bgPressedColor="bg-gray-300"
+					otherStyles="flex justify-center items-center rounded-md"
+				>
+					<Text className="text-FontColor font-MontserratRegular">Motyw</Text>
+				</UnstyledButton>
+			</View>
+			<View className="bg-white rounded-md flex flex-col gap-2 p-3">
+				<Text className="font-RalewaySemiBold text-FontColor text-[16px]">
+					Ustawienia konta
+				</Text>
+				<UnstyledButton
+					onPressFn={() => tmp()}
+					w="w-full"
+					bgColor=""
+					bgPressedColor="bg-gray-300"
+					otherStyles="flex justify-center items-center rounded-md"
+				>
+					<Text className="text-FontColor font-MontserratRegular">
+						Zmień adres e-mail
+					</Text>
+				</UnstyledButton>
+				<UnstyledButton
+					onPressFn={() => tmp()}
+					w="w-full"
+					bgColor=""
+					bgPressedColor="bg-gray-300"
+					otherStyles="flex justify-center items-center rounded-md"
+				>
+					<Text className="text-FontColor font-MontserratRegular">
+						Zmień hasło
+					</Text>
+				</UnstyledButton>
+				<UnstyledButton
+					onPressFn={() => tmp()}
+					w="w-full"
+					bgColor=""
+					bgPressedColor="bg-gray-300"
+					otherStyles="flex justify-center items-center rounded-md"
+				>
+					<Text className="text-FontColor font-MontserratRegular">
+						Ustawienia płatności
+					</Text>
+				</UnstyledButton>
+			</View>
 			<UnstyledButton
 				onPressFn={() => tmp()}
-				bgColor="bg-red-500"
+				w="w-full"
+				bgColor="bg-white"
 				bgPressedColor="bg-gray-300"
-				otherStyles="flex justify-center rounded-md"
+				otherStyles="flex justify-center items-center rounded-md"
 			>
 				<Text className="text-FontColor font-MontserratRegular">
-					Powiadomienia
+					Wyloguj się
 				</Text>
 			</UnstyledButton>
 			<UnstyledButton
 				onPressFn={() => tmp()}
-				bgColor="bg-red-500"
+				w="w-full"
+				bgColor="bg-red-100"
 				bgPressedColor="bg-gray-300"
-				otherStyles="flex justify-center rounded-md"
-			>
-				<Text className="text-FontColor font-MontserratRegular">
-					Uprawnienia
-				</Text>
-			</UnstyledButton>
-			<UnstyledButton
-				onPressFn={() => tmp()}
-				bgColor="bg-red-500"
-				bgPressedColor="bg-gray-300"
-				otherStyles="flex justify-center rounded-md"
-			>
-				<Text className="text-FontColor font-MontserratRegular">Motyw</Text>
-			</UnstyledButton>
-			<Text>Ustawienia konta</Text>
-			<UnstyledButton
-				onPressFn={() => tmp()}
-				bgColor="bg-red-500"
-				bgPressedColor="bg-gray-300"
-				otherStyles="flex justify-center rounded-md"
-			>
-				<Text className="text-FontColor font-MontserratRegular">
-					Zmień adres e-mail
-				</Text>
-			</UnstyledButton>
-			<UnstyledButton
-				onPressFn={() => tmp()}
-				bgColor="bg-red-500"
-				bgPressedColor="bg-gray-300"
-				otherStyles="flex justify-center rounded-md"
-			>
-				<Text className="text-FontColor font-MontserratRegular">
-					Zmień hasło
-				</Text>
-			</UnstyledButton>
-			<UnstyledButton
-				onPressFn={() => tmp()}
-				bgColor="bg-red-500"
-				bgPressedColor="bg-gray-300"
-				otherStyles="flex justify-center rounded-md"
-			>
-				<Text className="text-FontColor font-MontserratRegular">
-					Ustawienia płatności
-				</Text>
-			</UnstyledButton>
-			<Divider />
-			<UnstyledButton
-				onPressFn={() => tmp()}
-				bgColor="bg-red-500"
-				bgPressedColor="bg-gray-300"
-				otherStyles="flex justify-center rounded-md"
+				otherStyles="flex justify-center items-center rounded-md"
 			>
 				<Text className="text-FontColor font-MontserratRegular">
 					Usuń konto

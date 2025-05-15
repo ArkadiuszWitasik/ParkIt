@@ -1,10 +1,18 @@
 import { View } from 'react-native';
 import React from 'react';
 
-const Divider = () => {
+type DividerProps = {
+	color?: string;
+	h?: string;
+};
+
+const Divider = ({
+	color = 'bg-AppBackground',
+	h = 'h-[2px]',
+}: DividerProps) => {
 	return (
 		<View className="flex flex-row items-center gap-3">
-			<View className="bg-AppBackground h-[2px] flex-1" />
+			<View className={`${color}  ${h} flex-1`} />
 		</View>
 	);
 };
