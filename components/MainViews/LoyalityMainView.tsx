@@ -6,6 +6,16 @@ import { useUserStore } from '@/store/userStore';
 const LoyalityMainView = () => {
 	const { user } = useUserStore();
 
+	let reservaionWordVariety = '';
+
+	if (5 - user!.loyalityCount === 1) {
+		reservaionWordVariety = 'rezerwacja';
+	} else if (5 - user!.loyalityCount === 5) {
+		reservaionWordVariety = 'rezerwacji';
+	} else if (5 - user!.loyalityCount > 1) {
+		reservaionWordVariety = 'rezerwacje';
+	}
+
 	return (
 		<View className="flex-1 p-3 justify-between ">
 			<View className="flex flex-row justify-between">
@@ -35,16 +45,31 @@ const LoyalityMainView = () => {
 				))}
 			</View>
 			<View className="flex justify-center flex-row items-center">
-				<Text className="font-MontserratRegular text-FontColor">Jeszcze </Text>
-				<Text className="font-MontserratSemiBold text-FontColor">
-					{5 - user!.loyalityCount}
-				</Text>
-				<Text className="font-MontserratRegular text-FontColor">
-					{' '}
-					rezerwacje by uzyskać{' '}
-				</Text>
-				<Text className="font-MontserratSemiBold text-FontColor">-10%</Text>
-				<Text className="font-MontserratRegular text-FontColor"> zniżki</Text>
+				{5 - user!.loyalityCount === 0 ? (
+					<>
+						<Text>
+							Hurra! Do następnej rezerwacji zostanie naliczona zniżka!
+						</Text>
+					</>
+				) : (
+					<>
+						<Text className="font-MontserratRegular text-FontColor">
+							Jeszcze{' '}
+						</Text>
+						<Text className="font-MontserratSemiBold text-FontColor">
+							{5 - user!.loyalityCount}
+						</Text>
+						<Text className="font-MontserratRegular text-FontColor">
+							{' '}
+							{reservaionWordVariety} by uzyskać{' '}
+						</Text>
+						<Text className="font-MontserratSemiBold text-FontColor">-5%</Text>
+						<Text className="font-MontserratRegular text-FontColor">
+							{' '}
+							zniżki!
+						</Text>
+					</>
+				)}
 			</View>
 		</View>
 	);
