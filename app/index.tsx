@@ -78,6 +78,8 @@ export default function SignInScreen() {
 						balance: docUserSnap.data().balance,
 						reservations: docUserSnap.data().reservations,
 						cars: docUserSnap.data().cars,
+						isPremiumAccount: docUserSnap.data().isPremiumAccount,
+						paymentHistory: docUserSnap.data().paymentHistory,
 					};
 					setUser(formaterUserData);
 				}

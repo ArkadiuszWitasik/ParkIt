@@ -1,11 +1,13 @@
 import React from 'react';
-import { Stack } from 'expo-router';
+import { Stack, usePathname } from 'expo-router';
 import Stepper from '@/components/Stepper';
 
 const NewReservationLayout = () => {
+	const pathname = usePathname();
+
 	return (
 		<>
-			<Stepper />
+			{pathname !== '/summary' && <Stepper />}
 			<Stack>
 				<Stack.Screen name="datetime" options={{ headerShown: false }} />
 				<Stack.Screen name="parking" options={{ headerShown: false }} />

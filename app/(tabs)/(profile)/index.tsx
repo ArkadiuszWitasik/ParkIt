@@ -11,14 +11,10 @@ const ProfileScreen = () => {
 
 	const { user } = useUserStore();
 
-	const tmp = () => {
-		console.log('tmp profile screen');
-	};
-
 	return (
 		<View className="flex-1 m-3 flex flex-col gap-2 items-center">
 			<Text className="text-FontColor font-MontserratRegular text-[16px]">
-				Status konta: Premium / Normal
+				Status konta: {user?.isPremiumAccount ? 'Premium' : 'Standard'}
 			</Text>
 			<UnstyledButton
 				onPressFn={() => navigate('/(tabs)/(profile)/loyality')}

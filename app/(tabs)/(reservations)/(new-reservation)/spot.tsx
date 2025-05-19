@@ -6,11 +6,14 @@ import { useReservationStore } from '@/store/reservationStore';
 import { useParkingLotsStore } from '@/store/parkingLotsStore';
 import { FlashList } from '@shopify/flash-list';
 import ParkingSpotCard from '@/components/Cards/ParkingSpotCard';
+import { useUserStore } from '@/store/userStore';
 
 const ChooseSpotScreen = () => {
 	const [selectedSpot, setSelectedSpot] = useState<string>('0');
 
 	const { updateReservation, reservation } = useReservationStore();
+
+	const { user } = useUserStore();
 
 	const { parkingLots } = useParkingLotsStore();
 
@@ -23,7 +26,7 @@ const ChooseSpotScreen = () => {
 			(parking) => parking.parkingId === reservation!.reservationParkingId
 		)?.parkingRatePerMin;
 
-		const newReservationPrice =
+		let newReservationPrice =
 			reservation!.reservationEndTime &&
 			reservation!.reservationStartTime &&
 			choosenParkingLotRate
@@ -31,6 +34,16 @@ const ChooseSpotScreen = () => {
 						reservation!.reservationStartTime.getMinutes()) *
 				  choosenParkingLotRate
 				: 0;
+
+		newReservationPrice = Math.abs(Math.round(newReservationPrice));
+
+		if (user?.isDiscountApplyed) {
+			if (user.isPremiumAccount) {
+				newReservationPrice = newReservationPrice * 0.85;
+			} else {
+				newReservationPrice = newReservationPrice * 0.95;
+			}
+		}
 
 		updateReservation({
 			reservationPrice: newReservationPrice,

@@ -1,17 +1,18 @@
-import { View, Text, ActivityIndicator, Modal } from 'react-native';
+import { View, Text } from 'react-native';
 import React, { useState } from 'react';
 import { useReservationStore } from '@/store/reservationStore';
 import { useUserStore } from '@/store/userStore';
 import { useParkingLotsStore } from '@/store/parkingLotsStore';
 import PrimaryButton from '@/components/Buttons/PrimaryButton';
-import { Href, router } from 'expo-router';
+import { router } from 'expo-router';
+import PaymentModal from '@/components/Modals/PaymentModal';
 
 const SummaryScreen = () => {
 	const [isPaymentInProgress, setIsPlaymentInProgress] =
 		useState<boolean>(false);
 
 	const { reservation } = useReservationStore();
-	const { user, updateUser } = useUserStore();
+	const { user } = useUserStore();
 	const { parkingLots } = useParkingLotsStore();
 
 	const choosenParkingLotName = parkingLots.find(
@@ -26,51 +27,20 @@ const SummaryScreen = () => {
 		? zoneAndSpotSplit![2] + ' - ' + zoneAndSpotSplit![1]
 		: ' ';
 
-	const navigateForward = (path: Href) => {
-		router.replace(path);
-	};
-
 	const navigateBackwards = () => {
 		router.back();
 	};
 
-	//TODO: Zrobić funkcję, która będzie odpowiedzialna za logikę zakończenia zapłaty
-	const handlePayment = () => {
-		setIsPlaymentInProgress(true);
-
-		if (user && reservation) {
-			const userReservationList = user.reservations;
-
-			updateUser({
-				...user,
-				reservations: [...userReservationList, reservation],
-			});
-		}
-
-		setTimeout(() => {
-			setIsPlaymentInProgress(false);
-			navigateForward('/(tabs)/(reservations)');
-		}, 2000);
-	};
-
 	return (
-		<View className="flex-1 mr-3 ml-3 mb-3 flex flex-col gap-10 items-center">
-			<Modal visible={isPaymentInProgress}>
-				<View className="flex-1 justify-center items-center bg-AppBackground gap-3">
-					<Text className="text-[56px] font-BebasNeueRegular pt-[40px] text-FontColor">
-						Park It
-					</Text>
-					<View className="flex flex-col justify-center items-center">
-						<Text className="text-2xl font-RalewaySemiBold text-FontColor">
-							Przetwarzanie płatności
-						</Text>
-						<Text className="text-2xl font-RalewaySemiBold text-FontColor">
-							za rezerwację...
-						</Text>
-					</View>
-					<ActivityIndicator size="large" className="mt-3" />
-				</View>
-			</Modal>
+		<View className="flex-1 mr-3 ml-3 mb-3 mt-10 flex flex-col gap-10 items-center">
+			<PaymentModal
+				paymentType="reservation"
+				isModalVisible={isPaymentInProgress}
+				setIsModalVisible={setIsPlaymentInProgress}
+				paymentAmount={reservation.reservationPrice * -1}
+				navigate={'/(tabs)/(home)'}
+				reservation={reservation}
+			/>
 			<Text className="font-RalewayRegular text-[24px]">
 				Podsumowanie rezerwacji
 			</Text>
@@ -116,7 +86,19 @@ const SummaryScreen = () => {
 						{choosenZoneAndSpot}
 					</Text>
 				</View>
-				<View className=" flex flex-row justify-between">
+				{user?.isDiscountApplyed &&
+					(user.isPremiumAccount ? (
+						<View className="flex flex-row justify-between">
+							<Text className="text-FontColor font-RalewayRegular">Zniżka</Text>
+							<Text className="text-FontColor font-RalewayRegular">-15%</Text>
+						</View>
+					) : (
+						<View className="flex flex-row justify-between">
+							<Text className="text-FontColor font-RalewayRegular">Zniżka</Text>
+							<Text className="text-FontColor font-RalewayRegular">-5%</Text>
+						</View>
+					))}
+				<View className="flex flex-row justify-between">
 					<Text className="text-FontColor font-RalewaySemiBold">
 						Do zapłaty
 					</Text>
@@ -127,7 +109,10 @@ const SummaryScreen = () => {
 			</View>
 			<View className="flex flex-row gap-2">
 				<PrimaryButton onPressFn={() => navigateBackwards()} text="Powrót" />
-				<PrimaryButton onPressFn={() => handlePayment()} text="Zapłać" />
+				<PrimaryButton
+					onPressFn={() => setIsPlaymentInProgress(true)}
+					text="Zapłać"
+				/>
 			</View>
 		</View>
 	);

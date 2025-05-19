@@ -3,14 +3,23 @@ import React, { useState } from 'react';
 import { useUserStore } from '@/store/userStore';
 import UnstyledButton from '@/components/Buttons/UnstyledButton';
 import PrimaryButton from '@/components/Buttons/PrimaryButton';
+import PaymentModal from '@/components/Modals/PaymentModal';
 
 const AccountBalanceScreen = () => {
 	const { user } = useUserStore();
+	const [isPaymentModalVisible, setIsPaymentModalVisible] =
+		useState<boolean>(false);
 
 	const [value, setValue] = useState<number>(10);
 
 	return (
 		<View className="flex-1 m-3 flex gap-5 mt-10">
+			<PaymentModal
+				paymentType="top-up"
+				isModalVisible={isPaymentModalVisible}
+				setIsModalVisible={setIsPaymentModalVisible}
+				paymentAmount={value}
+			/>
 			<View>
 				<Text className="font-RalewaySemiBold text-FontColor text-[18px]">
 					Aktualny stan konta
@@ -62,7 +71,12 @@ const AccountBalanceScreen = () => {
 					<Text className="font-RalewayRegular text-[12px] text-FontColor">
 						Minimalna kwota doładowania to 10zł
 					</Text>
-					<PrimaryButton onPressFn={() => {}} text="Doładuj konto" />
+					<PrimaryButton
+						onPressFn={() => {
+							setIsPaymentModalVisible(true);
+						}}
+						text="Doładuj konto"
+					/>
 				</View>
 			</View>
 			<View>

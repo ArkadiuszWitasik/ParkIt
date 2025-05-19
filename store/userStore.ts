@@ -8,6 +8,13 @@ export interface Car {
 	carRegistrationNumber: string;
 }
 
+export interface Payment {
+	paymentId: number;
+	paymentDate: Date;
+	paymentAmount: number;
+	paymentDesc: string;
+}
+
 export interface Reservation {
 	reservationId: number;
 	reservationDate: Date;
@@ -27,6 +34,8 @@ export interface User {
 	reservations: Reservation[];
 	cars: Car[];
 	balance: number;
+	isPremiumAccount: boolean;
+	paymentHistory: Payment[];
 }
 
 export interface UserState {
