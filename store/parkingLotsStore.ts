@@ -15,7 +15,10 @@ export interface Zone {
 export interface Parking {
 	parkingId: string;
 	parkingName: string;
-	parkingLocation: string;
+	parkingLocation: {
+		latitude: number;
+		longitude: number;
+	};
 	parkingSpacesLeft: number;
 	parkingRatePerMin: number;
 	zones: Zone[];

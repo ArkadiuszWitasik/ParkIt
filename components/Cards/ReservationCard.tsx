@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native';
+import { View, Text, Linking } from 'react-native';
 import React, { useState } from 'react';
 import { useParkingLotsStore } from '@/store/parkingLotsStore';
 import { Reservation, useUserStore } from '@/store/userStore';
@@ -7,6 +7,7 @@ import UnstyledButton from '../Buttons/UnstyledButton';
 import Divider from '../Divider';
 import { formatFirebaseTimestamp } from '@/helpers/functions';
 import CancelReservationModal from '../Modals/CancelReservationModal';
+import NavIcon from '@/assets/Icons/NavIcon';
 
 type ReservationCardProps = {
 	reservation: Reservation;
@@ -45,9 +46,9 @@ export default function ReservationCard(props: ReservationCardProps) {
 		statusTextColor = 'text-gray-500';
 	}
 
-	const choosenParkingLotName = parkingLots.find(
+	const choosenParkingLot = parkingLots.find(
 		(parking) => parking.parkingId === props.reservation.reservationParkingId
-	)?.parkingName;
+	);
 
 	const zoneAndSpotSplit = props.reservation.reservationSpotId?.split('-');
 
@@ -66,9 +67,6 @@ export default function ReservationCard(props: ReservationCardProps) {
 			props.reservation.reservationEndTime
 		);
 
-	//TODO: Dodać przycisk który będzie generował trasę do tego miejsca z lokacji parkingu
-	//zrobić to w functions.ts
-
 	return (
 		<View className="flex-col gap-3 bg-white rounded-md p-3">
 			{!props.isHistoryCard && (
@@ -81,23 +79,38 @@ export default function ReservationCard(props: ReservationCardProps) {
 			<View className="flex flex-row justify-between">
 				<View>
 					<Text className="font-RalewaySemiBold text-FontColor">
-						{choosenParkingLotName}
+						{choosenParkingLot?.parkingName}
 					</Text>
 					<Text className="font-RalewayRegular text-FontColor">
 						{choosenZoneAndSpot}
 					</Text>
 				</View>
 				{!props.isHistoryCard ? (
-					<UnstyledButton
-						onPressFn={() => setIsCancelModalVisible(true)}
-						w="w-[30px]"
-						h="h-[30px]"
-						bgColor=""
-						bgPressedColor="bg-gray-300"
-						otherStyles="flex justify-center items-center rounded-md"
-					>
-						<CancelIcon style={{ width: 25, height: 25 }} />
-					</UnstyledButton>
+					<View className="flex flex-row gap-5">
+						<UnstyledButton
+							onPressFn={() => {
+								const url = `https://www.google.com/maps/dir/?api=1&destination=${choosenParkingLot?.parkingLocation.latitude},${choosenParkingLot?.parkingLocation.longitude}`;
+								Linking.openURL(url);
+							}}
+							w="w-[30px]"
+							h="h-[30px]"
+							bgColor=""
+							bgPressedColor="bg-gray-300"
+							otherStyles="flex justify-center items-center rounded-md"
+						>
+							<NavIcon style={{ width: 25, height: 25 }} />
+						</UnstyledButton>
+						<UnstyledButton
+							onPressFn={() => setIsCancelModalVisible(true)}
+							w="w-[30px]"
+							h="h-[30px]"
+							bgColor=""
+							bgPressedColor="bg-gray-300"
+							otherStyles="flex justify-center items-center rounded-md"
+						>
+							<CancelIcon style={{ width: 25, height: 25 }} />
+						</UnstyledButton>
+					</View>
 				) : (
 					<Text className="font-RalewaySemiBold text-FontColor">
 						{props.reservation.reservationPrice} zł
