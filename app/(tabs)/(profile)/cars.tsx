@@ -14,6 +14,7 @@ const CarsScreen = () => {
 	return (
 		<View className="flex-1 m-3 flex gap-3">
 			<PrimaryButton
+				style="primary"
 				onPressFn={() => setIsModalVisible(true)}
 				text="Dodaj samochód"
 			/>

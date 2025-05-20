@@ -60,8 +60,13 @@ const ChooseParkingScreen = () => {
 			</View>
 
 			<View className="flex flex-row gap-2">
-				<PrimaryButton onPressFn={() => navigateBackwards()} text="Powrót" />
 				<PrimaryButton
+					style="outline"
+					onPressFn={() => navigateBackwards()}
+					text="Powrót"
+				/>
+				<PrimaryButton
+					style="primary"
 					disabled={selectedParking === '0'}
 					onPressFn={() => {
 						updateReservation({ reservationParkingId: selectedParking });

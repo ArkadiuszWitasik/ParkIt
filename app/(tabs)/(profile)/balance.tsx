@@ -73,6 +73,7 @@ const AccountBalanceScreen = () => {
 						Minimalna kwota doładowania to 10zł
 					</Text>
 					<PrimaryButton
+						style="primary"
 						onPressFn={() => {
 							setIsPaymentModalVisible(true);
 						}}

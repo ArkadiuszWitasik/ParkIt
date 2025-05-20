@@ -45,12 +45,14 @@ const DeleteCarModal = (props: DeleteCarModalProps) => {
 				</Text>
 				<View className="flex flex-row gap-2">
 					<PrimaryButton
+						style="outline"
 						onPressFn={() => {
 							props.setIsModalVisible(false);
 						}}
 						text="Anuluj"
 					/>
 					<PrimaryButton
+						style="primary"
 						onPressFn={() => {
 							handleDeleteCar();
 							props.setIsModalVisible(false);

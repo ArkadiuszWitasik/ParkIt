@@ -126,12 +126,17 @@ const PaymentModal = (props: PaymentModalProps) => {
 					</Text>
 					<View className=" flex-row justify-center items-center gap-2">
 						<PrimaryButton
+							style="outline"
 							onPressFn={() => {
 								props.setIsModalVisible(false);
 							}}
 							text="Anuluj"
 						/>
-						<PrimaryButton onPressFn={handleProcessPayment} text="Tak" />
+						<PrimaryButton
+							style="primary"
+							onPressFn={handleProcessPayment}
+							text="Tak"
+						/>
 					</View>
 				</View>
 			)}
@@ -157,6 +162,7 @@ const PaymentModal = (props: PaymentModalProps) => {
 					</Text>
 					<View className="flex flex-row gap-2 mt-4">
 						<PrimaryButton
+							style="error"
 							onPressFn={() => {
 								props.setIsModalVisible(false);
 								resetReservation();
@@ -173,6 +179,7 @@ const PaymentModal = (props: PaymentModalProps) => {
 							}
 						/>
 						<PrimaryButton
+							style="primary"
 							onPressFn={() => {
 								props.setIsModalVisible(false);
 								resetReservation();
@@ -200,6 +207,7 @@ const PaymentModal = (props: PaymentModalProps) => {
 					</Text>
 					<View className="flex flex-row gap-2 mt-4">
 						<PrimaryButton
+							style="primary"
 							onPressFn={() => {
 								props.setIsModalVisible(false);
 								resetReservation();

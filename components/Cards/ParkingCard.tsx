@@ -19,10 +19,22 @@ const ParkingCard = (props: ParkingCardProps) => {
 					: 'bg-white'
 			} min-h-[50] p-3 rounded-md mb-4 z-30`}
 		>
-			<Text className="font-RalewayRegular text-[18px]">
+			<Text
+				className={`font-RalewayRegular text-[18px] ${
+					props.parkingId === props.selectedParking
+						? 'text-white'
+						: 'text-FontColor'
+				}`}
+			>
 				{props.parkingName}
 			</Text>
-			<Text className="font-RalewayRegular">
+			<Text
+				className={`font-RalewayRegular ${
+					props.parkingId === props.selectedParking
+						? 'text-white'
+						: 'text-FontColor'
+				}`}
+			>
 				{props.parkingSpacesLeft} wolnych miejsc
 			</Text>
 		</Pressable>

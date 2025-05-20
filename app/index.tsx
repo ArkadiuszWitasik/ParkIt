@@ -158,6 +158,7 @@ export default function SignInScreen() {
 					/>
 
 					<PrimaryButton
+						style="primary"
 						text="Zaloguj się"
 						onPressFn={() => {
 							handleSignIn(userEmail, userPassword);

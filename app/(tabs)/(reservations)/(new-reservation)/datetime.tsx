@@ -114,8 +114,13 @@ const ChooseTimeAndDateScreen = () => {
 			</View>
 
 			<View className="flex flex-row gap-2">
-				<PrimaryButton onPressFn={() => navigateBackwards()} text="Anuluj" />
 				<PrimaryButton
+					style="outline"
+					onPressFn={() => navigateBackwards()}
+					text="Anuluj"
+				/>
+				<PrimaryButton
+					style="primary"
 					disabled={!value}
 					onPressFn={() =>
 						navigateForward('/(tabs)/(reservations)/(new-reservation)/parking')

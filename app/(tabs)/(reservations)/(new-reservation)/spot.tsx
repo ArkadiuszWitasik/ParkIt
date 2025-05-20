@@ -84,8 +84,13 @@ const ChooseSpotScreen = () => {
 				)}
 			</View>
 			<View className="flex flex-row gap-2">
-				<PrimaryButton onPressFn={() => navigateBackwards()} text="Powrót" />
 				<PrimaryButton
+					style="outline"
+					onPressFn={() => navigateBackwards()}
+					text="Powrót"
+				/>
+				<PrimaryButton
+					style="primary"
 					disabled={selectedSpot === '0'}
 					onPressFn={() => {
 						updateReservation({ reservationSpotId: selectedSpot.toString() });

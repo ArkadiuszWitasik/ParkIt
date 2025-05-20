@@ -77,6 +77,7 @@ const AddCarModal = (props: AddCarModalProps) => {
 
 				<View className="flex flex-row gap-2">
 					<PrimaryButton
+						style="outline"
 						onPressFn={() => {
 							props.setIsModalVisible(false);
 							setCarName('');
@@ -85,6 +86,7 @@ const AddCarModal = (props: AddCarModalProps) => {
 						text="Anuluj"
 					/>
 					<PrimaryButton
+						style="primary"
 						onPressFn={() => {
 							handleAddNewCar();
 							props.setIsModalVisible(false);

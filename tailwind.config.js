@@ -16,6 +16,7 @@ module.exports = {
 				AppBackground: '#f3f2f7',
 				FontColor: '#212121',
 				AppPrimaryColor: '#66affa',
+				AppLightPrimaryColor: '#c1dffd',
 				AppOutlineColor: '#212121',
 				Khaki: '#f7d787',
 				LightKhaki: '#f9e3ab',

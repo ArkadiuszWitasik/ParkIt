@@ -18,6 +18,7 @@ const ReservationsScreen = () => {
 	return (
 		<View className="flex-1 m-3 flex flex-col gap-3">
 			<PrimaryButton
+				style="primary"
 				onPressFn={() => {
 					resetReservation();
 					navigate('/(tabs)/(reservations)/(new-reservation)/datetime');

@@ -134,6 +134,7 @@ const SignUpScreen = () => {
 					/>
 
 					<PrimaryButton
+						style="primary"
 						text="Zarejestruj się"
 						onPressFn={() =>
 							handleSingUp(userEmail, userPassword, userPassword2)

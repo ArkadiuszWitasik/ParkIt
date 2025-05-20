@@ -91,12 +91,14 @@ const CancelReservationModal = (props: CancelReservationModalProps) => {
 					)}
 					<View className="flex flex-row gap-2">
 						<PrimaryButton
+							style="outline"
 							onPressFn={() => {
 								props.setIsModalVisible(false);
 							}}
 							text="Powrót"
 						/>
 						<PrimaryButton
+							style="primary"
 							onPressFn={() => {
 								handleCancelReservation();
 								props.setIsModalVisible(false);

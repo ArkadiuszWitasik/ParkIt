@@ -74,12 +74,14 @@ const EditCarModal = (props: EditCarModalProps) => {
 
 				<View className="flex flex-row gap-2">
 					<PrimaryButton
+						style="outline"
 						onPressFn={() => {
 							props.setIsModalVisible(false);
 						}}
 						text="Anuluj"
 					/>
 					<PrimaryButton
+						style="primary"
 						onPressFn={() => {
 							handleEditCar();
 							props.setIsModalVisible(false);

@@ -37,7 +37,16 @@ const ParkingSpotCard = (props: ParkingSpotCardProps) => {
 								: 'bg-white'
 						} w-[30%] h-[50px] flex justify-center items-center rounded-md`}
 					>
-						<Text>{spot.spotName}</Text>
+						<Text
+							className={`font-RalewayRegular text-[18px] ${
+								props.selectedSpot ===
+								`${spot.spotId}-${spot.spotName}-${props.zoneName}`
+									? 'text-white'
+									: 'text-FontColor'
+							}`}
+						>
+							{spot.spotName}
+						</Text>
 					</Pressable>
 				))}
 			</View>

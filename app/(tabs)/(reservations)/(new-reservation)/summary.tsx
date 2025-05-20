@@ -108,8 +108,13 @@ const SummaryScreen = () => {
 				</View>
 			</View>
 			<View className="flex flex-row gap-2">
-				<PrimaryButton onPressFn={() => navigateBackwards()} text="Powrót" />
 				<PrimaryButton
+					style="outline"
+					onPressFn={() => navigateBackwards()}
+					text="Powrót"
+				/>
+				<PrimaryButton
+					style="primary"
 					onPressFn={() => setIsPlaymentInProgress(true)}
 					text="Zapłać"
 				/>

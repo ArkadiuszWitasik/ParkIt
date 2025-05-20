@@ -117,6 +117,7 @@ const LoyalityScreen = () => {
 
 					<View className="flex items-center">
 						<PrimaryButton
+							style="primary"
 							onPressFn={() => setIsPlaymentInProgress(true)}
 							text="Ulepsz konto"
 							w="w-[50px]"
