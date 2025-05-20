@@ -80,6 +80,7 @@ export default function SignInScreen() {
 						cars: docUserSnap.data().cars,
 						isPremiumAccount: docUserSnap.data().isPremiumAccount,
 						paymentHistory: docUserSnap.data().paymentHistory,
+						premiumExpireDate: docUserSnap.data().premiumExpireDate || {},
 					};
 					setUser(formaterUserData);
 				}

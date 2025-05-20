@@ -87,7 +87,17 @@ const PaymentModal = (props: PaymentModalProps) => {
 						paymentHistory: [...userPaymentHistoryList, newPayment],
 					});
 				}
-			} else {
+			} else if (props.paymentType === 'premium') {
+				updateUser({
+					...user,
+					balance: newAccountBalance,
+					isPremiumAccount: true,
+					premiumExpireDate: Timestamp.fromDate(
+						new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)
+					),
+					paymentHistory: [...userPaymentHistoryList, newPayment],
+				});
+			} else if (props.paymentType === 'top-up') {
 				updateUser({
 					...user,
 					balance: newAccountBalance,
@@ -150,9 +160,17 @@ const PaymentModal = (props: PaymentModalProps) => {
 							onPressFn={() => {
 								props.setIsModalVisible(false);
 								resetReservation();
-								router.replace('/(tabs)/(reservations)');
+								if (props.paymentType === 'reservation') {
+									router.replace('/(tabs)/(reservations)');
+								} else if (props.paymentType === 'premium') {
+									router.replace('/(tabs)/(profile)/loyality');
+								}
 							}}
-							text="Anuluj rezerwację"
+							text={
+								props.paymentType === 'reservation'
+									? 'Anuluj rezerwację'
+									: 'Anuluj'
+							}
 						/>
 						<PrimaryButton
 							onPressFn={() => {
@@ -185,7 +203,9 @@ const PaymentModal = (props: PaymentModalProps) => {
 							onPressFn={() => {
 								props.setIsModalVisible(false);
 								resetReservation();
-								router.replace('/(tabs)/(reservations)');
+								if (props.paymentType === 'reservation') {
+									router.replace('/(tabs)/(reservations)');
+								}
 							}}
 							text="Ok"
 						/>

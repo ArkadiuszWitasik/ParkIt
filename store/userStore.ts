@@ -34,6 +34,7 @@ export interface User {
 	cars: Car[];
 	balance: number;
 	isPremiumAccount: boolean;
+	premiumExpireDate: Timestamp;
 	paymentHistory: Payment[];
 }
 

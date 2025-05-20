@@ -1,10 +1,13 @@
 import { View, Text } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import { useUserStore } from '@/store/userStore';
 import FireIcon from '@/assets/Icons/FireIcon';
 import PrimaryButton from '@/components/Buttons/PrimaryButton';
+import PaymentModal from '@/components/Modals/PaymentModal';
 
 const LoyalityScreen = () => {
+	const [isPaymentInProgress, setIsPlaymentInProgress] =
+		useState<boolean>(false);
 	const { user } = useUserStore();
 
 	let reservaionWordVariety = '';
@@ -25,6 +28,12 @@ const LoyalityScreen = () => {
 
 	return (
 		<View className="flex-1 m-3 flex gap-3 mt-10">
+			<PaymentModal
+				paymentAmount={-40}
+				isModalVisible={isPaymentInProgress}
+				setIsModalVisible={setIsPlaymentInProgress}
+				paymentType="premium"
+			/>
 			<Text className="font-RalewayRegular text-FontColor text-center text-[18px]">
 				Witaj w naszym programie lojalnościowym!
 			</Text>
@@ -69,7 +78,21 @@ const LoyalityScreen = () => {
 				<Text>Do odebrania zniżki {reservaionWordVariety}!</Text>
 			</View>
 
-			{!user?.isPremiumAccount && (
+			{user?.isPremiumAccount ? (
+				<View>
+					<Text className="font-RalewayRegular text-FontColor text-[16px]">
+						Do końca twojej subskrybcji premium zostało{' '}
+						<Text className="font-RalewaySemiBold text-FontColor text-[16px]">
+							{Math.ceil(
+								(user.premiumExpireDate.toDate().getTime() -
+									new Date().getTime()) /
+									(1000 * 60 * 60 * 24)
+							)}{' '}
+							dni
+						</Text>
+					</Text>
+				</View>
+			) : (
 				<>
 					<Text className="font-RalewayRegular text-FontColor text-[16px] mt-5 mb-5">
 						Zachęcamy również do ulepszenia konta do wersji premium gdzie za
@@ -94,7 +117,7 @@ const LoyalityScreen = () => {
 
 					<View className="flex items-center">
 						<PrimaryButton
-							onPressFn={() => console.log()}
+							onPressFn={() => setIsPlaymentInProgress(true)}
 							text="Ulepsz konto"
 							w="w-[50px]"
 						/>

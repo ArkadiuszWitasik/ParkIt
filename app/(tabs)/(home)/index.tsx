@@ -11,6 +11,18 @@ import { formatFirebaseTimestamp } from '@/helpers/functions';
 const HomeScreen = () => {
 	const { user, updateUser } = useUserStore();
 
+	const updateUserPremiumState = () => {
+		if (
+			user?.premiumExpireDate.toDate().toLocaleDateString() ===
+			new Date().toLocaleDateString()
+		) {
+			updateUser({
+				...user,
+				isPremiumAccount: false,
+			});
+		}
+	};
+
 	const updateUserReservations = () => {
 		if (user) {
 			const updatedReservations = user.reservations.map((reservation) => {
@@ -49,6 +61,7 @@ const HomeScreen = () => {
 
 	useEffect(() => {
 		updateUserReservations();
+		updateUserPremiumState();
 	}, []);
 
 	return (
