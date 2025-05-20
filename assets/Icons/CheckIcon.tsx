@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Svg, { SvgProps, Path } from 'react-native-svg';
-const CancelIcon = (props: SvgProps) => (
+const CheckIcon = (props: SvgProps) => (
 	<Svg
 		fill="none"
 		stroke={props.color ? props.color : '#212121'}
@@ -12,8 +12,8 @@ const CancelIcon = (props: SvgProps) => (
 		<Path
 			strokeLinecap="round"
 			strokeLinejoin="round"
-			d="M6 18 18 6M6 6l12 12"
+			d="m4.5 12.75 6 6 9-13.5"
 		/>
 	</Svg>
 );
-export default CancelIcon;
+export default CheckIcon;

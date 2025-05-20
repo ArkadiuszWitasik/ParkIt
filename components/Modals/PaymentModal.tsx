@@ -4,6 +4,9 @@ import BaseModal from './BaseModal';
 import PrimaryButton from '../Buttons/PrimaryButton';
 import { Reservation, useUserStore } from '@/store/userStore';
 import { Href, router } from 'expo-router';
+import CancelIcon from '@/assets/Icons/CancelIcon';
+import { useReservationStore } from '@/store/reservationStore';
+import CheckIcon from '@/assets/Icons/CheckIcon';
 
 type PaymentModalProps = {
 	paymentType: 'reservation' | 'top-up' | 'premium' | 'refund';
@@ -16,7 +19,13 @@ type PaymentModalProps = {
 
 const PaymentModal = (props: PaymentModalProps) => {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const [isPaymentSuccess, setIsPaymentSuccess] = useState<boolean>(false);
+	const [isPaymentError, setIsPaymentError] = useState<boolean>(false);
+	const [errorMessage, setErrorMessage] = useState<string>('');
+
 	const { user, updateUser } = useUserStore();
+
+	const { resetReservation } = useReservationStore();
 
 	let modalInfoText = '';
 
@@ -38,6 +47,13 @@ const PaymentModal = (props: PaymentModalProps) => {
 
 		setTimeout(() => {
 			const newAccountBalance = user!.balance + props.paymentAmount;
+
+			if (newAccountBalance < 0) {
+				setErrorMessage('Nie wystarczająca ilość środków.');
+				setIsLoading(false);
+				setIsPaymentError(true);
+				return;
+			}
 
 			if (props.reservation) {
 				if (user) {
@@ -67,12 +83,8 @@ const PaymentModal = (props: PaymentModalProps) => {
 					balance: newAccountBalance,
 				});
 			}
-			props.setIsModalVisible(false);
 			setIsLoading(false);
-
-			if (props.navigate) {
-				router.navigate(props.navigate);
-			}
+			setIsPaymentSuccess(true);
 		}, 2000);
 	};
 
@@ -83,14 +95,7 @@ const PaymentModal = (props: PaymentModalProps) => {
 			isModalVisible={props.isModalVisible}
 			setIsModalVisible={props.setIsModalVisible}
 		>
-			{isLoading ? (
-				<View className="flex-1 flex-col justify-center items-center gap-3">
-					<Text className="font-RalewayRegular text-FontColor text-[22px]">
-						Przetwarzanie płatności
-					</Text>
-					<ActivityIndicator size="large" />
-				</View>
-			) : (
+			{!isLoading && !isPaymentError && !isPaymentSuccess && (
 				<View className="flex-1 flex-col items-center justify-around">
 					<Text className="font-RalewayRegular text-FontColor text-[18px]">
 						{modalInfoText}
@@ -106,6 +111,73 @@ const PaymentModal = (props: PaymentModalProps) => {
 							text="Anuluj"
 						/>
 						<PrimaryButton onPressFn={handleProcessPayment} text="Tak" />
+					</View>
+				</View>
+			)}
+			{isLoading && (
+				<View className="flex-1 flex-col justify-center items-center gap-3">
+					<Text className="font-RalewayRegular text-FontColor text-[22px]">
+						Przetwarzanie płatności
+					</Text>
+					<ActivityIndicator size="large" />
+				</View>
+			)}
+			{isPaymentError && (
+				<View className="flex-1 flex-col justify-center items-center gap-3">
+					<CancelIcon
+						color="#ef4444"
+						style={{
+							width: 48,
+							height: 48,
+						}}
+					/>
+					<Text className="font-RalewayRegular text-FontColor text-[20px]">
+						{errorMessage}
+					</Text>
+					<View className="flex flex-row gap-2 mt-4">
+						<PrimaryButton
+							onPressFn={() => {
+								props.setIsModalVisible(false);
+								resetReservation();
+								router.replace('/(tabs)/(reservations)');
+							}}
+							text="Anuluj rezerwację"
+						/>
+						<PrimaryButton
+							onPressFn={() => {
+								props.setIsModalVisible(false);
+								resetReservation();
+								router.replace('/(tabs)/(profile)/balance');
+							}}
+							text="Doładuj konto"
+						/>
+					</View>
+				</View>
+			)}
+			{isPaymentSuccess && (
+				<View className="flex-1 flex-col justify-center items-center gap-3">
+					<CheckIcon
+						color="#22c55e"
+						style={{
+							width: 48,
+							height: 48,
+						}}
+					/>
+					<Text className="font-RalewayRegular text-FontColor text-[20px]">
+						Płatność przebiegła pomyslnie!
+					</Text>
+					<Text className="font-RalewayRegular text-FontColor text-[16px] text-center">
+						Dziekujemy za korzystanie z naszych uslug!
+					</Text>
+					<View className="flex flex-row gap-2 mt-4">
+						<PrimaryButton
+							onPressFn={() => {
+								props.setIsModalVisible(false);
+								resetReservation();
+								router.replace('/(tabs)/(reservations)');
+							}}
+							text="Ok"
+						/>
 					</View>
 				</View>
 			)}
