@@ -162,15 +162,6 @@ export default function SignInScreen() {
 							handleSignIn(userEmail, userPassword);
 						}}
 					/>
-
-					<View className="flex flex-row justify-between">
-						<Text className="text-FontColor font-MontserratRegular">
-							Zapamiętaj mnie
-						</Text>
-						<Text className="text-FontColor font-MontserratRegular">
-							Resetuj hasło
-						</Text>
-					</View>
 				</View>
 
 				<UnstyledButton

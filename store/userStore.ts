@@ -9,7 +9,6 @@ export interface Car {
 }
 
 export interface Payment {
-	paymentId: number;
 	paymentDate: Timestamp;
 	paymentAmount: number;
 	paymentDesc: string;

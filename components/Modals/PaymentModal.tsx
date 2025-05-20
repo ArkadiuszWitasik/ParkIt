@@ -58,14 +58,7 @@ const PaymentModal = (props: PaymentModalProps) => {
 
 			const userPaymentHistoryList = user?.paymentHistory || [];
 
-			const lastPaymentId = userPaymentHistoryList.length
-				? Math.max(
-						...userPaymentHistoryList.map((payment) => payment.paymentId)
-				  )
-				: 0;
-
 			const newPayment = {
-				paymentId: lastPaymentId,
 				paymentDate: Timestamp.fromDate(new Date()),
 				paymentAmount: props.paymentAmount,
 				paymentDesc: props.paymentType,

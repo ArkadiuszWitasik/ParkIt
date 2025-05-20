@@ -4,6 +4,7 @@ import { useUserStore } from '@/store/userStore';
 import UnstyledButton from '@/components/Buttons/UnstyledButton';
 import PrimaryButton from '@/components/Buttons/PrimaryButton';
 import PaymentModal from '@/components/Modals/PaymentModal';
+import PaymentHistoryCard from '@/components/Cards/PaymentHistoryCard';
 
 const AccountBalanceScreen = () => {
 	const { user } = useUserStore();
@@ -79,36 +80,24 @@ const AccountBalanceScreen = () => {
 					/>
 				</View>
 			</View>
-			<View>
-				<Text className="font-RalewaySemiBold text-FontColor text-[18px]">
-					Historia transakcji
-				</Text>
-				<ScrollView className="h-[250px]">
-					<Text>Test</Text>
-					<Text>Test</Text>
-					<Text>Test</Text>
-					<Text>Test</Text>
-					<Text>Test</Text>
-					<Text>Test</Text>
-					<Text>Test</Text>
-					<Text>Test</Text>
-					<Text>Test</Text>
-					<Text>Test</Text>
-					<Text>Test</Text>
-					<Text>Test</Text>
-					<Text>Test</Text>
-					<Text>Test</Text>
-					<Text>Test</Text>
-					<Text>Test</Text>
-					<Text>Test</Text>
-					<Text>Test</Text>
-					<Text>Test</Text>
-					<Text>Test</Text>
-					<Text>Test</Text>
-					<Text>Test</Text>
-					<Text>Test</Text>
-				</ScrollView>
-			</View>
+			{user?.paymentHistory ? (
+				<View>
+					<Text className="font-RalewaySemiBold text-FontColor text-[18px]">
+						Historia transakcji
+					</Text>
+					<ScrollView className="h-[250px] flex flex-col gap-5">
+						{user?.paymentHistory &&
+							user.paymentHistory.map((payment) => (
+								<PaymentHistoryCard
+									payment={payment}
+									key={`${payment.paymentAmount}-${payment.paymentDate}-${payment.paymentDesc}`}
+								/>
+							))}
+					</ScrollView>
+				</View>
+			) : (
+				''
+			)}
 		</View>
 	);
 };
