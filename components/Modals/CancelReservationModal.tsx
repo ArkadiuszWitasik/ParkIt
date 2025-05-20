@@ -5,6 +5,7 @@ import PrimaryButton from '../Buttons/PrimaryButton';
 import { Reservation, useUserStore } from '@/store/userStore';
 import { formatFirebaseTimestamp } from '@/helpers/functions';
 import { useParkingLotsStore } from '@/store/parkingLotsStore';
+import { Timestamp } from 'firebase/firestore';
 
 type CancelReservationModalProps = {
 	reservation: Reservation;
@@ -35,12 +36,27 @@ const CancelReservationModal = (props: CancelReservationModalProps) => {
 			return reservation;
 		});
 
-		const refundAmount = props.reservation.reservationPrice * 0.75;
+		const userPaymentHistoryList = user?.paymentHistory || [];
+
+		let refundAmount = 0;
+
+		if (user.isPremiumAccount) {
+			refundAmount = props.reservation.reservationPrice;
+		} else {
+			refundAmount = props.reservation.reservationPrice * 0.75;
+		}
+
+		const newPayment = {
+			paymentDate: Timestamp.fromDate(new Date()),
+			paymentAmount: refundAmount,
+			paymentDesc: 'refund',
+		};
 
 		updateUser({
 			...user,
 			balance: user.balance + refundAmount,
 			reservations: updatedReservationList,
+			paymentHistory: [...userPaymentHistoryList, newPayment],
 		});
 	};
 
@@ -64,9 +80,15 @@ const CancelReservationModal = (props: CancelReservationModalProps) => {
 					</Text>
 				</View>
 				<View className="flex flex-col gap-2">
-					<Text className="text-[10px] font-RalewayRegular text-FontColor">
-						Uwaga! Anulowanie rezerwacji zwróci tylko 75% ceny rezerwacji.
-					</Text>
+					{user?.isPremiumAccount ? (
+						<Text className="text-[10px] font-RalewayRegular text-FontColor">
+							Dzięki statusie premium otrzymasz 100% zwrotu!
+						</Text>
+					) : (
+						<Text className="text-[10px] font-RalewayRegular text-FontColor">
+							Uwaga! Anulowanie rezerwacji zwróci tylko 75% ceny rezerwacji.
+						</Text>
+					)}
 					<View className="flex flex-row gap-2">
 						<PrimaryButton
 							onPressFn={() => {
@@ -79,7 +101,7 @@ const CancelReservationModal = (props: CancelReservationModalProps) => {
 								handleCancelReservation();
 								props.setIsModalVisible(false);
 							}}
-							text="Anuluj"
+							text="Anuluj rezerwację"
 						/>
 					</View>
 				</View>
