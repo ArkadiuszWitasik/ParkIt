@@ -7,6 +7,7 @@ import { Href, router } from 'expo-router';
 import CancelIcon from '@/assets/Icons/CancelIcon';
 import { useReservationStore } from '@/store/reservationStore';
 import CheckIcon from '@/assets/Icons/CheckIcon';
+import { Timestamp } from 'firebase/firestore';
 
 type PaymentModalProps = {
 	paymentType: 'reservation' | 'top-up' | 'premium' | 'refund';
@@ -55,6 +56,21 @@ const PaymentModal = (props: PaymentModalProps) => {
 				return;
 			}
 
+			const userPaymentHistoryList = user?.paymentHistory || [];
+
+			const lastPaymentId = userPaymentHistoryList.length
+				? Math.max(
+						...userPaymentHistoryList.map((payment) => payment.paymentId)
+				  )
+				: 0;
+
+			const newPayment = {
+				paymentId: lastPaymentId,
+				paymentDate: Timestamp.fromDate(new Date()),
+				paymentAmount: props.paymentAmount,
+				paymentDesc: props.paymentType,
+			};
+
 			if (props.reservation) {
 				if (user) {
 					const userReservationList = user.reservations;
@@ -75,12 +91,14 @@ const PaymentModal = (props: PaymentModalProps) => {
 						loyalityCount: userLoyalityCount,
 						isDiscountApplyed: applyDiscount,
 						reservations: [...userReservationList, props.reservation],
+						paymentHistory: [...userPaymentHistoryList, newPayment],
 					});
 				}
 			} else {
 				updateUser({
 					...user,
 					balance: newAccountBalance,
+					paymentHistory: [...userPaymentHistoryList, newPayment],
 				});
 			}
 			setIsLoading(false);

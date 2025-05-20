@@ -1,5 +1,5 @@
 import { db } from '@/db/store';
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, setDoc, Timestamp } from 'firebase/firestore';
 import { create } from 'zustand';
 
 export interface Car {
@@ -10,7 +10,7 @@ export interface Car {
 
 export interface Payment {
 	paymentId: number;
-	paymentDate: Date;
+	paymentDate: Timestamp;
 	paymentAmount: number;
 	paymentDesc: string;
 }
