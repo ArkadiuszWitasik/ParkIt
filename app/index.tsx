@@ -81,6 +81,7 @@ export default function SignInScreen() {
 						isPremiumAccount: docUserSnap.data().isPremiumAccount,
 						paymentHistory: docUserSnap.data().paymentHistory,
 						premiumExpireDate: docUserSnap.data().premiumExpireDate || {},
+						totalLoyalityCount: docUserSnap.data().totalLoyalityCount,
 					};
 					setUser(formaterUserData);
 				}

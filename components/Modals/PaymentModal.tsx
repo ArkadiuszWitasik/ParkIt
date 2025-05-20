@@ -31,6 +31,7 @@ const PaymentModal = (props: PaymentModalProps) => {
 	let modalInfoText = '';
 
 	let userLoyalityCount = user!.loyalityCount;
+	let totalUserLoyalityCount = user!.totalLoyalityCount;
 	let applyDiscount = false;
 
 	if (props.paymentType === 'reservation') {
@@ -74,6 +75,7 @@ const PaymentModal = (props: PaymentModalProps) => {
 						applyDiscount = true;
 					}
 					if (userLoyalityCount === 6) {
+						totalUserLoyalityCount += 1;
 						applyDiscount = false;
 						userLoyalityCount = 0;
 					}
@@ -83,6 +85,7 @@ const PaymentModal = (props: PaymentModalProps) => {
 						balance: newAccountBalance,
 						loyalityCount: userLoyalityCount,
 						isDiscountApplyed: applyDiscount,
+						totalLoyalityCount: totalUserLoyalityCount,
 						reservations: [...userReservationList, props.reservation],
 						paymentHistory: [...userPaymentHistoryList, newPayment],
 					});

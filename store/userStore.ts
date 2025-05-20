@@ -35,6 +35,7 @@ export interface User {
 	balance: number;
 	isPremiumAccount: boolean;
 	premiumExpireDate: Timestamp;
+	totalLoyalityCount: number;
 	paymentHistory: Payment[];
 }
 

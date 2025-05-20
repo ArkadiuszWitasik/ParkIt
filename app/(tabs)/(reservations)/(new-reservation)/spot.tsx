@@ -26,14 +26,18 @@ const ChooseSpotScreen = () => {
 			(parking) => parking.parkingId === reservation!.reservationParkingId
 		)?.parkingRatePerMin;
 
-		let newReservationPrice =
+		let newReservationPrice = 0;
+		if (
 			reservation!.reservationEndTime &&
 			reservation!.reservationStartTime &&
 			choosenParkingLotRate
-				? (reservation!.reservationEndTime.getMinutes() -
-						reservation!.reservationStartTime.getMinutes()) *
-				  choosenParkingLotRate
-				: 0;
+		) {
+			const diffMs =
+				reservation!.reservationEndTime.getTime() -
+				reservation!.reservationStartTime.getTime();
+			const diffMinutes = Math.round(diffMs / (1000 * 60));
+			newReservationPrice = diffMinutes * choosenParkingLotRate;
+		}
 
 		newReservationPrice = Math.abs(Math.round(newReservationPrice));
 
