@@ -6,7 +6,7 @@ import LoyalityMainView from '@/components/MainViews/LoyalityMainView';
 import CarMainView from '@/components/MainViews/CarMainView';
 import ReservationsMainView from '@/components/MainViews/ReservationsMainView';
 import { useUserStore } from '@/store/userStore';
-import { formatFirebaseTimestamp } from '@/helpers/functions';
+import { toDate } from '@/helpers/functions';
 
 const HomeScreen = () => {
 	const { user, updateUser } = useUserStore();
@@ -26,12 +26,9 @@ const HomeScreen = () => {
 	const updateUserReservations = () => {
 		if (user) {
 			const updatedReservations = user.reservations.map((reservation) => {
-				const { formatedDate, formatedStartTime, formatedEndTime } =
-					formatFirebaseTimestamp(
-						reservation.reservationDate,
-						reservation.reservationStartTime,
-						reservation.reservationEndTime
-					);
+				const formatedDate = toDate(reservation.reservationDate);
+				const formatedStartTime = toDate(reservation.reservationStartTime);
+				const formatedEndTime = toDate(reservation.reservationEndTime);
 				if (
 					formatedDate.toLocaleDateString() ===
 						new Date().toLocaleDateString() &&

@@ -5,9 +5,9 @@ import { Reservation, useUserStore } from '@/store/userStore';
 import CancelIcon from '@/assets/Icons/CancelIcon';
 import UnstyledButton from '../Buttons/UnstyledButton';
 import Divider from '../Divider';
-import { formatFirebaseTimestamp } from '@/helpers/functions';
 import CancelReservationModal from '../Modals/CancelReservationModal';
 import NavIcon from '@/assets/Icons/NavIcon';
+import { toDate } from '@/helpers/functions';
 
 type ReservationCardProps = {
 	reservation: Reservation;
@@ -60,12 +60,9 @@ export default function ReservationCard(props: ReservationCardProps) {
 		(car) => car.carId === props.reservation.carId
 	);
 
-	const { formatedDate, formatedStartTime, formatedEndTime } =
-		formatFirebaseTimestamp(
-			props.reservation.reservationDate,
-			props.reservation.reservationStartTime,
-			props.reservation.reservationEndTime
-		);
+	const formatedDate = toDate(props.reservation.reservationDate);
+	const formatedStartTime = toDate(props.reservation.reservationStartTime);
+	const formatedEndTime = toDate(props.reservation.reservationEndTime);
 
 	return (
 		<View className="flex-col gap-3 bg-white rounded-md p-3">

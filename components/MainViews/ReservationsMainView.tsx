@@ -3,8 +3,8 @@ import React from 'react';
 import CalendarIcon from '@/assets/Icons/CalendarIcon';
 import ArrowUpRightIcon from '@/assets/Icons/ArrowUpRightIcon';
 import { useUserStore } from '@/store/userStore';
-import { formatFirebaseTimestamp } from '@/helpers/functions';
 import { useParkingLotsStore } from '@/store/parkingLotsStore';
+import { toDate } from '@/helpers/functions';
 
 const ReservationsMainView = () => {
 	const { user } = useUserStore();
@@ -47,12 +47,9 @@ const ReservationsMainView = () => {
 	}
 
 	if (closestReservation !== null) {
-		const { formatedDate, formatedStartTime, formatedEndTime } =
-			formatFirebaseTimestamp(
-				closestReservation!.reservationDate,
-				closestReservation!.reservationStartTime,
-				closestReservation!.reservationEndTime
-			);
+		const formatedDate = toDate(closestReservation!.reservationDate);
+		const formatedStartTime = toDate(closestReservation!.reservationStartTime);
+		const formatedEndTime = toDate(closestReservation!.reservationEndTime);
 
 		const choosenParkingLotName = parkingLots.find(
 			(parking) =>

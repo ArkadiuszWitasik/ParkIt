@@ -3,9 +3,9 @@ import React, { Dispatch, SetStateAction } from 'react';
 import BaseModal from './BaseModal';
 import PrimaryButton from '../Buttons/PrimaryButton';
 import { Reservation, useUserStore } from '@/store/userStore';
-import { formatFirebaseTimestamp } from '@/helpers/functions';
 import { useParkingLotsStore } from '@/store/parkingLotsStore';
 import { Timestamp } from 'firebase/firestore';
+import { toDate } from '@/helpers/functions';
 
 type CancelReservationModalProps = {
 	reservation: Reservation;
@@ -16,12 +16,10 @@ type CancelReservationModalProps = {
 const CancelReservationModal = (props: CancelReservationModalProps) => {
 	const { parkingLots } = useParkingLotsStore();
 	const { user, updateUser } = useUserStore();
-	const { formatedDate, formatedStartTime, formatedEndTime } =
-		formatFirebaseTimestamp(
-			props.reservation.reservationDate,
-			props.reservation.reservationStartTime,
-			props.reservation.reservationEndTime
-		);
+
+	const formatedDate = toDate(props.reservation.reservationDate);
+	const formatedStartTime = toDate(props.reservation.reservationStartTime);
+	const formatedEndTime = toDate(props.reservation.reservationEndTime);
 
 	const choosenParkingLotName = parkingLots.find(
 		(parking) => parking.parkingId === props.reservation.reservationParkingId
