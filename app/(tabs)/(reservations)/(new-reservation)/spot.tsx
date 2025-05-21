@@ -1,4 +1,4 @@
-import { View, Text, Pressable } from 'react-native';
+import { View, Text } from 'react-native';
 import React, { useState } from 'react';
 import PrimaryButton from '@/components/Buttons/PrimaryButton';
 import { Href, router } from 'expo-router';

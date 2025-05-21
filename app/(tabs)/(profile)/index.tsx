@@ -3,6 +3,7 @@ import React from 'react';
 import UnstyledButton from '@/components/Buttons/UnstyledButton';
 import { Href, router } from 'expo-router';
 import { useUserStore } from '@/store/userStore';
+import { count } from 'firebase/firestore';
 
 const ProfileScreen = () => {
 	const navigate = (path: Href) => {
@@ -15,6 +16,30 @@ const ProfileScreen = () => {
 	const userReservationList = user!.reservations;
 
 	const carStatistics: Record<string, number> = {};
+
+	const getReservationLabel = (count: number) => {
+		if (count === 0) {
+			return 'rezerwacji';
+		} else if (count === 1) {
+			return 'rezerwacja';
+		} else if (count > 1 && count < 5) {
+			return 'rezerwacje';
+		} else {
+			return 'rezerwacji';
+		}
+	};
+
+	const getDiscountLabel = (count: number) => {
+		if (count === 0) {
+			return 'zniżek';
+		} else if (count === 1) {
+			return 'zniżka';
+		} else if (count > 1 && count < 5) {
+			return 'zniżki';
+		} else {
+			return 'zniżek';
+		}
+	};
 
 	userReservationList.forEach((reservation) => {
 		const carId = reservation.carId;
@@ -83,7 +108,8 @@ const ProfileScreen = () => {
 						Rezerwacje
 					</Text>
 					<Text className="text-FontColor font-MontserratRegular text-[16px]">
-						{user?.reservations.length} rezerwacji
+						{user?.reservations.length}{' '}
+						{getReservationLabel(user!.reservations.length)}
 					</Text>
 				</View>
 				<View className="flex flex-row justify-between">
@@ -91,7 +117,8 @@ const ProfileScreen = () => {
 						Zastosowane zniżki
 					</Text>
 					<Text className="text-FontColor font-MontserratRegular text-[16px]">
-						{user?.totalLoyalityCount} zniżek
+						{user?.totalLoyalityCount}{' '}
+						{getDiscountLabel(user!.totalLoyalityCount)}
 					</Text>
 				</View>
 				<Text className="text-FontColor font-MontserratRegular text-[16px]">
@@ -112,7 +139,7 @@ const ProfileScreen = () => {
 							key={`${carId}-value`}
 							className="text-FontColor font-MontserratRegular text-[16px]"
 						>
-							{count} rezerwacji
+							{count} {getReservationLabel(count)}
 						</Text>
 					</View>
 				))}
@@ -121,7 +148,8 @@ const ProfileScreen = () => {
 						Rezerwacje w przeciągu roku
 					</Text>
 					<Text className="text-FontColor font-MontserratRegular text-[16px]">
-						{lastYearReservationsCount} rezerwacji
+						{lastYearReservationsCount}{' '}
+						{getReservationLabel(lastYearReservationsCount)}
 					</Text>
 				</View>
 			</View>
