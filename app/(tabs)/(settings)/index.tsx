@@ -4,6 +4,10 @@ import UnstyledButton from '@/components/Buttons/UnstyledButton';
 import { signOut } from 'firebase/auth';
 import { auth } from '@/db/store';
 import { router } from 'expo-router';
+import PrimaryButton from '@/components/Buttons/PrimaryButton';
+import ChangeEmailModal from '@/components/Modals/ChangeEmailModal';
+import ChangePasswordModal from '@/components/Modals/ChangePasswordModal';
+import DeleteAccountModal from '@/components/Modals/DeleteAccountModal';
 
 const SettingsScreen = () => {
 	const [isNotificationSwitchEnabled, setIsNotificationSwitchEnable] =
@@ -15,8 +19,23 @@ const SettingsScreen = () => {
 	const toggleThemeSwitch = () =>
 		setIsThemeSwitchEnable((previousState) => !previousState);
 
-	const tmp = () => {
-		console.log('tmp settings screen');
+	const [isChangePasswordModalVisible, setIsChangePasswordModalVisible] =
+		useState<boolean>(false);
+	const [isChangeEmailModalVisible, setIsChangeEmailModalVisible] =
+		useState<boolean>(false);
+	const [isDeleteAccountModalVisible, setIsDeleteAccountModalVisible] =
+		useState<boolean>(false);
+
+	const handleChangeEmailAddress = () => {
+		setIsChangeEmailModalVisible(true);
+	};
+
+	const handleChangePassword = () => {
+		setIsChangePasswordModalVisible(true);
+	};
+
+	const handleDeleteAccount = () => {
+		setIsDeleteAccountModalVisible(true);
 	};
 
 	const handleSingOut = () => {
@@ -31,6 +50,18 @@ const SettingsScreen = () => {
 
 	return (
 		<View className="flex-1 m-3 flex flex-col gap-2">
+			<ChangeEmailModal
+				isModalVisible={isChangeEmailModalVisible}
+				setIsModalVisible={setIsChangeEmailModalVisible}
+			/>
+			<ChangePasswordModal
+				isModalVisible={isChangePasswordModalVisible}
+				setIsModalVisible={setIsChangePasswordModalVisible}
+			/>
+			<DeleteAccountModal
+				isModalVisible={isDeleteAccountModalVisible}
+				setIsModalVisible={setIsDeleteAccountModalVisible}
+			/>
 			<View className="bg-white rounded-md flex flex-col gap-2 p-3">
 				<Text className="font-RalewaySemiBold text-FontColor text-[16px]">
 					Ustawienia aplikacji
@@ -67,10 +98,10 @@ const SettingsScreen = () => {
 					Ustawienia konta
 				</Text>
 				<UnstyledButton
-					onPressFn={() => tmp()}
+					onPressFn={handleChangeEmailAddress}
 					w="w-full"
 					bgColor=""
-					bgPressedColor="bg-gray-300"
+					bgPressedColor="bg-gray-200"
 					otherStyles="flex justify-center items-center rounded-md"
 				>
 					<Text className="text-FontColor font-MontserratRegular">
@@ -78,25 +109,14 @@ const SettingsScreen = () => {
 					</Text>
 				</UnstyledButton>
 				<UnstyledButton
-					onPressFn={() => tmp()}
+					onPressFn={handleChangePassword}
 					w="w-full"
 					bgColor=""
-					bgPressedColor="bg-gray-300"
+					bgPressedColor="bg-gray-200"
 					otherStyles="flex justify-center items-center rounded-md"
 				>
 					<Text className="text-FontColor font-MontserratRegular">
 						Zmień hasło
-					</Text>
-				</UnstyledButton>
-				<UnstyledButton
-					onPressFn={() => tmp()}
-					w="w-full"
-					bgColor=""
-					bgPressedColor="bg-gray-300"
-					otherStyles="flex justify-center items-center rounded-md"
-				>
-					<Text className="text-FontColor font-MontserratRegular">
-						Ustawienia płatności
 					</Text>
 				</UnstyledButton>
 			</View>
@@ -104,24 +124,18 @@ const SettingsScreen = () => {
 				onPressFn={() => handleSingOut()}
 				w="w-full"
 				bgColor="bg-white"
-				bgPressedColor="bg-gray-300"
+				bgPressedColor="bg-gray-200"
 				otherStyles="flex justify-center items-center rounded-md"
 			>
 				<Text className="text-FontColor font-MontserratRegular">
 					Wyloguj się
 				</Text>
 			</UnstyledButton>
-			<UnstyledButton
-				onPressFn={() => tmp()}
-				w="w-full"
-				bgColor="bg-red-100"
-				bgPressedColor="bg-gray-300"
-				otherStyles="flex justify-center items-center rounded-md"
-			>
-				<Text className="text-FontColor font-MontserratRegular">
-					Usuń konto
-				</Text>
-			</UnstyledButton>
+			<PrimaryButton
+				style="error"
+				onPressFn={handleDeleteAccount}
+				text="Usuń konto"
+			/>
 		</View>
 	);
 };
