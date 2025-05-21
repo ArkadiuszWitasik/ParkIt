@@ -46,7 +46,7 @@ const DeleteAccountModal = (props: DeleteAccountModalProps) => {
 		>
 			{isLoading && (
 				<View className="flex-1 flex-col justify-center items-center gap-3">
-					<Text className="font-RalewayRegular text-FontColor text-[22px]">
+					<Text className="font-MontserratRegular text-FontColor text-[22px]">
 						Usuwanie konta
 					</Text>
 					<ActivityIndicator size="large" />
@@ -61,7 +61,7 @@ const DeleteAccountModal = (props: DeleteAccountModalProps) => {
 							height: 48,
 						}}
 					/>
-					<Text className="font-RalewayRegular text-FontColor text-[20px] text-center">
+					<Text className="font-MontserratRegular text-FontColor text-[20px] text-center">
 						Błąd podczas usuwania konta
 					</Text>
 					<View className="flex flex-row gap-2 mt-4">
@@ -93,7 +93,7 @@ const DeleteAccountModal = (props: DeleteAccountModalProps) => {
 							height: 48,
 						}}
 					/>
-					<Text className="font-RalewayRegular text-FontColor text-[20px] text-center">
+					<Text className="font-MontserratRegular text-FontColor text-[20px] text-center">
 						Usuwanie hasła przebiegła pomyślnie!
 					</Text>
 					<View className="flex flex-row gap-2 mt-4">

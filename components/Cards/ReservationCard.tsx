@@ -75,10 +75,10 @@ export default function ReservationCard(props: ReservationCardProps) {
 			)}
 			<View className="flex flex-row justify-between">
 				<View>
-					<Text className="font-RalewaySemiBold text-FontColor">
+					<Text className="font-MontserratSemiBold text-FontColor">
 						{choosenParkingLot?.parkingName}
 					</Text>
-					<Text className="font-RalewayRegular text-FontColor">
+					<Text className="font-MontserratRegular text-FontColor">
 						{choosenZoneAndSpot}
 					</Text>
 				</View>
@@ -109,7 +109,7 @@ export default function ReservationCard(props: ReservationCardProps) {
 						</UnstyledButton>
 					</View>
 				) : (
-					<Text className="font-RalewaySemiBold text-FontColor">
+					<Text className="font-MontserratSemiBold text-FontColor">
 						{props.reservation.reservationPrice} zł
 					</Text>
 				)}
@@ -117,17 +117,17 @@ export default function ReservationCard(props: ReservationCardProps) {
 			<Divider />
 			<View className="flex flex-row justify-between gap-1">
 				<View>
-					<Text className="font-RalewayRegular text-FontColor">
+					<Text className="font-MontserratRegular text-FontColor">
 						{choosenCar?.carName}, {choosenCar?.carRegistrationNumber}
 					</Text>
-					<Text className="font-RalewayRegular text-FontColor">
+					<Text className="font-MontserratRegular text-FontColor">
 						{formatedDate.toLocaleDateString()}{' '}
 						{formatedStartTime.toLocaleTimeString()} -{' '}
 						{formatedEndTime.toLocaleTimeString()}
 					</Text>
 				</View>
 				<Text
-					className={`font-RalewaySemiBold ${statusColor} p-2 rounded-full ${statusTextColor}`}
+					className={`font-MontserratSemiBold ${statusColor} p-2 rounded-full ${statusTextColor}`}
 				>
 					{statusText}
 				</Text>

@@ -71,7 +71,7 @@ const ChooseTimeAndDateScreen = () => {
 
 	return (
 		<View className="flex-1 mt-10 mr-3 ml-3 flex flex-col gap-10 items-center">
-			<Text className="font-RalewayRegular text-[24px]">
+			<Text className="font-MontserratRegular text-[24px]">
 				Wybierz datę i godzinę
 			</Text>
 			<View className="flex flex-col gap-2 justify-center items-center">
@@ -90,7 +90,7 @@ const ChooseTimeAndDateScreen = () => {
 						onChange={handleStartTimeChange}
 						minimumDate={new Date()}
 					/>
-					<Text className="ml-3 font-RalewaySemiBold text-FontColor">-</Text>
+					<Text className="ml-3 font-MontserratSemiBold text-FontColor">-</Text>
 					<DateTimePicker
 						value={endTime}
 						mode={'time'}

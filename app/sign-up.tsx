@@ -72,10 +72,10 @@ const SignUpScreen = () => {
 					Park It
 				</Text>
 				<View className="flex flex-col justify-center items-center">
-					<Text className="text-2xl font-RalewaySemiBold text-FontColor">
+					<Text className="text-2xl font-MontserratSemiBold text-FontColor">
 						Tworzymy własnie
 					</Text>
-					<Text className="text-2xl font-RalewaySemiBold text-FontColor">
+					<Text className="text-2xl font-MontserratSemiBold text-FontColor">
 						twoje konto...
 					</Text>
 				</View>

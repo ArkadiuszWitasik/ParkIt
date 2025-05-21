@@ -63,7 +63,7 @@ const SettingsScreen = () => {
 				setIsModalVisible={setIsDeleteAccountModalVisible}
 			/>
 			<View className="bg-white rounded-md flex flex-col gap-2 p-3">
-				<Text className="font-RalewaySemiBold text-FontColor text-[16px]">
+				<Text className="font-MontserratSemiBold text-FontColor text-[16px]">
 					Ustawienia aplikacji
 				</Text>
 				<View className="flex justify-center rounded-md w-full h-[50px]">
@@ -94,7 +94,7 @@ const SettingsScreen = () => {
 				</View>
 			</View>
 			<View className="bg-white rounded-md flex flex-col gap-2 p-3">
-				<Text className="font-RalewaySemiBold text-FontColor text-[16px]">
+				<Text className="font-MontserratSemiBold text-FontColor text-[16px]">
 					Ustawienia konta
 				</Text>
 				<UnstyledButton

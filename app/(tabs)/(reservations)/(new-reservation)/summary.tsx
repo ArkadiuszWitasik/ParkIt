@@ -41,68 +41,74 @@ const SummaryScreen = () => {
 				navigate={'/(tabs)/(home)'}
 				reservation={reservation}
 			/>
-			<Text className="font-RalewayRegular text-[24px]">
+			<Text className="font-MontserratRegular text-[24px]">
 				Podsumowanie rezerwacji
 			</Text>
 			<View className=" flex flex-col gap-3 w-[75%]">
 				<View className=" flex flex-row justify-between">
-					<Text className="text-FontColor font-RalewayRegular">
+					<Text className="text-FontColor font-MontserratRegular">
 						Data rezerwacji
 					</Text>
-					<Text className="text-FontColor font-RalewayRegular">
+					<Text className="text-FontColor font-MontserratRegular">
 						{reservation!.reservationDate?.toLocaleDateString()}
 					</Text>
 				</View>
 				<View className=" flex flex-row justify-between">
-					<Text className="text-FontColor font-RalewayRegular">
+					<Text className="text-FontColor font-MontserratRegular">
 						Godziny rezerwacji
 					</Text>
-					<Text className="text-FontColor font-RalewayRegular">
+					<Text className="text-FontColor font-MontserratRegular">
 						{reservation!.reservationStartTime?.toLocaleTimeString()} -{' '}
 						{reservation!.reservationEndTime?.toLocaleTimeString()}
 					</Text>
 				</View>
 				<View className=" flex flex-row justify-between">
-					<Text className="text-FontColor font-RalewayRegular">
+					<Text className="text-FontColor font-MontserratRegular">
 						Wybrane auto
 					</Text>
-					<Text className="text-FontColor font-RalewayRegular">
+					<Text className="text-FontColor font-MontserratRegular">
 						{choosenCar?.carName}, {choosenCar?.carRegistrationNumber}
 					</Text>
 				</View>
 				<View className=" flex flex-row justify-between">
-					<Text className="text-FontColor font-RalewayRegular">
+					<Text className="text-FontColor font-MontserratRegular">
 						Wybrany parking
 					</Text>
-					<Text className="text-FontColor font-RalewayRegular">
+					<Text className="text-FontColor font-MontserratRegular">
 						{choosenParkingLotName}
 					</Text>
 				</View>
 				<View className=" flex flex-row justify-between">
-					<Text className="text-FontColor font-RalewayRegular">
+					<Text className="text-FontColor font-MontserratRegular">
 						Strefa i numer miejsca
 					</Text>
-					<Text className="text-FontColor font-RalewayRegular">
+					<Text className="text-FontColor font-MontserratRegular">
 						{choosenZoneAndSpot}
 					</Text>
 				</View>
 				{user?.isDiscountApplyed &&
 					(user.isPremiumAccount ? (
 						<View className="flex flex-row justify-between">
-							<Text className="text-FontColor font-RalewayRegular">Zniżka</Text>
-							<Text className="text-FontColor font-RalewayRegular">-15%</Text>
+							<Text className="text-FontColor font-MontserratRegular">
+								Zniżka
+							</Text>
+							<Text className="text-FontColor font-MontserratRegular">
+								-15%
+							</Text>
 						</View>
 					) : (
 						<View className="flex flex-row justify-between">
-							<Text className="text-FontColor font-RalewayRegular">Zniżka</Text>
-							<Text className="text-FontColor font-RalewayRegular">-5%</Text>
+							<Text className="text-FontColor font-MontserratRegular">
+								Zniżka
+							</Text>
+							<Text className="text-FontColor font-MontserratRegular">-5%</Text>
 						</View>
 					))}
 				<View className="flex flex-row justify-between">
-					<Text className="text-FontColor font-RalewaySemiBold">
+					<Text className="text-FontColor font-MontserratSemiBold">
 						Do zapłaty
 					</Text>
-					<Text className="text-FontColor font-RalewaySemiBold">
+					<Text className="text-FontColor font-MontserratSemiBold">
 						{reservation.reservationPrice} zł
 					</Text>
 				</View>

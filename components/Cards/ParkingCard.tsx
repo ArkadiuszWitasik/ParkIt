@@ -20,7 +20,7 @@ const ParkingCard = (props: ParkingCardProps) => {
 			} min-h-[50] p-3 rounded-md mb-4 z-30`}
 		>
 			<Text
-				className={`font-RalewayRegular text-[18px] ${
+				className={`font-MontserratRegular text-[18px] ${
 					props.parkingId === props.selectedParking
 						? 'text-white'
 						: 'text-FontColor'
@@ -29,7 +29,7 @@ const ParkingCard = (props: ParkingCardProps) => {
 				{props.parkingName}
 			</Text>
 			<Text
-				className={`font-RalewayRegular ${
+				className={`font-MontserratRegular ${
 					props.parkingId === props.selectedParking
 						? 'text-white'
 						: 'text-FontColor'

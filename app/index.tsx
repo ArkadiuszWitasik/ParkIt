@@ -20,8 +20,6 @@ import { useUserStore } from '@/store/userStore';
 export default function SignInScreen() {
 	const [loaded, error] = useFonts({
 		'BebasNeue-Regular': require('../assets/fonts/BebasNeue-Regular.ttf'),
-		'Raleway-Regular': require('../assets/fonts/Raleway-Regular.ttf'),
-		'Raleway-SemiBold': require('../assets/fonts/Raleway-SemiBold.ttf'),
 		'Montserrat-Regular': require('../assets/fonts/Montserrat-Regular.ttf'),
 		'Montserrat-SemiBold': require('../assets/fonts/Montserrat-SemiBold.ttf'),
 	});
@@ -111,10 +109,10 @@ export default function SignInScreen() {
 					Park It
 				</Text>
 				<View className="flex flex-col justify-center items-center">
-					<Text className="text-2xl font-RalewaySemiBold text-FontColor">
+					<Text className="text-2xl font-MontserratSemiBold text-FontColor">
 						Ładowanie informacji
 					</Text>
-					<Text className="text-2xl font-RalewaySemiBold text-FontColor">
+					<Text className="text-2xl font-MontserratSemiBold text-FontColor">
 						o użytkowniku...
 					</Text>
 				</View>

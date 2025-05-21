@@ -62,9 +62,11 @@ const ChooseSpotScreen = () => {
 
 	return (
 		<View className="flex-1 mt-10 mr-3 ml-3 mb-3 flex flex-col gap-10 items-center">
-			<Text className="font-RalewayRegular text-[24px]">Wybierz miejsce</Text>
+			<Text className="font-MontserratRegular text-[24px]">
+				Wybierz miejsce
+			</Text>
 			<View className="flex flex-col gap-1 justify-center items-center">
-				<Text className="font-RalewayRegular text-FontColor">
+				<Text className="font-MontserratRegular text-FontColor">
 					Dostępne miejsca w {parkingLotData?.parkingName}
 				</Text>
 			</View>

@@ -66,12 +66,12 @@ const CancelReservationModal = (props: CancelReservationModalProps) => {
 			setIsModalVisible={props.setIsModalVisible}
 		>
 			<View className="flex-1 flex-col justify-around items-center">
-				<Text className="font-RalewayRegular text-FontColor">
+				<Text className="font-MontserratRegular text-FontColor">
 					Czy chcesz anulować rezerwację?
 				</Text>
 				<View className="flex flex-col items-center">
 					<Text>{choosenParkingLotName}</Text>
-					<Text className="font-RalewayRegular text-FontColor">
+					<Text className="font-MontserratRegular text-FontColor">
 						{formatedDate.toLocaleDateString()} w godzinach{' '}
 						{formatedStartTime.toLocaleTimeString()} -{' '}
 						{formatedEndTime.toLocaleTimeString()}
@@ -79,11 +79,11 @@ const CancelReservationModal = (props: CancelReservationModalProps) => {
 				</View>
 				<View className="flex flex-col gap-2">
 					{user?.isPremiumAccount ? (
-						<Text className="text-[10px] font-RalewayRegular text-FontColor">
+						<Text className="text-[10px] font-MontserratRegular text-FontColor">
 							Dzięki statusie premium otrzymasz 100% zwrotu!
 						</Text>
 					) : (
-						<Text className="text-[10px] font-RalewayRegular text-FontColor">
+						<Text className="text-[10px] font-MontserratRegular text-FontColor">
 							Uwaga! Anulowanie rezerwacji zwróci tylko 75% ceny rezerwacji.
 						</Text>
 					)}

@@ -38,7 +38,7 @@ const ParkingSpotCard = (props: ParkingSpotCardProps) => {
 						} w-[30%] h-[50px] flex justify-center items-center rounded-md`}
 					>
 						<Text
-							className={`font-RalewayRegular text-[18px] ${
+							className={`font-MontserratRegular text-[18px] ${
 								props.selectedSpot ===
 								`${spot.spotId}-${spot.spotName}-${props.zoneName}`
 									? 'text-white'

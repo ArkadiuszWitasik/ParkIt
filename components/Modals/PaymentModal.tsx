@@ -165,10 +165,10 @@ const PaymentModal = (props: PaymentModalProps) => {
 		>
 			{!isLoading && !isPaymentError && !isPaymentSuccess && (
 				<View className="flex-1 flex-col items-center justify-around">
-					<Text className="font-RalewayRegular text-FontColor text-[18px]">
+					<Text className="font-MontserratRegular text-FontColor text-[18px]">
 						{modalInfoText}
 					</Text>
-					<Text className="font-RalewayRegular text-FontColor text-[18px]">
+					<Text className="font-MontserratRegular text-FontColor text-[18px]">
 						Kwota {props.paymentAmount} zł
 					</Text>
 					<View className=" flex-row justify-center items-center gap-2">
@@ -195,7 +195,7 @@ const PaymentModal = (props: PaymentModalProps) => {
 			)}
 			{isLoading && (
 				<View className="flex-1 flex-col justify-center items-center gap-3">
-					<Text className="font-RalewayRegular text-FontColor text-[22px]">
+					<Text className="font-MontserratRegular text-FontColor text-[22px]">
 						Przetwarzanie płatności
 					</Text>
 					<ActivityIndicator size="large" />
@@ -210,7 +210,7 @@ const PaymentModal = (props: PaymentModalProps) => {
 							height: 48,
 						}}
 					/>
-					<Text className="font-RalewayRegular text-FontColor text-[20px]">
+					<Text className="font-MontserratRegular text-FontColor text-[20px]">
 						{errorMessage}
 					</Text>
 					<View className="flex flex-row gap-2 mt-4">
@@ -252,10 +252,10 @@ const PaymentModal = (props: PaymentModalProps) => {
 							height: 48,
 						}}
 					/>
-					<Text className="font-RalewayRegular text-FontColor text-[20px]">
+					<Text className="font-MontserratRegular text-FontColor text-[20px]">
 						Płatność przebiegła pomyslnie!
 					</Text>
-					<Text className="font-RalewayRegular text-FontColor text-[16px] text-center">
+					<Text className="font-MontserratRegular text-FontColor text-[16px] text-center">
 						Dziekujemy za korzystanie z naszych uslug!
 					</Text>
 					<View className="flex flex-row gap-2 mt-4">

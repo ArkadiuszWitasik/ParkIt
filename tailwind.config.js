@@ -7,8 +7,6 @@ module.exports = {
 		extend: {
 			fontFamily: {
 				BebasNeueRegular: ['BebasNeue-Regular', 'sans-serif'],
-				RalewayRegular: ['Raleway-Regular', 'sans-serif'],
-				RalewaySemiBold: ['Raleway-SemiBold', 'sans-serif'],
 				MontserratRegular: ['Montserrat-Regular', 'sans-serif'],
 				MontserratSemiBold: ['Montserrat-SemiBold', 'sans-serif'],
 			},

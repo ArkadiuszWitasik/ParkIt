@@ -22,16 +22,16 @@ const AccountBalanceScreen = () => {
 				paymentAmount={value}
 			/>
 			<View>
-				<Text className="font-RalewaySemiBold text-FontColor text-[18px]">
+				<Text className="font-MontserratSemiBold text-FontColor text-[18px]">
 					Aktualny stan konta
 				</Text>
-				<Text className="font-RalewaySemiBold text-[50px] text-center bg-white rounded-md p-3">
+				<Text className="font-MontserratSemiBold text-[50px] text-center bg-white rounded-md p-3">
 					{user?.balance}{' '}
-					<Text className="text-[35px] font-RalewaySemiBold">zł</Text>
+					<Text className="text-[35px] font-MontserratSemiBold">zł</Text>
 				</Text>
 			</View>
 			<View>
-				<Text className="font-RalewaySemiBold text-FontColor text-[18px]">
+				<Text className="font-MontserratSemiBold text-FontColor text-[18px]">
 					Doładuj konto
 				</Text>
 				<View className="flex bg-white p-3 rounded-md justify-center items-center gap-2">
@@ -48,11 +48,11 @@ const AccountBalanceScreen = () => {
 							bgColor="bg-AppBackground"
 							otherStyles="flex justify-center items-center rounder-md"
 						>
-							<Text className="text-[25px] font-RalewayRegular text-FontColor">
+							<Text className="text-[25px] font-MontserratRegular text-FontColor">
 								-
 							</Text>
 						</UnstyledButton>
-						<Text className="text-[25px] w-[70px] text-center font-RalewayRegular text-FontColor">
+						<Text className="text-[25px] w-[70px] text-center font-MontserratRegular text-FontColor">
 							{value} zł
 						</Text>
 						<UnstyledButton
@@ -64,12 +64,12 @@ const AccountBalanceScreen = () => {
 							bgColor="bg-AppBackground"
 							otherStyles="flex justify-center items-center rounder-lg"
 						>
-							<Text className="text-[25px] font-RalewayRegular text-FontColor">
+							<Text className="text-[25px] font-MontserratRegular text-FontColor">
 								+
 							</Text>
 						</UnstyledButton>
 					</View>
-					<Text className="font-RalewayRegular text-[12px] text-FontColor">
+					<Text className="font-MontserratRegular text-[12px] text-FontColor">
 						Minimalna kwota doładowania to 10zł
 					</Text>
 					<PrimaryButton
@@ -83,7 +83,7 @@ const AccountBalanceScreen = () => {
 			</View>
 			{user?.paymentHistory ? (
 				<View>
-					<Text className="font-RalewaySemiBold text-FontColor text-[18px]">
+					<Text className="font-MontserratSemiBold text-FontColor text-[18px]">
 						Historia transakcji
 					</Text>
 					<ScrollView className="h-[250px] flex flex-col gap-5 bg-white rounded-md pl-2 pr-2">

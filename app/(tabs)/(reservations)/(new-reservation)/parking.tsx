@@ -24,18 +24,20 @@ const ChooseParkingScreen = () => {
 
 	return (
 		<View className="flex-1 mt-10 mr-3 ml-3 mb-3 flex flex-col gap-10 items-center ">
-			<Text className="font-RalewayRegular text-[24px]">Wybierz parking</Text>
+			<Text className="font-MontserratRegular text-[24px]">
+				Wybierz parking
+			</Text>
 			<View className="flex flex-col gap-1 justify-center items-center">
-				<Text className="font-RalewayRegular text-center">
+				<Text className="font-MontserratRegular text-center">
 					Ilość dostępnych miejsc w przedziale
 				</Text>
 				<View className="flex flex-row">
-					<Text className="font-RalewayRegular">
+					<Text className="font-MontserratRegular">
 						{reservation.reservationDate?.toLocaleDateString()}{' '}
 						{reservation.reservationStartTime?.toLocaleTimeString()}
 					</Text>
-					<Text className="font-RalewayRegular"> - </Text>
-					<Text className="font-RalewayRegular">
+					<Text className="font-MontserratRegular"> - </Text>
+					<Text className="font-MontserratRegular">
 						{reservation.reservationEndTime?.toLocaleTimeString()}
 					</Text>
 				</View>

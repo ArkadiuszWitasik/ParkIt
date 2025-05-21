@@ -26,7 +26,7 @@ const ReservationsScreen = () => {
 				text="Nowa rezerwacja"
 			/>
 			<ScrollView className="max-h-[75%]" showsVerticalScrollIndicator={false}>
-				<Text className="text-[18px] font-RalewaySemiBold text-FontColor mt-2 mb-2">
+				<Text className="text-[18px] font-MontserratSemiBold text-FontColor mt-2 mb-2">
 					Aktualne rezerwacje
 				</Text>
 				<View className="flex flex-col gap-3">
@@ -47,7 +47,7 @@ const ReservationsScreen = () => {
 					user.reservations.some(
 						(reservation) => reservation.reservationStatus !== 0
 					) && (
-						<Text className="text-[18px] font-RalewaySemiBold text-FontColor mt-5 mb-2">
+						<Text className="text-[18px] font-MontserratSemiBold text-FontColor mt-5 mb-2">
 							Historia
 						</Text>
 					)}

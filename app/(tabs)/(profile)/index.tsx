@@ -100,7 +100,7 @@ const ProfileScreen = () => {
 				<Text className="text-FontColor font-MontserratRegular">Samochody</Text>
 			</UnstyledButton>
 			<View className="rounded-md flex flex-col gap-2 bg-white w-full p-3">
-				<Text className="text-FontColor font-RalewaySemiBold text-[18px]">
+				<Text className="text-FontColor font-MontserratSemiBold text-[18px]">
 					Statystyki
 				</Text>
 				<View className="flex flex-row justify-between">

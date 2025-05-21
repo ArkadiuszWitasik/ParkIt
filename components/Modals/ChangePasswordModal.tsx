@@ -53,7 +53,7 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
 		>
 			{isLoading && (
 				<View className="flex-1 flex-col justify-center items-center gap-3">
-					<Text className="font-RalewayRegular text-FontColor text-[22px]">
+					<Text className="font-MontserratRegular text-FontColor text-[22px]">
 						Zmiana hasła
 					</Text>
 					<ActivityIndicator size="large" />
@@ -68,7 +68,7 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
 							height: 48,
 						}}
 					/>
-					<Text className="font-RalewayRegular text-FontColor text-[20px] text-center">
+					<Text className="font-MontserratRegular text-FontColor text-[20px] text-center">
 						Błąd podczas zmiany hasła
 					</Text>
 					<View className="flex flex-row gap-2 mt-4">
@@ -100,7 +100,7 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
 							height: 48,
 						}}
 					/>
-					<Text className="font-RalewayRegular text-FontColor text-[20px] text-center">
+					<Text className="font-MontserratRegular text-FontColor text-[20px] text-center">
 						Zmiana hasła przebiegła pomyslnie!
 					</Text>
 					<View className="flex flex-row gap-2 mt-4">

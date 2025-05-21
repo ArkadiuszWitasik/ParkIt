@@ -34,23 +34,23 @@ const LoyalityScreen = () => {
 				setIsModalVisible={setIsPlaymentInProgress}
 				paymentType="premium"
 			/>
-			<Text className="font-RalewayRegular text-FontColor text-center text-[18px]">
+			<Text className="font-MontserratRegular text-FontColor text-center text-[18px]">
 				Witaj w naszym programie lojalnościowym!
 			</Text>
 			{user?.isPremiumAccount ? (
-				<Text className="font-RalewayRegular text-FontColor text-[16px]">
+				<Text className="font-MontserratRegular text-FontColor text-[16px]">
 					Jesteś posiadaczem konta premium po{' '}
-					<Text className="font-RalewaySemiBold text-FontColor">5</Text>{' '}
+					<Text className="font-MontserratSemiBold text-FontColor">5</Text>{' '}
 					rezerwacjach twoje konto zostaje nagrodzone{' '}
-					<Text className="font-RalewaySemiBold text-FontColor">-15%</Text>{' '}
+					<Text className="font-MontserratSemiBold text-FontColor">-15%</Text>{' '}
 					zniżką na kolejną rezerwację.
 				</Text>
 			) : (
-				<Text className="font-RalewayRegular text-FontColor text-[16px]">
+				<Text className="font-MontserratRegular text-FontColor text-[16px]">
 					W darmowej wersji konta po{' '}
-					<Text className="font-RalewaySemiBold text-FontColor">5</Text>{' '}
+					<Text className="font-MontserratSemiBold text-FontColor">5</Text>{' '}
 					rezerwacjach twoje konto zostaje nagrodzone{' '}
-					<Text className="font-RalewaySemiBold text-FontColor">-5%</Text>{' '}
+					<Text className="font-MontserratSemiBold text-FontColor">-5%</Text>{' '}
 					zniżką na kolejną rezerwację.
 				</Text>
 			)}
@@ -80,9 +80,9 @@ const LoyalityScreen = () => {
 
 			{user?.isPremiumAccount ? (
 				<View>
-					<Text className="font-RalewayRegular text-FontColor text-[16px]">
+					<Text className="font-MontserratRegular text-FontColor text-[16px]">
 						Do końca twojej subskrybcji premium zostało{' '}
-						<Text className="font-RalewaySemiBold text-FontColor text-[16px]">
+						<Text className="font-MontserratSemiBold text-FontColor text-[16px]">
 							{Math.ceil(
 								(user.premiumExpireDate.toDate().getTime() -
 									new Date().getTime()) /
@@ -94,22 +94,22 @@ const LoyalityScreen = () => {
 				</View>
 			) : (
 				<>
-					<Text className="font-RalewayRegular text-FontColor text-[16px] mt-5 mb-5">
+					<Text className="font-MontserratRegular text-FontColor text-[16px] mt-5 mb-5">
 						Zachęcamy również do ulepszenia konta do wersji premium gdzie za
 						cenę{' '}
-						<Text className="font-RalewaySemiBold text-FontColor text-[16px]">
+						<Text className="font-MontserratSemiBold text-FontColor text-[16px]">
 							40zł
 						</Text>{' '}
 						miesięcznie. Po{' '}
-						<Text className="font-RalewaySemiBold text-FontColor text-[16px]">
+						<Text className="font-MontserratSemiBold text-FontColor text-[16px]">
 							5
 						</Text>{' '}
 						rezerwacjach otrzymasz aż{' '}
-						<Text className="font-RalewaySemiBold text-FontColor text-[16px]">
+						<Text className="font-MontserratSemiBold text-FontColor text-[16px]">
 							-15%
 						</Text>{' '}
 						zniżki a anulowanie rezerwacji zwróci{' '}
-						<Text className="font-RalewaySemiBold text-FontColor text-[16px]">
+						<Text className="font-MontserratSemiBold text-FontColor text-[16px]">
 							100%
 						</Text>{' '}
 						kwoty.
