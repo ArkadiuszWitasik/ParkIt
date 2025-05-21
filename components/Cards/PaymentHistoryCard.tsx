@@ -16,17 +16,22 @@ const PaymentHistoryCard = (props: PaymentHistoryCardProps) => {
 	} else if (props.payment.paymentDesc === 'premium') {
 		paymentDesc = 'Aktywacja konta premium';
 	} else if (props.payment.paymentDesc === 'refund') {
-		paymentDesc = 'Zwrot środków za rezerwację';
+		paymentDesc = 'Zwrot środków';
 	}
 	return (
 		<View className="mt-3 flex flex-row gap-3">
 			<Text className="font-RalewayRegular text-FontColor text-[16px]">
 				{props.payment.paymentDate.toDate().toLocaleDateString()}
 			</Text>
+			<Text className="font-RalewayRegular text-FontColor text-[16px]">|</Text>
 			<Text className="font-RalewayRegular text-FontColor text-[16px]">
 				{paymentDesc}
 			</Text>
-			<Text className="font-RalewayRegular text-FontColor text-[16px]">
+			<Text
+				className={`font-RalewaySemiBold ${
+					props.payment.paymentAmount < 0 ? 'text-red-500' : 'text-green-500'
+				} text-[16px]`}
+			>
 				{props.payment.paymentAmount} zł
 			</Text>
 		</View>

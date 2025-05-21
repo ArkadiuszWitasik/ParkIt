@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import React, { useEffect } from 'react';
 import MainScreenCard from '@/components/MainViews/MainScreenCard';
 import BalanceMainView from '@/components/MainViews/BalanceMainView';

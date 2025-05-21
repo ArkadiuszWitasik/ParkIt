@@ -86,7 +86,7 @@ const AccountBalanceScreen = () => {
 					<Text className="font-RalewaySemiBold text-FontColor text-[18px]">
 						Historia transakcji
 					</Text>
-					<ScrollView className="h-[250px] flex flex-col gap-5">
+					<ScrollView className="h-[250px] flex flex-col gap-5 bg-white rounded-md pl-2 pr-2">
 						{user?.paymentHistory &&
 							user.paymentHistory.map((payment) => (
 								<PaymentHistoryCard

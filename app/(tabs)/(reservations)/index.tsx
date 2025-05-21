@@ -42,13 +42,19 @@ const ReservationsScreen = () => {
 								/>
 							))}
 				</View>
-				<Text className="text-[18px] font-RalewaySemiBold text-FontColor mt-5 mb-2">
-					Historia
-				</Text>
+				{user &&
+					user.reservations &&
+					user.reservations.some(
+						(reservation) => reservation.reservationStatus !== 0
+					) && (
+						<Text className="text-[18px] font-RalewaySemiBold text-FontColor mt-5 mb-2">
+							Historia
+						</Text>
+					)}
 				<View className="flex flex-col gap-3">
 					{user &&
 						user.reservations
-							.filter((reservation) => reservation.reservationStatus > 0)
+							.filter((reservation) => reservation.reservationStatus >= 2)
 							.map((reservation) => (
 								<ReservationCard
 									key={reservation.reservationId}

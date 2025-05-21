@@ -1,5 +1,11 @@
-import { View, Text, ActivityIndicator } from 'react-native';
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import { View, Text, ActivityIndicator, Linking, AppState } from 'react-native';
+import React, {
+	Dispatch,
+	SetStateAction,
+	useEffect,
+	useRef,
+	useState,
+} from 'react';
 import BaseModal from './BaseModal';
 import PrimaryButton from '../Buttons/PrimaryButton';
 import { Reservation, useUserStore } from '@/store/userStore';
@@ -8,6 +14,8 @@ import CancelIcon from '@/assets/Icons/CancelIcon';
 import { useReservationStore } from '@/store/reservationStore';
 import CheckIcon from '@/assets/Icons/CheckIcon';
 import { Timestamp } from 'firebase/firestore';
+
+const PAYMENT_LINK = 'LINK';
 
 type PaymentModalProps = {
 	paymentType: 'reservation' | 'top-up' | 'premium' | 'refund';
@@ -19,6 +27,7 @@ type PaymentModalProps = {
 };
 
 const PaymentModal = (props: PaymentModalProps) => {
+	const appState = useRef(AppState.currentState);
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [isPaymentSuccess, setIsPaymentSuccess] = useState<boolean>(false);
 	const [isPaymentError, setIsPaymentError] = useState<boolean>(false);
@@ -44,7 +53,12 @@ const PaymentModal = (props: PaymentModalProps) => {
 		modalInfoText = 'Czy chcesz otrzymać zwrot?';
 	}
 
-	const handleProcessPayment = () => {
+	const handleStripePayment = async () => {
+		setIsLoading(true);
+		await Linking.openURL(PAYMENT_LINK);
+	};
+
+	const handleProcessPayment = async () => {
 		setIsLoading(true);
 
 		setTimeout(() => {
@@ -101,16 +115,46 @@ const PaymentModal = (props: PaymentModalProps) => {
 					paymentHistory: [...userPaymentHistoryList, newPayment],
 				});
 			} else if (props.paymentType === 'top-up') {
-				updateUser({
-					...user,
-					balance: newAccountBalance,
-					paymentHistory: [...userPaymentHistoryList, newPayment],
-				});
+				// updateUser({
+				// 	...user,
+				// 	balance: newAccountBalance,
+				// 	paymentHistory: [...userPaymentHistoryList, newPayment],
+				// });
 			}
 			setIsLoading(false);
 			setIsPaymentSuccess(true);
 		}, 2000);
 	};
+
+	useEffect(() => {
+		const subscription = AppState.addEventListener('change', (nextAppState) => {
+			if (
+				appState.current.match(/inactive|background/) &&
+				nextAppState === 'active' &&
+				isLoading
+			) {
+				setIsLoading(false);
+				setIsPaymentSuccess(true);
+				if (props.paymentType === 'top-up') {
+					const newAccountBalance = user!.balance + props.paymentAmount;
+					const userPaymentHistoryList = user?.paymentHistory || [];
+					const newPayment = {
+						paymentDate: Timestamp.fromDate(new Date()),
+						paymentAmount: props.paymentAmount,
+						paymentDesc: props.paymentType,
+					};
+
+					updateUser({
+						...user,
+						balance: newAccountBalance,
+						paymentHistory: [...userPaymentHistoryList, newPayment],
+					});
+				}
+			}
+			appState.current = nextAppState;
+		});
+		return () => subscription.remove();
+	}, [isLoading]);
 
 	return (
 		<BaseModal
@@ -137,7 +181,13 @@ const PaymentModal = (props: PaymentModalProps) => {
 						/>
 						<PrimaryButton
 							style="primary"
-							onPressFn={handleProcessPayment}
+							onPressFn={() => {
+								if (props.paymentType === 'top-up') {
+									handleStripePayment();
+								} else {
+									handleProcessPayment();
+								}
+							}}
 							text="Tak"
 						/>
 					</View>
